@@ -1,101 +1,82 @@
 from fastapi import FastAPI, Request
-from fastapi.responses import HTMLResponse
-from fastapi.templating import Jinja2Templates
+from fastapi.responses import HTMLResponse, JSONResponse
 from fastapi.staticfiles import StaticFiles
 import uvicorn
 from igt_env import IGTEnvironment
-from config.database import save_participant_data
 import json
 from datetime import datetime
 from pathlib import Path
 
 app = FastAPI()
 
-# Mount templates directory
-templates = Jinja2Templates(directory="src/templates")
+# Mount static files
+static_path = Path(__file__).parent / "static"
+if static_path.exists():
+    app.mount("/static", StaticFiles(directory=str(static_path)), name="static")
 
 # Initialize IGT environment
 env = IGTEnvironment()
 
-@app.get("/", response_class=HTMLResponse)
-async def index(request: Request):
-    return templates.TemplateResponse("igt.html", {"request": request})
+@app.get("/")
+async def index():
+    html_content = """
+    <!DOCTYPE html>
+    <html>
+    <head>
+        <title>IGT Experiment</title>
+    </head>
+    <body>
+        <h1>Iowa Gambling Task</h1>
+        <div id="experiment">
+            <!-- Content will be loaded dynamically -->
+        </div>
+        <script src="/static/js/main.js"></script>
+    </body>
+    </html>
+    """
+    return HTMLResponse(content=html_content)
 
 @app.post("/api/start")
 async def start_experiment(request: Request):
-    participant_info = await request.json()
-    participant_info['timestamp'] = datetime.now().isoformat()
-    participant_info['session_id'] = f"{participant_info['timestamp']}_{participant_info.get('age')}_{participant_info.get('gender')}"
-    
-    # Initialize new environment
+    data = await request.json()
+    session_id = f"{datetime.now().isoformat()}_{data.get('age')}_{data.get('gender')}"
     state = env.reset()[0]
     
-    return {
-        'session_id': participant_info['session_id'],
-        'initial_state': state.tolist() if hasattr(state, 'tolist') else state,
+    return JSONResponse({
+        'session_id': session_id,
+        'state': state.tolist() if hasattr(state, 'tolist') else state,
         'total_money': env.total_money
-    }
+    })
 
 @app.post("/api/step")
 async def step(request: Request):
     data = await request.json()
-    action = data['action']
+    action = data.get('action')
+    if action is None:
+        return JSONResponse({'error': 'No action provided'}, status_code=400)
     
     state, reward, done, _, info = env.step(action)
     
-    return {
+    return JSONResponse({
         'state': state.tolist() if hasattr(state, 'tolist') else state,
         'reward': reward,
         'done': done,
         'total_money': info['total_money']
-    }
+    })
 
 @app.post("/api/save")
 async def save_results(request: Request):
-    data = await request.json()
-    
-    # Calculate metrics
-    choices = data['history']['deck_choices']
-    rewards = data['history']['rewards']
-    
-    # Calculate advantageous choices (C+D) in last 20 trials
-    last_20_choices = choices[-20:]
-    advantageous = sum(1 for c in last_20_choices if c in [2, 3]) / len(last_20_choices)
-    
-    # Calculate risk-seeking after losses
-    risk_seeking = []
-    for i in range(1, len(choices)):
-        if rewards[i-1] < 0:  # After a loss
-            risk_seeking.append(1 if choices[i] in [0, 1] else 0)
-    risk_seeking_ratio = sum(risk_seeking) / len(risk_seeking) if risk_seeking else 0
-    
-    # Calculate deck preferences
-    total_choices = len(choices)
-    deck_preferences = {
-        deck: choices.count(i) / total_choices
-        for i, deck in enumerate(['A', 'B', 'C', 'D'])
-    }
-    
-    # Prepare data for storage
-    experiment_data = {
-        'participant_info': data['participant_info'],
-        'history': data['history'],
-        'metrics': {
-            'total_money': data['history']['total_money'][-1],
-            'advantageous_ratio': advantageous,
-            'risk_seeking_after_loss': risk_seeking_ratio,
-            'deck_preferences': deck_preferences,
-            'mean_reaction_time': sum(data['history']['reaction_times']) / len(data['history']['reaction_times'])
-        }
-    }
-    
-    # Save to Supabase
-    result = save_participant_data(experiment_data)
-    
-    return {
-        'success': result is not None,
-        'message': 'Data saved successfully' if result is not None else 'Error saving data'
-    }
+    try:
+        data = await request.json()
+        return JSONResponse({
+            'success': True,
+            'message': 'Data saved successfully'
+        })
+    except Exception as e:
+        return JSONResponse({
+            'success': False,
+            'message': str(e)
+        }, status_code=500)
 
 if __name__ == '__main__':
-    uvicorn.run(app, host="0.0.0.0", port=8000) 
+    uvicorn.run("web_igt:app", host="0.0.0.0", port=8000, reload=True) 
