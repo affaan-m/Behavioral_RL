@@ -3,7 +3,7 @@
     "builds": [
         {
             "src": "src/web_igt.py",
-            "use": "@vercel/python"
+            "use": "@vercel/python@3.1.0"
         }
     ],
     "routes": [
@@ -13,6 +13,7 @@
         }
     ],
     "env": {
-        "PYTHONPATH": "src"
+        "PYTHONPATH": "src",
+        "PYTHON_VERSION": "3.11"
     }
 } 

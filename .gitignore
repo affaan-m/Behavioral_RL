@@ -43,3 +43,4 @@ metrics/
 checkpoints/
 *.pt
 *.pth 
+.vercel
