@@ -3,3 +3,4 @@ uvicorn==0.13.4
 numpy==1.19.2
 python-multipart==0.0.5
 aiofiles==0.6.0
+gymnasium==0.26.3
