@@ -5,7 +5,7 @@
             "src": "src/web_igt.py",
             "use": "@vercel/python",
             "config": {
-                "runtime": "python3.11",
+                "runtime": "python3.9",
                 "maxLambdaSize": "15mb"
             }
         }
@@ -15,8 +15,5 @@
             "src": "/(.*)",
             "dest": "src/web_igt.py"
         }
-    ],
-    "env": {
-        "PYTHONPATH": "src"
-    }
+    ]
 } 
