@@ -1,48 +1,58 @@
-from flask import Flask, render_template, jsonify, request
+from fastapi import FastAPI, Request
+from fastapi.responses import HTMLResponse
+from fastapi.templating import Jinja2Templates
+from fastapi.staticfiles import StaticFiles
+import uvicorn
 from igt_env import IGTEnvironment
 from config.database import save_participant_data
 import json
 from datetime import datetime
+from pathlib import Path
 
-app = Flask(__name__)
+app = FastAPI()
+
+# Mount templates directory
+templates = Jinja2Templates(directory="src/templates")
+
+# Initialize IGT environment
 env = IGTEnvironment()
 
-@app.route('/')
-def index():
-    return render_template('igt.html')
+@app.get("/", response_class=HTMLResponse)
+async def index(request: Request):
+    return templates.TemplateResponse("igt.html", {"request": request})
 
-@app.route('/api/start', methods=['POST'])
-def start_experiment():
-    participant_info = request.json
+@app.post("/api/start")
+async def start_experiment(request: Request):
+    participant_info = await request.json()
     participant_info['timestamp'] = datetime.now().isoformat()
     participant_info['session_id'] = f"{participant_info['timestamp']}_{participant_info.get('age')}_{participant_info.get('gender')}"
     
     # Initialize new environment
     state = env.reset()[0]
     
-    return jsonify({
+    return {
         'session_id': participant_info['session_id'],
         'initial_state': state.tolist() if hasattr(state, 'tolist') else state,
         'total_money': env.total_money
-    })
+    }
 
-@app.route('/api/step', methods=['POST'])
-def step():
-    data = request.json
+@app.post("/api/step")
+async def step(request: Request):
+    data = await request.json()
     action = data['action']
     
     state, reward, done, _, info = env.step(action)
     
-    return jsonify({
+    return {
         'state': state.tolist() if hasattr(state, 'tolist') else state,
         'reward': reward,
         'done': done,
         'total_money': info['total_money']
-    })
+    }
 
-@app.route('/api/save', methods=['POST'])
-def save_results():
-    data = request.json
+@app.post("/api/save")
+async def save_results(request: Request):
+    data = await request.json()
     
     # Calculate metrics
     choices = data['history']['deck_choices']
@@ -82,10 +92,10 @@ def save_results():
     # Save to Supabase
     result = save_participant_data(experiment_data)
     
-    return jsonify({
+    return {
         'success': result is not None,
         'message': 'Data saved successfully' if result is not None else 'Error saving data'
-    })
+    }
 
 if __name__ == '__main__':
-    app.run(debug=True) 
+    uvicorn.run(app, host="0.0.0.0", port=8000) 

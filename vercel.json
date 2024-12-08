@@ -12,8 +12,15 @@
     ],
     "routes": [
         {
+            "src": "/static/(.*)",
+            "dest": "/static/$1"
+        },
+        {
             "src": "/(.*)",
             "dest": "src/web_igt.py"
         }
-    ]
+    ],
+    "env": {
+        "APP_MODULE": "src.web_igt:app"
+    }
 } 
