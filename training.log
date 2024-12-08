@@ -1,0 +1,1400 @@
+2024-12-07 04:27:15,901 - INFO - Episode 0, Avg Reward: -180830.70, Epsilon: 1.00
+2024-12-07 04:27:15,901 - INFO - Deck Picks: [24, 31, 24, 21]
+2024-12-07 04:27:17,775 - INFO - Episode 10, Avg Reward: -181026.14, Epsilon: 0.95
+2024-12-07 04:27:17,775 - INFO - Deck Picks: [32, 22, 16, 30]
+2024-12-07 04:27:19,913 - INFO - Episode 20, Avg Reward: -180708.10, Epsilon: 0.90
+2024-12-07 04:27:19,913 - INFO - Deck Picks: [38, 19, 21, 22]
+2024-12-07 04:27:21,922 - INFO - Episode 30, Avg Reward: -180745.43, Epsilon: 0.86
+2024-12-07 04:27:21,922 - INFO - Deck Picks: [40, 23, 17, 20]
+2024-12-07 04:27:23,987 - INFO - Episode 40, Avg Reward: -181056.67, Epsilon: 0.82
+2024-12-07 04:27:23,987 - INFO - Deck Picks: [33, 18, 20, 29]
+2024-12-07 04:27:25,797 - INFO - Episode 50, Avg Reward: -180861.84, Epsilon: 0.78
+2024-12-07 04:27:25,797 - INFO - Deck Picks: [43, 16, 16, 25]
+2024-12-07 04:27:27,664 - INFO - Episode 60, Avg Reward: -180893.44, Epsilon: 0.74
+2024-12-07 04:27:27,664 - INFO - Deck Picks: [39, 23, 23, 15]
+2024-12-07 04:27:29,536 - INFO - Episode 70, Avg Reward: -180906.28, Epsilon: 0.70
+2024-12-07 04:27:29,536 - INFO - Deck Picks: [56, 16, 18, 10]
+2024-12-07 04:27:31,754 - INFO - Episode 80, Avg Reward: -180849.77, Epsilon: 0.67
+2024-12-07 04:27:31,754 - INFO - Deck Picks: [42, 24, 12, 22]
+2024-12-07 04:27:33,708 - INFO - Episode 90, Avg Reward: -180865.13, Epsilon: 0.64
+2024-12-07 04:27:33,708 - INFO - Deck Picks: [52, 14, 14, 20]
+2024-12-07 04:27:35,748 - INFO - Episode 100, Avg Reward: -180924.10, Epsilon: 0.61
+2024-12-07 04:27:35,748 - INFO - Deck Picks: [44, 21, 16, 19]
+2024-12-07 04:27:37,721 - INFO - Episode 110, Avg Reward: -180911.15, Epsilon: 0.58
+2024-12-07 04:27:37,721 - INFO - Deck Picks: [67, 8, 12, 13]
+2024-12-07 04:27:39,750 - INFO - Episode 120, Avg Reward: -181099.04, Epsilon: 0.55
+2024-12-07 04:27:39,751 - INFO - Deck Picks: [40, 32, 9, 19]
+2024-12-07 04:27:41,594 - INFO - Episode 130, Avg Reward: -181163.09, Epsilon: 0.52
+2024-12-07 04:27:41,594 - INFO - Deck Picks: [47, 18, 18, 17]
+2024-12-07 04:27:43,708 - INFO - Episode 140, Avg Reward: -181131.61, Epsilon: 0.50
+2024-12-07 04:27:43,708 - INFO - Deck Picks: [60, 17, 12, 11]
+2024-12-07 04:27:45,901 - INFO - Episode 150, Avg Reward: -181327.75, Epsilon: 0.47
+2024-12-07 04:27:45,901 - INFO - Deck Picks: [62, 16, 15, 7]
+2024-12-07 04:27:48,092 - INFO - Episode 160, Avg Reward: -181378.87, Epsilon: 0.45
+2024-12-07 04:27:48,092 - INFO - Deck Picks: [64, 13, 6, 17]
+2024-12-07 04:27:50,424 - INFO - Episode 170, Avg Reward: -181468.55, Epsilon: 0.43
+2024-12-07 04:27:50,424 - INFO - Deck Picks: [54, 18, 16, 12]
+2024-12-07 04:27:52,451 - INFO - Episode 180, Avg Reward: -181567.30, Epsilon: 0.41
+2024-12-07 04:27:52,451 - INFO - Deck Picks: [57, 16, 14, 13]
+2024-12-07 04:27:54,316 - INFO - Episode 190, Avg Reward: -181653.73, Epsilon: 0.39
+2024-12-07 04:27:54,316 - INFO - Deck Picks: [64, 19, 8, 9]
+2024-12-07 04:27:56,216 - INFO - Episode 200, Avg Reward: -181567.53, Epsilon: 0.37
+2024-12-07 04:27:56,217 - INFO - Deck Picks: [62, 11, 12, 15]
+2024-12-07 04:27:58,507 - INFO - Episode 210, Avg Reward: -181574.96, Epsilon: 0.35
+2024-12-07 04:27:58,507 - INFO - Deck Picks: [26, 12, 52, 10]
+2024-12-07 04:28:00,810 - INFO - Episode 220, Avg Reward: -181458.65, Epsilon: 0.33
+2024-12-07 04:28:00,810 - INFO - Deck Picks: [53, 16, 23, 8]
+2024-12-07 04:28:03,007 - INFO - Episode 230, Avg Reward: -181415.09, Epsilon: 0.32
+2024-12-07 04:28:03,007 - INFO - Deck Picks: [21, 12, 51, 16]
+2024-12-07 04:28:04,928 - INFO - Episode 240, Avg Reward: -181301.09, Epsilon: 0.30
+2024-12-07 04:28:04,928 - INFO - Deck Picks: [67, 16, 9, 8]
+2024-12-07 04:28:06,998 - INFO - Episode 250, Avg Reward: -181180.61, Epsilon: 0.29
+2024-12-07 04:28:06,998 - INFO - Deck Picks: [9, 7, 66, 18]
+2024-12-07 04:28:09,179 - INFO - Episode 260, Avg Reward: -181297.48, Epsilon: 0.27
+2024-12-07 04:28:09,179 - INFO - Deck Picks: [71, 7, 6, 16]
+2024-12-07 04:28:11,715 - INFO - Episode 270, Avg Reward: -181274.89, Epsilon: 0.26
+2024-12-07 04:28:11,715 - INFO - Deck Picks: [21, 61, 9, 9]
+2024-12-07 04:28:14,038 - INFO - Episode 280, Avg Reward: -181309.74, Epsilon: 0.25
+2024-12-07 04:28:14,038 - INFO - Deck Picks: [81, 4, 9, 6]
+2024-12-07 04:28:16,106 - INFO - Episode 290, Avg Reward: -181284.68, Epsilon: 0.23
+2024-12-07 04:28:16,106 - INFO - Deck Picks: [68, 10, 13, 9]
+2024-12-07 04:28:18,050 - INFO - Episode 300, Avg Reward: -181457.71, Epsilon: 0.22
+2024-12-07 04:28:18,050 - INFO - Deck Picks: [85, 7, 4, 4]
+2024-12-07 04:28:20,015 - INFO - Episode 310, Avg Reward: -181590.89, Epsilon: 0.21
+2024-12-07 04:28:20,015 - INFO - Deck Picks: [67, 26, 2, 5]
+2024-12-07 04:28:22,184 - INFO - Episode 320, Avg Reward: -181594.11, Epsilon: 0.20
+2024-12-07 04:28:22,184 - INFO - Deck Picks: [46, 5, 41, 8]
+2024-12-07 04:28:24,423 - INFO - Episode 330, Avg Reward: -181610.46, Epsilon: 0.19
+2024-12-07 04:28:24,423 - INFO - Deck Picks: [63, 24, 4, 9]
+2024-12-07 04:28:26,619 - INFO - Episode 340, Avg Reward: -181683.30, Epsilon: 0.18
+2024-12-07 04:28:26,619 - INFO - Deck Picks: [85, 3, 6, 6]
+2024-12-07 04:28:28,624 - INFO - Episode 350, Avg Reward: -181715.96, Epsilon: 0.17
+2024-12-07 04:28:28,624 - INFO - Deck Picks: [6, 2, 84, 8]
+2024-12-07 04:28:30,649 - INFO - Episode 360, Avg Reward: -181398.98, Epsilon: 0.16
+2024-12-07 04:28:30,649 - INFO - Deck Picks: [40, 22, 34, 4]
+2024-12-07 04:28:32,759 - INFO - Episode 370, Avg Reward: -181505.77, Epsilon: 0.16
+2024-12-07 04:28:32,759 - INFO - Deck Picks: [86, 7, 4, 3]
+2024-12-07 04:28:35,264 - INFO - Episode 380, Avg Reward: -181590.99, Epsilon: 0.15
+2024-12-07 04:28:35,264 - INFO - Deck Picks: [56, 29, 9, 6]
+2024-12-07 04:28:37,609 - INFO - Episode 390, Avg Reward: -181592.84, Epsilon: 0.14
+2024-12-07 04:28:37,609 - INFO - Deck Picks: [91, 4, 2, 3]
+2024-12-07 04:28:40,243 - INFO - Episode 400, Avg Reward: -181628.78, Epsilon: 0.13
+2024-12-07 04:28:40,243 - INFO - Deck Picks: [69, 23, 3, 5]
+2024-12-07 04:28:42,475 - INFO - Episode 410, Avg Reward: -181628.69, Epsilon: 0.13
+2024-12-07 04:28:42,475 - INFO - Deck Picks: [90, 2, 0, 8]
+2024-12-07 04:28:44,640 - INFO - Episode 420, Avg Reward: -181527.13, Epsilon: 0.12
+2024-12-07 04:28:44,640 - INFO - Deck Picks: [3, 3, 88, 6]
+2024-12-07 04:28:46,896 - INFO - Episode 430, Avg Reward: -181640.90, Epsilon: 0.12
+2024-12-07 04:28:46,897 - INFO - Deck Picks: [77, 4, 15, 4]
+2024-12-07 04:28:49,119 - INFO - Episode 440, Avg Reward: -181768.36, Epsilon: 0.11
+2024-12-07 04:28:49,119 - INFO - Deck Picks: [91, 2, 3, 4]
+2024-12-07 04:28:51,565 - INFO - Episode 450, Avg Reward: -181857.28, Epsilon: 0.10
+2024-12-07 04:28:51,565 - INFO - Deck Picks: [89, 3, 3, 5]
+2024-12-07 04:28:53,649 - INFO - Episode 460, Avg Reward: -181928.89, Epsilon: 0.10
+2024-12-07 04:28:53,649 - INFO - Deck Picks: [28, 4, 62, 6]
+2024-12-07 04:28:55,712 - INFO - Episode 470, Avg Reward: -181866.54, Epsilon: 0.09
+2024-12-07 04:28:55,712 - INFO - Deck Picks: [78, 7, 10, 5]
+2024-12-07 04:28:57,774 - INFO - Episode 480, Avg Reward: -181811.82, Epsilon: 0.09
+2024-12-07 04:28:57,774 - INFO - Deck Picks: [93, 1, 5, 1]
+2024-12-07 04:29:00,149 - INFO - Episode 490, Avg Reward: -181899.29, Epsilon: 0.09
+2024-12-07 04:29:00,149 - INFO - Deck Picks: [93, 1, 4, 2]
+2024-12-07 04:29:02,492 - INFO - Episode 500, Avg Reward: -181695.74, Epsilon: 0.08
+2024-12-07 04:29:02,492 - INFO - Deck Picks: [0, 2, 95, 3]
+2024-12-07 04:29:04,865 - INFO - Episode 510, Avg Reward: -181357.42, Epsilon: 0.08
+2024-12-07 04:29:04,872 - INFO - Deck Picks: [4, 2, 92, 2]
+2024-12-07 04:29:06,865 - INFO - Episode 520, Avg Reward: -181216.22, Epsilon: 0.07
+2024-12-07 04:29:06,870 - INFO - Deck Picks: [1, 0, 99, 0]
+2024-12-07 04:29:08,880 - INFO - Episode 530, Avg Reward: -180965.87, Epsilon: 0.07
+2024-12-07 04:29:08,880 - INFO - Deck Picks: [2, 3, 95, 0]
+2024-12-07 04:29:10,950 - INFO - Episode 540, Avg Reward: -180943.40, Epsilon: 0.07
+2024-12-07 04:29:10,950 - INFO - Deck Picks: [97, 1, 2, 0]
+2024-12-07 04:29:13,204 - INFO - Episode 550, Avg Reward: -181014.30, Epsilon: 0.06
+2024-12-07 04:29:13,204 - INFO - Deck Picks: [63, 33, 3, 1]
+2024-12-07 04:29:15,567 - INFO - Episode 560, Avg Reward: -181260.99, Epsilon: 0.06
+2024-12-07 04:29:15,567 - INFO - Deck Picks: [96, 1, 2, 1]
+2024-12-07 04:29:17,800 - INFO - Episode 570, Avg Reward: -181230.14, Epsilon: 0.06
+2024-12-07 04:29:17,800 - INFO - Deck Picks: [94, 2, 2, 2]
+2024-12-07 04:29:19,923 - INFO - Episode 580, Avg Reward: -181285.26, Epsilon: 0.05
+2024-12-07 04:29:19,923 - INFO - Deck Picks: [93, 2, 3, 2]
+2024-12-07 04:29:21,971 - INFO - Episode 590, Avg Reward: -181174.88, Epsilon: 0.05
+2024-12-07 04:29:21,975 - INFO - Deck Picks: [98, 1, 0, 1]
+2024-12-07 04:29:24,058 - INFO - Episode 600, Avg Reward: -181405.00, Epsilon: 0.05
+2024-12-07 04:29:24,058 - INFO - Deck Picks: [99, 0, 1, 0]
+2024-12-07 04:29:26,274 - INFO - Episode 610, Avg Reward: -181764.53, Epsilon: 0.05
+2024-12-07 04:29:26,274 - INFO - Deck Picks: [98, 2, 0, 0]
+2024-12-07 04:29:28,555 - INFO - Episode 620, Avg Reward: -182159.40, Epsilon: 0.04
+2024-12-07 04:29:28,555 - INFO - Deck Picks: [94, 2, 3, 1]
+2024-12-07 04:29:30,704 - INFO - Episode 630, Avg Reward: -182410.84, Epsilon: 0.04
+2024-12-07 04:29:30,704 - INFO - Deck Picks: [93, 2, 5, 0]
+2024-12-07 04:29:32,699 - INFO - Episode 640, Avg Reward: -182476.27, Epsilon: 0.04
+2024-12-07 04:29:32,701 - INFO - Deck Picks: [100, 0, 0, 0]
+2024-12-07 04:29:34,670 - INFO - Episode 650, Avg Reward: -182464.91, Epsilon: 0.04
+2024-12-07 04:29:34,670 - INFO - Deck Picks: [68, 26, 3, 3]
+2024-12-07 04:29:36,908 - INFO - Episode 660, Avg Reward: -182407.21, Epsilon: 0.04
+2024-12-07 04:29:36,908 - INFO - Deck Picks: [99, 0, 0, 1]
+2024-12-07 04:29:39,147 - INFO - Episode 670, Avg Reward: -182271.28, Epsilon: 0.03
+2024-12-07 04:29:39,147 - INFO - Deck Picks: [1, 0, 97, 2]
+2024-12-07 04:29:41,236 - INFO - Episode 680, Avg Reward: -181962.52, Epsilon: 0.03
+2024-12-07 04:29:41,236 - INFO - Deck Picks: [28, 1, 70, 1]
+2024-12-07 04:29:43,296 - INFO - Episode 690, Avg Reward: -182057.88, Epsilon: 0.03
+2024-12-07 04:29:43,296 - INFO - Deck Picks: [98, 1, 1, 0]
+2024-12-07 04:29:45,229 - INFO - Episode 700, Avg Reward: -181996.71, Epsilon: 0.03
+2024-12-07 04:29:45,229 - INFO - Deck Picks: [97, 0, 2, 1]
+2024-12-07 04:29:47,247 - INFO - Episode 710, Avg Reward: -181902.50, Epsilon: 0.03
+2024-12-07 04:29:47,247 - INFO - Deck Picks: [82, 15, 0, 3]
+2024-12-07 04:29:49,292 - INFO - Episode 720, Avg Reward: -181858.06, Epsilon: 0.03
+2024-12-07 04:29:49,292 - INFO - Deck Picks: [99, 1, 0, 0]
+2024-12-07 04:29:51,678 - INFO - Episode 730, Avg Reward: -181901.35, Epsilon: 0.03
+2024-12-07 04:29:51,678 - INFO - Deck Picks: [97, 1, 2, 0]
+2024-12-07 04:29:54,235 - INFO - Episode 740, Avg Reward: -181808.55, Epsilon: 0.02
+2024-12-07 04:29:54,235 - INFO - Deck Picks: [37, 0, 63, 0]
+2024-12-07 04:29:56,328 - INFO - Episode 750, Avg Reward: -181410.58, Epsilon: 0.02
+2024-12-07 04:29:56,328 - INFO - Deck Picks: [0, 2, 97, 1]
+2024-12-07 04:29:58,376 - INFO - Episode 760, Avg Reward: -181065.81, Epsilon: 0.02
+2024-12-07 04:29:58,376 - INFO - Deck Picks: [0, 0, 100, 0]
+2024-12-07 04:30:00,709 - INFO - Episode 770, Avg Reward: -180908.55, Epsilon: 0.02
+2024-12-07 04:30:00,709 - INFO - Deck Picks: [1, 0, 97, 2]
+2024-12-07 04:30:03,021 - INFO - Episode 780, Avg Reward: -180833.29, Epsilon: 0.02
+2024-12-07 04:30:03,021 - INFO - Deck Picks: [0, 0, 99, 1]
+2024-12-07 04:30:05,304 - INFO - Episode 790, Avg Reward: -180501.10, Epsilon: 0.02
+2024-12-07 04:30:05,304 - INFO - Deck Picks: [11, 1, 88, 0]
+2024-12-07 04:30:07,677 - INFO - Episode 800, Avg Reward: -180148.48, Epsilon: 0.02
+2024-12-07 04:30:07,677 - INFO - Deck Picks: [0, 1, 97, 2]
+2024-12-07 04:30:09,714 - INFO - Episode 810, Avg Reward: -179973.39, Epsilon: 0.02
+2024-12-07 04:30:09,714 - INFO - Deck Picks: [98, 1, 1, 0]
+2024-12-07 04:30:11,769 - INFO - Episode 820, Avg Reward: -179991.88, Epsilon: 0.02
+2024-12-07 04:30:11,769 - INFO - Deck Picks: [68, 2, 26, 4]
+2024-12-07 04:30:13,939 - INFO - Episode 830, Avg Reward: -179981.58, Epsilon: 0.02
+2024-12-07 04:30:13,939 - INFO - Deck Picks: [95, 3, 2, 0]
+2024-12-07 04:30:16,505 - INFO - Episode 840, Avg Reward: -179989.11, Epsilon: 0.01
+2024-12-07 04:30:16,505 - INFO - Deck Picks: [88, 1, 8, 3]
+2024-12-07 04:30:19,023 - INFO - Episode 850, Avg Reward: -180432.48, Epsilon: 0.01
+2024-12-07 04:30:19,023 - INFO - Deck Picks: [99, 1, 0, 0]
+2024-12-07 04:30:21,384 - INFO - Episode 860, Avg Reward: -180885.85, Epsilon: 0.01
+2024-12-07 04:30:21,384 - INFO - Deck Picks: [99, 0, 1, 0]
+2024-12-07 04:30:23,450 - INFO - Episode 870, Avg Reward: -181251.30, Epsilon: 0.01
+2024-12-07 04:30:23,450 - INFO - Deck Picks: [99, 1, 0, 0]
+2024-12-07 04:30:25,473 - INFO - Episode 880, Avg Reward: -181634.71, Epsilon: 0.01
+2024-12-07 04:30:25,473 - INFO - Deck Picks: [99, 1, 0, 0]
+2024-12-07 04:30:27,578 - INFO - Episode 890, Avg Reward: -182011.32, Epsilon: 0.01
+2024-12-07 04:30:27,578 - INFO - Deck Picks: [99, 0, 0, 1]
+2024-12-07 04:30:29,722 - INFO - Episode 900, Avg Reward: -182382.99, Epsilon: 0.01
+2024-12-07 04:30:29,722 - INFO - Deck Picks: [89, 6, 3, 2]
+2024-12-07 04:30:31,853 - INFO - Episode 910, Avg Reward: -182373.76, Epsilon: 0.01
+2024-12-07 04:30:31,853 - INFO - Deck Picks: [44, 0, 56, 0]
+2024-12-07 04:30:33,804 - INFO - Episode 920, Avg Reward: -182295.49, Epsilon: 0.01
+2024-12-07 04:30:33,804 - INFO - Deck Picks: [76, 0, 24, 0]
+2024-12-07 04:30:35,805 - INFO - Episode 930, Avg Reward: -182377.55, Epsilon: 0.01
+2024-12-07 04:30:35,805 - INFO - Deck Picks: [100, 0, 0, 0]
+2024-12-07 04:30:37,914 - INFO - Episode 940, Avg Reward: -182336.87, Epsilon: 0.01
+2024-12-07 04:30:37,914 - INFO - Deck Picks: [32, 0, 67, 1]
+2024-12-07 04:30:40,503 - INFO - Episode 950, Avg Reward: -182013.71, Epsilon: 0.01
+2024-12-07 04:30:40,504 - INFO - Deck Picks: [26, 1, 73, 0]
+2024-12-07 04:30:42,990 - INFO - Episode 960, Avg Reward: -181574.04, Epsilon: 0.01
+2024-12-07 04:30:42,990 - INFO - Deck Picks: [0, 0, 100, 0]
+2024-12-07 04:30:45,458 - INFO - Episode 970, Avg Reward: -181210.25, Epsilon: 0.01
+2024-12-07 04:30:45,458 - INFO - Deck Picks: [54, 1, 44, 1]
+2024-12-07 04:30:47,583 - INFO - Episode 980, Avg Reward: -180836.90, Epsilon: 0.01
+2024-12-07 04:30:47,583 - INFO - Deck Picks: [0, 0, 99, 1]
+2024-12-07 04:30:49,638 - INFO - Episode 990, Avg Reward: -180427.37, Epsilon: 0.01
+2024-12-07 04:30:49,638 - INFO - Deck Picks: [0, 0, 100, 0]
+2024-12-07 04:32:17,451 - INFO - Episode 0, Avg Reward: -181118.61, Epsilon: 1.00
+2024-12-07 04:32:17,467 - INFO - Deck Picks: [25, 19, 25, 31]
+2024-12-07 04:32:19,357 - INFO - Episode 10, Avg Reward: -181200.96, Epsilon: 0.95
+2024-12-07 04:32:19,357 - INFO - Deck Picks: [18, 25, 29, 28]
+2024-12-07 04:32:21,375 - INFO - Episode 20, Avg Reward: -180920.38, Epsilon: 0.90
+2024-12-07 04:32:21,375 - INFO - Deck Picks: [29, 22, 26, 23]
+2024-12-07 04:32:23,400 - INFO - Episode 30, Avg Reward: -180957.86, Epsilon: 0.86
+2024-12-07 04:32:23,400 - INFO - Deck Picks: [34, 21, 23, 22]
+2024-12-07 04:32:25,060 - INFO - Episode 40, Avg Reward: -180993.06, Epsilon: 0.82
+2024-12-07 04:32:25,060 - INFO - Deck Picks: [42, 17, 21, 20]
+2024-12-07 04:32:26,737 - INFO - Episode 50, Avg Reward: -181016.86, Epsilon: 0.78
+2024-12-07 04:32:26,737 - INFO - Deck Picks: [44, 22, 18, 16]
+2024-12-07 04:32:28,522 - INFO - Episode 60, Avg Reward: -181003.50, Epsilon: 0.74
+2024-12-07 04:32:28,522 - INFO - Deck Picks: [42, 18, 19, 21]
+2024-12-07 04:32:30,368 - INFO - Episode 70, Avg Reward: -181062.39, Epsilon: 0.70
+2024-12-07 04:32:30,368 - INFO - Deck Picks: [21, 33, 18, 28]
+2024-12-07 04:32:32,399 - INFO - Episode 80, Avg Reward: -180978.10, Epsilon: 0.67
+2024-12-07 04:32:32,399 - INFO - Deck Picks: [49, 15, 18, 18]
+2024-12-07 04:32:34,472 - INFO - Episode 90, Avg Reward: -181064.91, Epsilon: 0.64
+2024-12-07 04:32:34,472 - INFO - Deck Picks: [44, 26, 19, 11]
+2024-12-07 04:32:36,256 - INFO - Episode 100, Avg Reward: -181086.81, Epsilon: 0.61
+2024-12-07 04:32:36,256 - INFO - Deck Picks: [31, 25, 22, 22]
+2024-12-07 04:32:38,189 - INFO - Episode 110, Avg Reward: -181036.85, Epsilon: 0.58
+2024-12-07 04:32:38,189 - INFO - Deck Picks: [30, 18, 34, 18]
+2024-12-07 04:32:40,143 - INFO - Episode 120, Avg Reward: -181167.72, Epsilon: 0.55
+2024-12-07 04:32:40,143 - INFO - Deck Picks: [60, 17, 14, 9]
+2024-12-07 04:32:42,032 - INFO - Episode 130, Avg Reward: -181321.95, Epsilon: 0.52
+2024-12-07 04:32:42,032 - INFO - Deck Picks: [30, 39, 13, 18]
+2024-12-07 04:32:43,927 - INFO - Episode 140, Avg Reward: -181384.91, Epsilon: 0.50
+2024-12-07 04:32:43,927 - INFO - Deck Picks: [42, 21, 25, 12]
+2024-12-07 04:32:46,120 - INFO - Episode 150, Avg Reward: -181451.33, Epsilon: 0.47
+2024-12-07 04:32:46,120 - INFO - Deck Picks: [36, 32, 20, 12]
+2024-12-07 04:32:48,445 - INFO - Episode 160, Avg Reward: -181528.29, Epsilon: 0.45
+2024-12-07 04:32:48,446 - INFO - Deck Picks: [29, 10, 29, 32]
+2024-12-07 04:32:50,769 - INFO - Episode 170, Avg Reward: -181516.70, Epsilon: 0.43
+2024-12-07 04:32:50,769 - INFO - Deck Picks: [67, 9, 9, 15]
+2024-12-07 04:32:52,774 - INFO - Episode 180, Avg Reward: -181642.31, Epsilon: 0.41
+2024-12-07 04:32:52,774 - INFO - Deck Picks: [61, 13, 14, 12]
+2024-12-07 04:32:54,611 - INFO - Episode 190, Avg Reward: -181590.54, Epsilon: 0.39
+2024-12-07 04:32:54,611 - INFO - Deck Picks: [72, 7, 14, 7]
+2024-12-07 04:32:56,585 - INFO - Episode 200, Avg Reward: -181646.94, Epsilon: 0.37
+2024-12-07 04:32:56,586 - INFO - Deck Picks: [70, 13, 10, 7]
+2024-12-07 04:32:58,563 - INFO - Episode 210, Avg Reward: -181799.40, Epsilon: 0.35
+2024-12-07 04:32:58,563 - INFO - Deck Picks: [66, 14, 14, 6]
+2024-12-07 04:33:00,720 - INFO - Episode 220, Avg Reward: -181807.49, Epsilon: 0.33
+2024-12-07 04:33:00,723 - INFO - Deck Picks: [41, 11, 31, 17]
+2024-12-07 04:33:02,982 - INFO - Episode 230, Avg Reward: -181611.12, Epsilon: 0.32
+2024-12-07 04:33:02,982 - INFO - Deck Picks: [21, 7, 71, 1]
+2024-12-07 04:33:05,074 - INFO - Episode 240, Avg Reward: -181585.25, Epsilon: 0.30
+2024-12-07 04:33:05,074 - INFO - Deck Picks: [79, 4, 10, 7]
+2024-12-07 04:33:06,953 - INFO - Episode 250, Avg Reward: -181540.58, Epsilon: 0.29
+2024-12-07 04:33:06,953 - INFO - Deck Picks: [75, 7, 10, 8]
+2024-12-07 04:33:08,889 - INFO - Episode 260, Avg Reward: -181552.51, Epsilon: 0.27
+2024-12-07 04:33:08,889 - INFO - Deck Picks: [79, 3, 9, 9]
+2024-12-07 04:33:10,931 - INFO - Episode 270, Avg Reward: -181619.00, Epsilon: 0.26
+2024-12-07 04:33:10,931 - INFO - Deck Picks: [83, 3, 5, 9]
+2024-12-07 04:33:13,308 - INFO - Episode 280, Avg Reward: -181623.15, Epsilon: 0.25
+2024-12-07 04:33:13,308 - INFO - Deck Picks: [77, 6, 11, 6]
+2024-12-07 04:33:15,719 - INFO - Episode 290, Avg Reward: -181617.02, Epsilon: 0.23
+2024-12-07 04:33:15,719 - INFO - Deck Picks: [72, 6, 11, 11]
+2024-12-07 04:33:18,025 - INFO - Episode 300, Avg Reward: -181597.38, Epsilon: 0.22
+2024-12-07 04:33:18,025 - INFO - Deck Picks: [35, 5, 51, 9]
+2024-12-07 04:33:20,144 - INFO - Episode 310, Avg Reward: -181492.73, Epsilon: 0.21
+2024-12-07 04:33:20,144 - INFO - Deck Picks: [81, 7, 9, 3]
+2024-12-07 04:33:22,304 - INFO - Episode 320, Avg Reward: -181330.27, Epsilon: 0.20
+2024-12-07 04:33:22,304 - INFO - Deck Picks: [81, 11, 2, 6]
+2024-12-07 04:33:24,655 - INFO - Episode 330, Avg Reward: -181484.31, Epsilon: 0.19
+2024-12-07 04:33:24,655 - INFO - Deck Picks: [90, 4, 1, 5]
+2024-12-07 04:33:26,923 - INFO - Episode 340, Avg Reward: -181608.68, Epsilon: 0.18
+2024-12-07 04:33:26,923 - INFO - Deck Picks: [72, 12, 8, 8]
+2024-12-07 04:33:29,068 - INFO - Episode 350, Avg Reward: -181600.29, Epsilon: 0.17
+2024-12-07 04:33:29,068 - INFO - Deck Picks: [69, 4, 20, 7]
+2024-12-07 04:33:31,105 - INFO - Episode 360, Avg Reward: -181641.59, Epsilon: 0.16
+2024-12-07 04:33:31,105 - INFO - Deck Picks: [83, 4, 7, 6]
+2024-12-07 04:33:33,103 - INFO - Episode 370, Avg Reward: -181672.48, Epsilon: 0.16
+2024-12-07 04:33:33,104 - INFO - Deck Picks: [6, 3, 86, 5]
+2024-12-07 04:33:35,139 - INFO - Episode 380, Avg Reward: -181638.22, Epsilon: 0.15
+2024-12-07 04:33:35,139 - INFO - Deck Picks: [87, 5, 5, 3]
+2024-12-07 04:33:37,514 - INFO - Episode 390, Avg Reward: -181791.09, Epsilon: 0.14
+2024-12-07 04:33:37,514 - INFO - Deck Picks: [90, 2, 4, 4]
+2024-12-07 04:33:39,939 - INFO - Episode 400, Avg Reward: -181911.24, Epsilon: 0.13
+2024-12-07 04:33:39,939 - INFO - Deck Picks: [87, 3, 4, 6]
+2024-12-07 04:33:42,057 - INFO - Episode 410, Avg Reward: -182010.22, Epsilon: 0.13
+2024-12-07 04:33:42,057 - INFO - Deck Picks: [89, 5, 4, 2]
+2024-12-07 04:33:44,089 - INFO - Episode 420, Avg Reward: -182186.82, Epsilon: 0.12
+2024-12-07 04:33:44,089 - INFO - Deck Picks: [94, 2, 2, 2]
+2024-12-07 04:33:45,975 - INFO - Episode 430, Avg Reward: -182242.80, Epsilon: 0.12
+2024-12-07 04:33:45,975 - INFO - Deck Picks: [85, 8, 3, 4]
+2024-12-07 04:33:47,993 - INFO - Episode 440, Avg Reward: -182194.99, Epsilon: 0.11
+2024-12-07 04:33:47,993 - INFO - Deck Picks: [97, 1, 1, 1]
+2024-12-07 04:33:50,010 - INFO - Episode 450, Avg Reward: -182194.79, Epsilon: 0.10
+2024-12-07 04:33:50,010 - INFO - Deck Picks: [92, 3, 4, 1]
+2024-12-07 04:33:52,101 - INFO - Episode 460, Avg Reward: -182264.44, Epsilon: 0.10
+2024-12-07 04:33:52,111 - INFO - Deck Picks: [96, 0, 4, 0]
+2024-12-07 04:33:54,487 - INFO - Episode 470, Avg Reward: -182291.22, Epsilon: 0.09
+2024-12-07 04:33:54,487 - INFO - Deck Picks: [96, 1, 1, 2]
+2024-12-07 04:33:56,555 - INFO - Episode 480, Avg Reward: -182110.31, Epsilon: 0.09
+2024-12-07 04:33:56,555 - INFO - Deck Picks: [1, 4, 94, 1]
+2024-12-07 04:33:58,447 - INFO - Episode 490, Avg Reward: -181840.60, Epsilon: 0.09
+2024-12-07 04:33:58,447 - INFO - Deck Picks: [2, 3, 93, 2]
+2024-12-07 04:34:00,423 - INFO - Episode 500, Avg Reward: -181545.54, Epsilon: 0.08
+2024-12-07 04:34:00,423 - INFO - Deck Picks: [95, 1, 2, 2]
+2024-12-07 04:34:02,783 - INFO - Episode 510, Avg Reward: -181571.24, Epsilon: 0.08
+2024-12-07 04:34:02,783 - INFO - Deck Picks: [94, 1, 4, 1]
+2024-12-07 04:34:05,238 - INFO - Episode 520, Avg Reward: -181683.78, Epsilon: 0.07
+2024-12-07 04:34:05,238 - INFO - Deck Picks: [98, 2, 0, 0]
+2024-12-07 04:34:07,715 - INFO - Episode 530, Avg Reward: -181680.09, Epsilon: 0.07
+2024-12-07 04:34:07,716 - INFO - Deck Picks: [80, 8, 10, 2]
+2024-12-07 04:34:09,775 - INFO - Episode 540, Avg Reward: -181691.76, Epsilon: 0.07
+2024-12-07 04:34:09,775 - INFO - Deck Picks: [3, 9, 84, 4]
+2024-12-07 04:34:11,840 - INFO - Episode 550, Avg Reward: -181552.25, Epsilon: 0.06
+2024-12-07 04:34:11,840 - INFO - Deck Picks: [38, 1, 59, 2]
+2024-12-07 04:34:13,891 - INFO - Episode 560, Avg Reward: -181190.56, Epsilon: 0.06
+2024-12-07 04:34:13,891 - INFO - Deck Picks: [2, 1, 96, 1]
+2024-12-07 04:34:16,259 - INFO - Episode 570, Avg Reward: -180839.47, Epsilon: 0.06
+2024-12-07 04:34:16,270 - INFO - Deck Picks: [5, 2, 93, 0]
+2024-12-07 04:34:18,537 - INFO - Episode 580, Avg Reward: -181055.78, Epsilon: 0.05
+2024-12-07 04:34:18,538 - INFO - Deck Picks: [91, 1, 5, 3]
+2024-12-07 04:34:20,771 - INFO - Episode 590, Avg Reward: -181364.72, Epsilon: 0.05
+2024-12-07 04:34:20,771 - INFO - Deck Picks: [96, 1, 2, 1]
+2024-12-07 04:34:22,838 - INFO - Episode 600, Avg Reward: -181601.11, Epsilon: 0.05
+2024-12-07 04:34:22,838 - INFO - Deck Picks: [96, 0, 3, 1]
+2024-12-07 04:34:24,956 - INFO - Episode 610, Avg Reward: -181531.72, Epsilon: 0.05
+2024-12-07 04:34:24,956 - INFO - Deck Picks: [94, 3, 3, 0]
+2024-12-07 04:34:27,464 - INFO - Episode 620, Avg Reward: -181426.73, Epsilon: 0.04
+2024-12-07 04:34:27,464 - INFO - Deck Picks: [92, 4, 3, 1]
+2024-12-07 04:34:30,204 - INFO - Episode 630, Avg Reward: -181366.42, Epsilon: 0.04
+2024-12-07 04:34:30,204 - INFO - Deck Picks: [61, 0, 37, 2]
+2024-12-07 04:34:33,010 - INFO - Episode 640, Avg Reward: -181303.92, Epsilon: 0.04
+2024-12-07 04:34:33,010 - INFO - Deck Picks: [11, 4, 83, 2]
+2024-12-07 04:34:35,381 - INFO - Episode 650, Avg Reward: -181520.76, Epsilon: 0.04
+2024-12-07 04:34:35,381 - INFO - Deck Picks: [95, 0, 3, 2]
+2024-12-07 04:34:37,521 - INFO - Episode 660, Avg Reward: -181847.82, Epsilon: 0.04
+2024-12-07 04:34:37,521 - INFO - Deck Picks: [96, 0, 4, 0]
+2024-12-07 04:34:39,544 - INFO - Episode 670, Avg Reward: -182163.43, Epsilon: 0.03
+2024-12-07 04:34:39,544 - INFO - Deck Picks: [97, 1, 1, 1]
+2024-12-07 04:34:41,742 - INFO - Episode 680, Avg Reward: -181983.70, Epsilon: 0.03
+2024-12-07 04:34:41,742 - INFO - Deck Picks: [62, 11, 27, 0]
+2024-12-07 04:34:43,729 - INFO - Episode 690, Avg Reward: -181949.93, Epsilon: 0.03
+2024-12-07 04:34:43,744 - INFO - Deck Picks: [98, 1, 1, 0]
+2024-12-07 04:34:45,896 - INFO - Episode 700, Avg Reward: -181970.04, Epsilon: 0.03
+2024-12-07 04:34:45,896 - INFO - Deck Picks: [96, 0, 4, 0]
+2024-12-07 04:34:48,042 - INFO - Episode 710, Avg Reward: -182056.92, Epsilon: 0.03
+2024-12-07 04:34:48,042 - INFO - Deck Picks: [99, 1, 0, 0]
+2024-12-07 04:34:50,233 - INFO - Episode 720, Avg Reward: -182077.16, Epsilon: 0.03
+2024-12-07 04:34:50,233 - INFO - Deck Picks: [93, 3, 2, 2]
+2024-12-07 04:34:52,656 - INFO - Episode 730, Avg Reward: -182090.49, Epsilon: 0.03
+2024-12-07 04:34:52,656 - INFO - Deck Picks: [98, 0, 1, 1]
+2024-12-07 04:34:55,271 - INFO - Episode 740, Avg Reward: -182118.85, Epsilon: 0.02
+2024-12-07 04:34:55,271 - INFO - Deck Picks: [98, 1, 1, 0]
+2024-12-07 04:34:57,888 - INFO - Episode 750, Avg Reward: -182172.68, Epsilon: 0.02
+2024-12-07 04:34:57,888 - INFO - Deck Picks: [84, 2, 14, 0]
+2024-12-07 04:35:00,030 - INFO - Episode 760, Avg Reward: -182122.13, Epsilon: 0.02
+2024-12-07 04:35:00,030 - INFO - Deck Picks: [95, 0, 5, 0]
+2024-12-07 04:35:02,205 - INFO - Episode 770, Avg Reward: -182159.47, Epsilon: 0.02
+2024-12-07 04:35:02,213 - INFO - Deck Picks: [88, 10, 1, 1]
+2024-12-07 04:35:04,444 - INFO - Episode 780, Avg Reward: -182414.53, Epsilon: 0.02
+2024-12-07 04:35:04,444 - INFO - Deck Picks: [81, 12, 5, 2]
+2024-12-07 04:35:06,754 - INFO - Episode 790, Avg Reward: -182399.74, Epsilon: 0.02
+2024-12-07 04:35:06,754 - INFO - Deck Picks: [93, 4, 1, 2]
+2024-12-07 04:35:09,151 - INFO - Episode 800, Avg Reward: -182364.32, Epsilon: 0.02
+2024-12-07 04:35:09,151 - INFO - Deck Picks: [96, 1, 3, 0]
+2024-12-07 04:35:11,394 - INFO - Episode 810, Avg Reward: -182297.41, Epsilon: 0.02
+2024-12-07 04:35:11,394 - INFO - Deck Picks: [93, 5, 0, 2]
+2024-12-07 04:35:13,558 - INFO - Episode 820, Avg Reward: -182326.38, Epsilon: 0.02
+2024-12-07 04:35:13,558 - INFO - Deck Picks: [61, 34, 5, 0]
+2024-12-07 04:35:15,754 - INFO - Episode 830, Avg Reward: -182325.80, Epsilon: 0.02
+2024-12-07 04:35:15,754 - INFO - Deck Picks: [79, 1, 13, 7]
+2024-12-07 04:35:18,372 - INFO - Episode 840, Avg Reward: -182421.08, Epsilon: 0.01
+2024-12-07 04:35:18,372 - INFO - Deck Picks: [90, 10, 0, 0]
+2024-12-07 04:35:21,003 - INFO - Episode 850, Avg Reward: -182492.87, Epsilon: 0.01
+2024-12-07 04:35:21,010 - INFO - Deck Picks: [100, 0, 0, 0]
+2024-12-07 04:35:23,542 - INFO - Episode 860, Avg Reward: -182515.43, Epsilon: 0.01
+2024-12-07 04:35:23,542 - INFO - Deck Picks: [100, 0, 0, 0]
+2024-12-07 04:35:25,695 - INFO - Episode 870, Avg Reward: -182500.30, Epsilon: 0.01
+2024-12-07 04:35:25,695 - INFO - Deck Picks: [90, 4, 3, 3]
+2024-12-07 04:35:27,838 - INFO - Episode 880, Avg Reward: -182499.03, Epsilon: 0.01
+2024-12-07 04:35:27,838 - INFO - Deck Picks: [84, 15, 0, 1]
+2024-12-07 04:35:30,109 - INFO - Episode 890, Avg Reward: -182504.31, Epsilon: 0.01
+2024-12-07 04:35:30,109 - INFO - Deck Picks: [100, 0, 0, 0]
+2024-12-07 04:35:32,249 - INFO - Episode 900, Avg Reward: -182582.34, Epsilon: 0.01
+2024-12-07 04:35:32,249 - INFO - Deck Picks: [99, 1, 0, 0]
+2024-12-07 04:35:34,604 - INFO - Episode 910, Avg Reward: -182623.03, Epsilon: 0.01
+2024-12-07 04:35:34,604 - INFO - Deck Picks: [96, 1, 2, 1]
+2024-12-07 04:35:36,652 - INFO - Episode 920, Avg Reward: -182613.73, Epsilon: 0.01
+2024-12-07 04:35:36,652 - INFO - Deck Picks: [99, 1, 0, 0]
+2024-12-07 04:35:38,733 - INFO - Episode 930, Avg Reward: -182667.88, Epsilon: 0.01
+2024-12-07 04:35:38,733 - INFO - Deck Picks: [99, 0, 1, 0]
+2024-12-07 04:35:41,050 - INFO - Episode 940, Avg Reward: -182607.15, Epsilon: 0.01
+2024-12-07 04:35:41,050 - INFO - Deck Picks: [98, 2, 0, 0]
+2024-12-07 04:35:43,603 - INFO - Episode 950, Avg Reward: -182570.18, Epsilon: 0.01
+2024-12-07 04:35:43,603 - INFO - Deck Picks: [83, 12, 5, 0]
+2024-12-07 04:35:46,106 - INFO - Episode 960, Avg Reward: -182543.41, Epsilon: 0.01
+2024-12-07 04:35:46,106 - INFO - Deck Picks: [97, 2, 0, 1]
+2024-12-07 04:35:48,360 - INFO - Episode 970, Avg Reward: -182551.91, Epsilon: 0.01
+2024-12-07 04:35:48,364 - INFO - Deck Picks: [98, 0, 2, 0]
+2024-12-07 04:35:50,337 - INFO - Episode 980, Avg Reward: -182595.78, Epsilon: 0.01
+2024-12-07 04:35:50,337 - INFO - Deck Picks: [98, 2, 0, 0]
+2024-12-07 04:35:52,304 - INFO - Episode 990, Avg Reward: -182514.74, Epsilon: 0.01
+2024-12-07 04:35:52,304 - INFO - Deck Picks: [99, 0, 1, 0]
+2024-12-07 04:50:15,728 - INFO - Episode 0, Reward: -180720.89, Avg Reward: -180720.89, Epsilon: 1.00
+2024-12-07 04:50:15,728 - INFO - Deck Picks: [26, 23, 28, 23]
+2024-12-07 04:50:17,762 - INFO - Episode 10, Reward: -179871.22, Avg Reward: -180351.53, Epsilon: 0.95
+2024-12-07 04:50:17,762 - INFO - Deck Picks: [35, 18, 24, 23]
+2024-12-07 04:50:19,610 - INFO - Episode 20, Reward: -181674.86, Avg Reward: -180099.37, Epsilon: 0.90
+2024-12-07 04:50:19,625 - INFO - Deck Picks: [29, 21, 25, 25]
+2024-12-07 04:50:21,583 - INFO - Episode 30, Reward: -182440.50, Avg Reward: -180417.03, Epsilon: 0.86
+2024-12-07 04:50:21,583 - INFO - Deck Picks: [38, 20, 18, 24]
+2024-12-07 04:50:23,402 - INFO - Episode 40, Reward: -178244.73, Avg Reward: -180699.67, Epsilon: 0.82
+2024-12-07 04:50:23,402 - INFO - Deck Picks: [25, 28, 29, 18]
+2024-12-07 04:50:25,177 - INFO - Episode 50, Reward: -181259.72, Avg Reward: -180891.47, Epsilon: 0.78
+2024-12-07 04:50:25,178 - INFO - Deck Picks: [48, 16, 18, 18]
+2024-12-07 04:50:27,027 - INFO - Episode 60, Reward: -181750.96, Avg Reward: -181025.48, Epsilon: 0.74
+2024-12-07 04:50:27,027 - INFO - Deck Picks: [44, 16, 20, 20]
+2024-12-07 04:50:28,937 - INFO - Episode 70, Reward: -181535.02, Avg Reward: -180991.25, Epsilon: 0.70
+2024-12-07 04:50:28,937 - INFO - Deck Picks: [49, 15, 18, 18]
+2024-12-07 04:50:31,015 - INFO - Episode 80, Reward: -181883.36, Avg Reward: -181115.37, Epsilon: 0.67
+2024-12-07 04:50:31,015 - INFO - Deck Picks: [37, 27, 14, 22]
+2024-12-07 04:50:33,206 - INFO - Episode 90, Reward: -182187.73, Avg Reward: -181128.37, Epsilon: 0.64
+2024-12-07 04:50:33,206 - INFO - Deck Picks: [47, 19, 15, 19]
+2024-12-07 04:50:35,369 - INFO - Episode 100, Reward: -178318.57, Avg Reward: -181149.35, Epsilon: 0.61
+2024-12-07 04:50:35,369 - INFO - Deck Picks: [50, 22, 19, 9]
+2024-12-07 04:50:37,418 - INFO - Episode 110, Reward: -181946.76, Avg Reward: -181385.67, Epsilon: 0.58
+2024-12-07 04:50:37,418 - INFO - Deck Picks: [61, 12, 10, 17]
+2024-12-07 04:50:39,353 - INFO - Episode 120, Reward: -182263.62, Avg Reward: -181516.59, Epsilon: 0.55
+2024-12-07 04:50:39,353 - INFO - Deck Picks: [54, 19, 10, 17]
+2024-12-07 04:50:41,294 - INFO - Episode 130, Reward: -183882.09, Avg Reward: -181593.74, Epsilon: 0.52
+2024-12-07 04:50:41,294 - INFO - Deck Picks: [45, 30, 11, 14]
+2024-12-07 04:50:43,485 - INFO - Episode 140, Reward: -181756.16, Avg Reward: -181554.31, Epsilon: 0.50
+2024-12-07 04:50:43,485 - INFO - Deck Picks: [70, 11, 9, 10]
+2024-12-07 04:50:45,515 - INFO - Episode 150, Reward: -181243.25, Avg Reward: -181653.49, Epsilon: 0.47
+2024-12-07 04:50:45,515 - INFO - Deck Picks: [64, 6, 19, 11]
+2024-12-07 04:50:47,577 - INFO - Episode 160, Reward: -182487.89, Avg Reward: -181616.54, Epsilon: 0.45
+2024-12-07 04:50:47,577 - INFO - Deck Picks: [61, 13, 15, 11]
+2024-12-07 04:50:49,617 - INFO - Episode 170, Reward: -181732.72, Avg Reward: -181813.90, Epsilon: 0.43
+2024-12-07 04:50:49,617 - INFO - Deck Picks: [63, 8, 10, 19]
+2024-12-07 04:50:51,582 - INFO - Episode 180, Reward: -182247.98, Avg Reward: -181768.13, Epsilon: 0.41
+2024-12-07 04:50:51,582 - INFO - Deck Picks: [69, 8, 13, 10]
+2024-12-07 04:50:53,507 - INFO - Episode 190, Reward: -183002.45, Avg Reward: -181816.07, Epsilon: 0.39
+2024-12-07 04:50:53,507 - INFO - Deck Picks: [72, 9, 11, 8]
+2024-12-07 04:50:55,430 - INFO - Episode 200, Reward: -183119.32, Avg Reward: -181894.94, Epsilon: 0.37
+2024-12-07 04:50:55,430 - INFO - Deck Picks: [83, 5, 6, 6]
+2024-12-07 04:50:57,362 - INFO - Episode 210, Reward: -179424.43, Avg Reward: -181802.82, Epsilon: 0.35
+2024-12-07 04:50:57,362 - INFO - Deck Picks: [35, 8, 46, 11]
+2024-12-07 04:50:59,363 - INFO - Episode 220, Reward: -180049.23, Avg Reward: -181834.16, Epsilon: 0.33
+2024-12-07 04:50:59,363 - INFO - Deck Picks: [64, 14, 13, 9]
+2024-12-07 04:51:01,294 - INFO - Episode 230, Reward: -182328.34, Avg Reward: -181751.18, Epsilon: 0.32
+2024-12-07 04:51:01,294 - INFO - Deck Picks: [69, 7, 12, 12]
+2024-12-07 04:51:03,127 - INFO - Episode 240, Reward: -182151.58, Avg Reward: -181857.44, Epsilon: 0.30
+2024-12-07 04:51:03,127 - INFO - Deck Picks: [81, 9, 7, 3]
+2024-12-07 04:51:05,095 - INFO - Episode 250, Reward: -179264.63, Avg Reward: -181749.12, Epsilon: 0.29
+2024-12-07 04:51:05,095 - INFO - Deck Picks: [45, 2, 44, 9]
+2024-12-07 04:51:07,036 - INFO - Episode 260, Reward: -184421.54, Avg Reward: -181771.45, Epsilon: 0.27
+2024-12-07 04:51:07,036 - INFO - Deck Picks: [72, 13, 10, 5]
+2024-12-07 04:51:09,090 - INFO - Episode 270, Reward: -179536.56, Avg Reward: -181655.60, Epsilon: 0.26
+2024-12-07 04:51:09,090 - INFO - Deck Picks: [62, 3, 23, 12]
+2024-12-07 04:51:11,278 - INFO - Episode 280, Reward: -179785.83, Avg Reward: -181528.54, Epsilon: 0.25
+2024-12-07 04:51:11,278 - INFO - Deck Picks: [30, 3, 60, 7]
+2024-12-07 04:51:13,389 - INFO - Episode 290, Reward: -179137.78, Avg Reward: -181450.69, Epsilon: 0.23
+2024-12-07 04:51:13,389 - INFO - Deck Picks: [63, 11, 21, 5]
+2024-12-07 04:51:15,351 - INFO - Episode 300, Reward: -180133.90, Avg Reward: -181257.29, Epsilon: 0.22
+2024-12-07 04:51:15,351 - INFO - Deck Picks: [54, 2, 30, 14]
+2024-12-07 04:51:17,280 - INFO - Episode 310, Reward: -182988.49, Avg Reward: -181152.95, Epsilon: 0.21
+2024-12-07 04:51:17,280 - INFO - Deck Picks: [68, 8, 18, 6]
+2024-12-07 04:51:19,209 - INFO - Episode 320, Reward: -181912.25, Avg Reward: -181244.25, Epsilon: 0.20
+2024-12-07 04:51:19,209 - INFO - Deck Picks: [88, 5, 5, 2]
+2024-12-07 04:51:21,368 - INFO - Episode 330, Reward: -178598.32, Avg Reward: -181329.61, Epsilon: 0.19
+2024-12-07 04:51:21,368 - INFO - Deck Picks: [15, 6, 78, 1]
+2024-12-07 04:51:23,632 - INFO - Episode 340, Reward: -178918.86, Avg Reward: -181151.88, Epsilon: 0.18
+2024-12-07 04:51:23,632 - INFO - Deck Picks: [6, 4, 87, 3]
+2024-12-07 04:51:25,848 - INFO - Episode 350, Reward: -183554.94, Avg Reward: -181135.90, Epsilon: 0.17
+2024-12-07 04:51:25,856 - INFO - Deck Picks: [85, 9, 3, 3]
+2024-12-07 04:51:28,001 - INFO - Episode 360, Reward: -181636.07, Avg Reward: -181249.11, Epsilon: 0.16
+2024-12-07 04:51:28,001 - INFO - Deck Picks: [84, 2, 8, 6]
+2024-12-07 04:51:29,982 - INFO - Episode 370, Reward: -182205.03, Avg Reward: -181260.07, Epsilon: 0.16
+2024-12-07 04:51:29,982 - INFO - Deck Picks: [86, 7, 3, 4]
+2024-12-07 04:51:31,975 - INFO - Episode 380, Reward: -183000.30, Avg Reward: -181467.41, Epsilon: 0.15
+2024-12-07 04:51:31,975 - INFO - Deck Picks: [87, 2, 2, 9]
+2024-12-07 04:51:34,110 - INFO - Episode 390, Reward: -183143.51, Avg Reward: -181539.69, Epsilon: 0.14
+2024-12-07 04:51:34,110 - INFO - Deck Picks: [86, 6, 5, 3]
+2024-12-07 04:51:36,413 - INFO - Episode 400, Reward: -182260.13, Avg Reward: -181815.92, Epsilon: 0.13
+2024-12-07 04:51:36,413 - INFO - Deck Picks: [85, 7, 5, 3]
+2024-12-07 04:51:38,738 - INFO - Episode 410, Reward: -183252.18, Avg Reward: -181960.93, Epsilon: 0.13
+2024-12-07 04:51:38,738 - INFO - Deck Picks: [73, 20, 4, 3]
+2024-12-07 04:51:41,017 - INFO - Episode 420, Reward: -182895.86, Avg Reward: -181965.89, Epsilon: 0.12
+2024-12-07 04:51:41,017 - INFO - Deck Picks: [77, 13, 5, 5]
+2024-12-07 04:51:42,962 - INFO - Episode 430, Reward: -181515.03, Avg Reward: -181970.39, Epsilon: 0.12
+2024-12-07 04:51:42,962 - INFO - Deck Picks: [92, 2, 5, 1]
+2024-12-07 04:51:44,901 - INFO - Episode 440, Reward: -181454.11, Avg Reward: -182145.49, Epsilon: 0.11
+2024-12-07 04:51:44,901 - INFO - Deck Picks: [74, 5, 13, 8]
+2024-12-07 04:51:47,053 - INFO - Episode 450, Reward: -182269.53, Avg Reward: -182313.77, Epsilon: 0.10
+2024-12-07 04:51:47,053 - INFO - Deck Picks: [91, 2, 2, 5]
+2024-12-07 04:51:49,222 - INFO - Episode 460, Reward: -181830.95, Avg Reward: -182297.40, Epsilon: 0.10
+2024-12-07 04:51:49,222 - INFO - Deck Picks: [93, 4, 1, 2]
+2024-12-07 04:51:51,516 - INFO - Episode 470, Reward: -181672.81, Avg Reward: -182298.14, Epsilon: 0.09
+2024-12-07 04:51:51,516 - INFO - Deck Picks: [95, 2, 1, 2]
+2024-12-07 04:51:53,600 - INFO - Episode 480, Reward: -181594.22, Avg Reward: -182311.51, Epsilon: 0.09
+2024-12-07 04:51:53,600 - INFO - Deck Picks: [91, 2, 4, 3]
+2024-12-07 04:51:55,545 - INFO - Episode 490, Reward: -183823.53, Avg Reward: -182494.27, Epsilon: 0.09
+2024-12-07 04:51:55,545 - INFO - Deck Picks: [67, 23, 7, 3]
+2024-12-07 04:51:57,489 - INFO - Episode 500, Reward: -182270.72, Avg Reward: -182438.17, Epsilon: 0.08
+2024-12-07 04:51:57,489 - INFO - Deck Picks: [87, 1, 5, 7]
+2024-12-07 04:51:59,642 - INFO - Episode 510, Reward: -182203.84, Avg Reward: -182490.31, Epsilon: 0.08
+2024-12-07 04:51:59,642 - INFO - Deck Picks: [79, 19, 1, 1]
+2024-12-07 04:52:01,862 - INFO - Episode 520, Reward: -182149.22, Avg Reward: -182507.14, Epsilon: 0.07
+2024-12-07 04:52:01,862 - INFO - Deck Picks: [91, 4, 3, 2]
+2024-12-07 04:52:04,044 - INFO - Episode 530, Reward: -183014.51, Avg Reward: -182584.87, Epsilon: 0.07
+2024-12-07 04:52:04,044 - INFO - Deck Picks: [72, 20, 4, 4]
+2024-12-07 04:52:06,165 - INFO - Episode 540, Reward: -182190.12, Avg Reward: -182586.76, Epsilon: 0.07
+2024-12-07 04:52:06,165 - INFO - Deck Picks: [89, 2, 6, 3]
+2024-12-07 04:52:08,189 - INFO - Episode 550, Reward: -182824.28, Avg Reward: -182580.80, Epsilon: 0.06
+2024-12-07 04:52:08,193 - INFO - Deck Picks: [94, 3, 1, 2]
+2024-12-07 04:52:10,233 - INFO - Episode 560, Reward: -182417.54, Avg Reward: -182606.71, Epsilon: 0.06
+2024-12-07 04:52:10,233 - INFO - Deck Picks: [69, 29, 2, 0]
+2024-12-07 04:52:12,330 - INFO - Episode 570, Reward: -180798.83, Avg Reward: -182620.94, Epsilon: 0.06
+2024-12-07 04:52:12,330 - INFO - Deck Picks: [95, 3, 0, 2]
+2024-12-07 04:52:14,384 - INFO - Episode 580, Reward: -182348.23, Avg Reward: -182639.11, Epsilon: 0.05
+2024-12-07 04:52:14,384 - INFO - Deck Picks: [94, 2, 2, 2]
+2024-12-07 04:52:16,537 - INFO - Episode 590, Reward: -187947.83, Avg Reward: -182577.17, Epsilon: 0.05
+2024-12-07 04:52:16,537 - INFO - Deck Picks: [58, 40, 1, 1]
+2024-12-07 04:52:18,657 - INFO - Episode 600, Reward: -183499.71, Avg Reward: -182627.97, Epsilon: 0.05
+2024-12-07 04:52:18,657 - INFO - Deck Picks: [96, 0, 3, 1]
+2024-12-07 04:52:20,732 - INFO - Episode 610, Reward: -183895.74, Avg Reward: -182679.78, Epsilon: 0.05
+2024-12-07 04:52:20,733 - INFO - Deck Picks: [100, 0, 0, 0]
+2024-12-07 04:52:22,803 - INFO - Episode 620, Reward: -182387.11, Avg Reward: -182663.95, Epsilon: 0.04
+2024-12-07 04:52:22,803 - INFO - Deck Picks: [96, 3, 1, 0]
+2024-12-07 04:52:24,806 - INFO - Episode 630, Reward: -181369.81, Avg Reward: -182658.61, Epsilon: 0.04
+2024-12-07 04:52:24,806 - INFO - Deck Picks: [86, 12, 2, 0]
+2024-12-07 04:52:26,901 - INFO - Episode 640, Reward: -183276.49, Avg Reward: -182688.00, Epsilon: 0.04
+2024-12-07 04:52:26,901 - INFO - Deck Picks: [88, 8, 1, 3]
+2024-12-07 04:52:28,990 - INFO - Episode 650, Reward: -184036.62, Avg Reward: -182626.47, Epsilon: 0.04
+2024-12-07 04:52:28,990 - INFO - Deck Picks: [67, 28, 2, 3]
+2024-12-07 04:52:31,083 - INFO - Episode 660, Reward: -185013.03, Avg Reward: -182635.46, Epsilon: 0.04
+2024-12-07 04:52:31,083 - INFO - Deck Picks: [83, 17, 0, 0]
+2024-12-07 04:52:33,072 - INFO - Episode 670, Reward: -183459.64, Avg Reward: -182668.96, Epsilon: 0.03
+2024-12-07 04:52:33,072 - INFO - Deck Picks: [97, 1, 2, 0]
+2024-12-07 04:52:35,022 - INFO - Episode 680, Reward: -180878.60, Avg Reward: -182612.36, Epsilon: 0.03
+2024-12-07 04:52:35,022 - INFO - Deck Picks: [96, 1, 2, 1]
+2024-12-07 04:52:36,998 - INFO - Episode 690, Reward: -182387.23, Avg Reward: -182589.90, Epsilon: 0.03
+2024-12-07 04:52:36,998 - INFO - Deck Picks: [97, 1, 0, 2]
+2024-12-07 04:52:38,964 - INFO - Episode 700, Reward: -181990.01, Avg Reward: -182522.51, Epsilon: 0.03
+2024-12-07 04:52:38,964 - INFO - Deck Picks: [99, 0, 1, 0]
+2024-12-07 04:52:40,943 - INFO - Episode 710, Reward: -181791.58, Avg Reward: -182448.97, Epsilon: 0.03
+2024-12-07 04:52:40,943 - INFO - Deck Picks: [98, 0, 1, 1]
+2024-12-07 04:52:42,923 - INFO - Episode 720, Reward: -182505.89, Avg Reward: -182456.81, Epsilon: 0.03
+2024-12-07 04:52:42,923 - INFO - Deck Picks: [99, 1, 0, 0]
+2024-12-07 04:52:44,922 - INFO - Episode 730, Reward: -182338.84, Avg Reward: -182427.83, Epsilon: 0.03
+2024-12-07 04:52:44,922 - INFO - Deck Picks: [80, 15, 2, 3]
+2024-12-07 04:52:46,963 - INFO - Episode 740, Reward: -182585.78, Avg Reward: -182439.26, Epsilon: 0.02
+2024-12-07 04:52:46,963 - INFO - Deck Picks: [96, 2, 1, 1]
+2024-12-07 04:52:49,014 - INFO - Episode 750, Reward: -183871.07, Avg Reward: -182500.03, Epsilon: 0.02
+2024-12-07 04:52:49,014 - INFO - Deck Picks: [99, 1, 0, 0]
+2024-12-07 04:52:51,400 - INFO - Episode 760, Reward: -182601.53, Avg Reward: -182473.13, Epsilon: 0.02
+2024-12-07 04:52:51,400 - INFO - Deck Picks: [8, 90, 1, 1]
+2024-12-07 04:52:53,794 - INFO - Episode 770, Reward: -182387.23, Avg Reward: -182497.61, Epsilon: 0.02
+2024-12-07 04:52:53,794 - INFO - Deck Picks: [94, 4, 2, 0]
+2024-12-07 04:52:56,137 - INFO - Episode 780, Reward: -181990.13, Avg Reward: -182458.53, Epsilon: 0.02
+2024-12-07 04:52:56,137 - INFO - Deck Picks: [94, 4, 1, 1]
+2024-12-07 04:52:58,109 - INFO - Episode 790, Reward: -182148.73, Avg Reward: -182483.17, Epsilon: 0.02
+2024-12-07 04:52:58,109 - INFO - Deck Picks: [98, 1, 0, 1]
+2024-12-07 04:53:00,110 - INFO - Episode 800, Reward: -182919.34, Avg Reward: -182519.99, Epsilon: 0.02
+2024-12-07 04:53:00,110 - INFO - Deck Picks: [86, 9, 3, 2]
+2024-12-07 04:53:02,269 - INFO - Episode 810, Reward: -182505.89, Avg Reward: -182643.27, Epsilon: 0.02
+2024-12-07 04:53:02,269 - INFO - Deck Picks: [100, 0, 0, 0]
+2024-12-07 04:53:04,593 - INFO - Episode 820, Reward: -182481.21, Avg Reward: -182613.69, Epsilon: 0.02
+2024-12-07 04:53:04,593 - INFO - Deck Picks: [79, 21, 0, 0]
+2024-12-07 04:53:06,932 - INFO - Episode 830, Reward: -181751.63, Avg Reward: -182606.09, Epsilon: 0.02
+2024-12-07 04:53:06,932 - INFO - Deck Picks: [98, 1, 0, 1]
+2024-12-07 04:53:09,205 - INFO - Episode 840, Reward: -183967.07, Avg Reward: -182565.30, Epsilon: 0.01
+2024-12-07 04:53:09,205 - INFO - Deck Picks: [85, 10, 4, 1]
+2024-12-07 04:53:11,186 - INFO - Episode 850, Reward: -182942.35, Avg Reward: -182510.23, Epsilon: 0.01
+2024-12-07 04:53:11,186 - INFO - Deck Picks: [99, 0, 0, 1]
+2024-12-07 04:53:13,193 - INFO - Episode 860, Reward: -181925.51, Avg Reward: -182611.07, Epsilon: 0.01
+2024-12-07 04:53:13,193 - INFO - Deck Picks: [95, 4, 1, 0]
+2024-12-07 04:53:15,342 - INFO - Episode 870, Reward: -181751.63, Avg Reward: -182616.79, Epsilon: 0.01
+2024-12-07 04:53:15,342 - INFO - Deck Picks: [99, 0, 1, 0]
+2024-12-07 04:53:17,712 - INFO - Episode 880, Reward: -182560.99, Avg Reward: -182758.38, Epsilon: 0.01
+2024-12-07 04:53:17,712 - INFO - Deck Picks: [93, 6, 1, 0]
+2024-12-07 04:53:20,129 - INFO - Episode 890, Reward: -181553.08, Avg Reward: -182689.18, Epsilon: 0.01
+2024-12-07 04:53:20,129 - INFO - Deck Picks: [97, 2, 0, 1]
+2024-12-07 04:53:22,372 - INFO - Episode 900, Reward: -182230.53, Avg Reward: -182683.36, Epsilon: 0.01
+2024-12-07 04:53:22,372 - INFO - Deck Picks: [91, 0, 9, 0]
+2024-12-07 04:53:24,374 - INFO - Episode 910, Reward: -183141.49, Avg Reward: -182551.05, Epsilon: 0.01
+2024-12-07 04:53:24,374 - INFO - Deck Picks: [99, 0, 0, 1]
+2024-12-07 04:53:26,334 - INFO - Episode 920, Reward: -181513.13, Avg Reward: -182570.83, Epsilon: 0.01
+2024-12-07 04:53:26,334 - INFO - Deck Picks: [100, 0, 0, 0]
+2024-12-07 04:53:28,575 - INFO - Episode 930, Reward: -182307.33, Avg Reward: -182600.31, Epsilon: 0.01
+2024-12-07 04:53:28,575 - INFO - Deck Picks: [98, 2, 0, 0]
+2024-12-07 04:53:30,878 - INFO - Episode 940, Reward: -182148.73, Avg Reward: -182609.91, Epsilon: 0.01
+2024-12-07 04:53:30,878 - INFO - Deck Picks: [99, 0, 1, 0]
+2024-12-07 04:53:32,974 - INFO - Episode 950, Reward: -181116.03, Avg Reward: -182617.70, Epsilon: 0.01
+2024-12-07 04:53:32,974 - INFO - Deck Picks: [99, 1, 0, 0]
+2024-12-07 04:53:35,053 - INFO - Episode 960, Reward: -183498.64, Avg Reward: -182552.17, Epsilon: 0.01
+2024-12-07 04:53:35,053 - INFO - Deck Picks: [100, 0, 0, 0]
+2024-12-07 04:53:37,120 - INFO - Episode 970, Reward: -183737.14, Avg Reward: -182553.37, Epsilon: 0.01
+2024-12-07 04:53:37,126 - INFO - Deck Picks: [98, 1, 0, 1]
+2024-12-07 04:53:39,183 - INFO - Episode 980, Reward: -182943.76, Avg Reward: -182498.35, Epsilon: 0.01
+2024-12-07 04:53:39,183 - INFO - Deck Picks: [97, 0, 3, 0]
+2024-12-07 04:53:41,261 - INFO - Episode 990, Reward: -182148.73, Avg Reward: -182490.09, Epsilon: 0.01
+2024-12-07 04:53:41,261 - INFO - Deck Picks: [99, 0, 0, 1]
+2024-12-07 05:04:23,489 - INFO - Episode 0, Reward: -180187.38, Avg Reward: -180187.38, Epsilon: 1.00
+2024-12-07 05:04:23,489 - INFO - Deck Picks: [27, 27, 22, 24]
+2024-12-07 05:04:25,419 - INFO - Episode 10, Reward: -180031.23, Avg Reward: -181236.48, Epsilon: 0.95
+2024-12-07 05:04:25,419 - INFO - Deck Picks: [26, 26, 28, 20]
+2024-12-07 05:04:27,311 - INFO - Episode 20, Reward: -179513.36, Avg Reward: -181164.39, Epsilon: 0.90
+2024-12-07 05:04:27,312 - INFO - Deck Picks: [29, 24, 21, 26]
+2024-12-07 05:04:29,170 - INFO - Episode 30, Reward: -181345.26, Avg Reward: -180935.63, Epsilon: 0.86
+2024-12-07 05:04:29,170 - INFO - Deck Picks: [32, 30, 20, 18]
+2024-12-07 05:04:31,022 - INFO - Episode 40, Reward: -182286.15, Avg Reward: -181230.98, Epsilon: 0.82
+2024-12-07 05:04:31,022 - INFO - Deck Picks: [28, 18, 25, 29]
+2024-12-07 05:04:32,791 - INFO - Episode 50, Reward: -181457.33, Avg Reward: -181133.08, Epsilon: 0.78
+2024-12-07 05:04:32,791 - INFO - Deck Picks: [46, 21, 19, 14]
+2024-12-07 05:04:34,551 - INFO - Episode 60, Reward: -181765.50, Avg Reward: -181120.05, Epsilon: 0.74
+2024-12-07 05:04:34,551 - INFO - Deck Picks: [49, 16, 16, 19]
+2024-12-07 05:04:36,529 - INFO - Episode 70, Reward: -179733.46, Avg Reward: -181207.67, Epsilon: 0.70
+2024-12-07 05:04:36,529 - INFO - Deck Picks: [53, 16, 10, 21]
+2024-12-07 05:04:38,309 - INFO - Episode 80, Reward: -184114.87, Avg Reward: -181251.92, Epsilon: 0.67
+2024-12-07 05:04:38,309 - INFO - Deck Picks: [24, 38, 20, 18]
+2024-12-07 05:04:40,173 - INFO - Episode 90, Reward: -181471.78, Avg Reward: -181198.61, Epsilon: 0.64
+2024-12-07 05:04:40,173 - INFO - Deck Picks: [49, 19, 16, 16]
+2024-12-07 05:04:42,155 - INFO - Episode 100, Reward: -181591.26, Avg Reward: -181224.83, Epsilon: 0.61
+2024-12-07 05:04:42,155 - INFO - Deck Picks: [53, 15, 19, 13]
+2024-12-07 05:04:44,229 - INFO - Episode 110, Reward: -180661.72, Avg Reward: -181324.93, Epsilon: 0.58
+2024-12-07 05:04:44,229 - INFO - Deck Picks: [57, 12, 19, 12]
+2024-12-07 05:04:46,287 - INFO - Episode 120, Reward: -181970.36, Avg Reward: -181360.80, Epsilon: 0.55
+2024-12-07 05:04:46,287 - INFO - Deck Picks: [61, 16, 13, 10]
+2024-12-07 05:04:48,249 - INFO - Episode 130, Reward: -182143.62, Avg Reward: -181505.88, Epsilon: 0.52
+2024-12-07 05:04:48,249 - INFO - Deck Picks: [64, 18, 8, 10]
+2024-12-07 05:04:50,396 - INFO - Episode 140, Reward: -182864.79, Avg Reward: -181441.76, Epsilon: 0.50
+2024-12-07 05:04:50,396 - INFO - Deck Picks: [38, 36, 12, 14]
+2024-12-07 05:04:52,692 - INFO - Episode 150, Reward: -181004.30, Avg Reward: -181572.14, Epsilon: 0.47
+2024-12-07 05:04:52,692 - INFO - Deck Picks: [58, 12, 15, 15]
+2024-12-07 05:04:55,081 - INFO - Episode 160, Reward: -181256.27, Avg Reward: -181573.42, Epsilon: 0.45
+2024-12-07 05:04:55,086 - INFO - Deck Picks: [68, 10, 13, 9]
+2024-12-07 05:04:57,404 - INFO - Episode 170, Reward: -181616.51, Avg Reward: -181567.14, Epsilon: 0.43
+2024-12-07 05:04:57,416 - INFO - Deck Picks: [58, 10, 21, 11]
+2024-12-07 05:04:59,712 - INFO - Episode 180, Reward: -181756.41, Avg Reward: -181571.62, Epsilon: 0.41
+2024-12-07 05:04:59,712 - INFO - Deck Picks: [66, 13, 12, 9]
+2024-12-07 05:05:01,545 - INFO - Episode 190, Reward: -181715.63, Avg Reward: -181625.70, Epsilon: 0.39
+2024-12-07 05:05:01,545 - INFO - Deck Picks: [76, 6, 9, 9]
+2024-12-07 05:05:03,562 - INFO - Episode 200, Reward: -179969.33, Avg Reward: -181670.47, Epsilon: 0.37
+2024-12-07 05:05:03,562 - INFO - Deck Picks: [71, 9, 11, 9]
+2024-12-07 05:05:05,747 - INFO - Episode 210, Reward: -182174.30, Avg Reward: -181610.62, Epsilon: 0.35
+2024-12-07 05:05:05,747 - INFO - Deck Picks: [56, 23, 10, 11]
+2024-12-07 05:05:07,796 - INFO - Episode 220, Reward: -181556.29, Avg Reward: -181737.87, Epsilon: 0.33
+2024-12-07 05:05:07,812 - INFO - Deck Picks: [82, 5, 6, 7]
+2024-12-07 05:05:09,884 - INFO - Episode 230, Reward: -181317.86, Avg Reward: -181709.64, Epsilon: 0.32
+2024-12-07 05:05:09,884 - INFO - Deck Picks: [72, 6, 8, 14]
+2024-12-07 05:05:11,905 - INFO - Episode 240, Reward: -182976.86, Avg Reward: -181726.59, Epsilon: 0.30
+2024-12-07 05:05:11,905 - INFO - Deck Picks: [67, 12, 13, 8]
+2024-12-07 05:05:13,853 - INFO - Episode 250, Reward: -180334.22, Avg Reward: -181689.95, Epsilon: 0.29
+2024-12-07 05:05:13,853 - INFO - Deck Picks: [50, 1, 34, 15]
+2024-12-07 05:05:16,244 - INFO - Episode 260, Reward: -181746.55, Avg Reward: -181778.37, Epsilon: 0.27
+2024-12-07 05:05:16,244 - INFO - Deck Picks: [68, 9, 15, 8]
+2024-12-07 05:05:18,810 - INFO - Episode 270, Reward: -184222.74, Avg Reward: -181909.94, Epsilon: 0.26
+2024-12-07 05:05:18,810 - INFO - Deck Picks: [75, 12, 11, 2]
+2024-12-07 05:05:21,351 - INFO - Episode 280, Reward: -181993.47, Avg Reward: -181968.57, Epsilon: 0.25
+2024-12-07 05:05:21,351 - INFO - Deck Picks: [80, 5, 11, 4]
+2024-12-07 05:05:23,386 - INFO - Episode 290, Reward: -182926.41, Avg Reward: -182009.79, Epsilon: 0.23
+2024-12-07 05:05:23,386 - INFO - Deck Picks: [58, 30, 5, 7]
+2024-12-07 05:05:25,353 - INFO - Episode 300, Reward: -181656.28, Avg Reward: -182058.09, Epsilon: 0.22
+2024-12-07 05:05:25,353 - INFO - Deck Picks: [50, 36, 5, 9]
+2024-12-07 05:05:27,343 - INFO - Episode 310, Reward: -181595.29, Avg Reward: -182033.68, Epsilon: 0.21
+2024-12-07 05:05:27,343 - INFO - Deck Picks: [82, 7, 6, 5]
+2024-12-07 05:05:29,415 - INFO - Episode 320, Reward: -182550.82, Avg Reward: -182001.04, Epsilon: 0.20
+2024-12-07 05:05:29,415 - INFO - Deck Picks: [79, 3, 15, 3]
+2024-12-07 05:05:31,494 - INFO - Episode 330, Reward: -183759.74, Avg Reward: -182059.12, Epsilon: 0.19
+2024-12-07 05:05:31,494 - INFO - Deck Picks: [68, 21, 8, 3]
+2024-12-07 05:05:33,598 - INFO - Episode 340, Reward: -182405.14, Avg Reward: -182172.66, Epsilon: 0.18
+2024-12-07 05:05:33,598 - INFO - Deck Picks: [75, 10, 6, 9]
+2024-12-07 05:05:35,675 - INFO - Episode 350, Reward: -181039.71, Avg Reward: -182182.79, Epsilon: 0.17
+2024-12-07 05:05:35,675 - INFO - Deck Picks: [82, 5, 7, 6]
+2024-12-07 05:05:37,729 - INFO - Episode 360, Reward: -183599.70, Avg Reward: -182240.04, Epsilon: 0.16
+2024-12-07 05:05:37,729 - INFO - Deck Picks: [64, 31, 2, 3]
+2024-12-07 05:05:39,757 - INFO - Episode 370, Reward: -181395.55, Avg Reward: -182168.28, Epsilon: 0.16
+2024-12-07 05:05:39,757 - INFO - Deck Picks: [88, 6, 2, 4]
+2024-12-07 05:05:41,828 - INFO - Episode 380, Reward: -182268.95, Avg Reward: -182178.81, Epsilon: 0.15
+2024-12-07 05:05:41,828 - INFO - Deck Picks: [91, 2, 3, 4]
+2024-12-07 05:05:43,916 - INFO - Episode 390, Reward: -183157.83, Avg Reward: -182286.93, Epsilon: 0.14
+2024-12-07 05:05:43,916 - INFO - Deck Picks: [90, 4, 2, 4]
+2024-12-07 05:05:45,987 - INFO - Episode 400, Reward: -182587.80, Avg Reward: -182268.13, Epsilon: 0.13
+2024-12-07 05:05:45,987 - INFO - Deck Picks: [86, 5, 5, 4]
+2024-12-07 05:05:48,028 - INFO - Episode 410, Reward: -180443.15, Avg Reward: -182379.52, Epsilon: 0.13
+2024-12-07 05:05:48,028 - INFO - Deck Picks: [82, 3, 3, 12]
+2024-12-07 05:05:49,925 - INFO - Episode 420, Reward: -180878.73, Avg Reward: -182384.05, Epsilon: 0.12
+2024-12-07 05:05:49,925 - INFO - Deck Picks: [95, 1, 3, 1]
+2024-12-07 05:05:51,840 - INFO - Episode 430, Reward: -182919.34, Avg Reward: -182399.92, Epsilon: 0.12
+2024-12-07 05:05:51,840 - INFO - Deck Picks: [91, 4, 4, 1]
+2024-12-07 05:05:53,817 - INFO - Episode 440, Reward: -183689.60, Avg Reward: -182290.06, Epsilon: 0.11
+2024-12-07 05:05:53,817 - INFO - Deck Picks: [83, 6, 2, 9]
+2024-12-07 05:05:55,718 - INFO - Episode 450, Reward: -182388.18, Avg Reward: -182328.23, Epsilon: 0.10
+2024-12-07 05:05:55,718 - INFO - Deck Picks: [91, 4, 2, 3]
+2024-12-07 05:05:57,631 - INFO - Episode 460, Reward: -178641.52, Avg Reward: -182148.98, Epsilon: 0.10
+2024-12-07 05:05:57,631 - INFO - Deck Picks: [1, 2, 95, 2]
+2024-12-07 05:05:59,588 - INFO - Episode 470, Reward: -181714.77, Avg Reward: -181985.31, Epsilon: 0.09
+2024-12-07 05:05:59,588 - INFO - Deck Picks: [89, 0, 5, 6]
+2024-12-07 05:06:01,487 - INFO - Episode 480, Reward: -181235.30, Avg Reward: -181970.63, Epsilon: 0.09
+2024-12-07 05:06:01,487 - INFO - Deck Picks: [93, 4, 1, 2]
+2024-12-07 05:06:03,360 - INFO - Episode 490, Reward: -184228.83, Avg Reward: -181999.53, Epsilon: 0.09
+2024-12-07 05:06:03,360 - INFO - Deck Picks: [94, 2, 0, 4]
+2024-12-07 05:06:05,373 - INFO - Episode 500, Reward: -181117.22, Avg Reward: -182027.88, Epsilon: 0.08
+2024-12-07 05:06:05,373 - INFO - Deck Picks: [95, 0, 2, 3]
+2024-12-07 05:06:07,643 - INFO - Episode 510, Reward: -183181.44, Avg Reward: -181993.37, Epsilon: 0.08
+2024-12-07 05:06:07,649 - INFO - Deck Picks: [95, 3, 1, 1]
+2024-12-07 05:06:09,922 - INFO - Episode 520, Reward: -178682.38, Avg Reward: -181739.06, Epsilon: 0.07
+2024-12-07 05:06:09,922 - INFO - Deck Picks: [2, 2, 94, 2]
+2024-12-07 05:06:12,292 - INFO - Episode 530, Reward: -178642.10, Avg Reward: -181456.97, Epsilon: 0.07
+2024-12-07 05:06:12,292 - INFO - Deck Picks: [1, 2, 89, 8]
+2024-12-07 05:06:14,285 - INFO - Episode 540, Reward: -178921.58, Avg Reward: -181185.49, Epsilon: 0.07
+2024-12-07 05:06:14,295 - INFO - Deck Picks: [2, 0, 98, 0]
+2024-12-07 05:06:16,297 - INFO - Episode 550, Reward: -178323.24, Avg Reward: -180866.54, Epsilon: 0.06
+2024-12-07 05:06:16,309 - INFO - Deck Picks: [2, 3, 92, 3]
+2024-12-07 05:06:18,328 - INFO - Episode 560, Reward: -183896.69, Avg Reward: -180962.09, Epsilon: 0.06
+2024-12-07 05:06:18,328 - INFO - Deck Picks: [95, 2, 3, 0]
+2024-12-07 05:06:20,517 - INFO - Episode 570, Reward: -187566.00, Avg Reward: -181241.50, Epsilon: 0.06
+2024-12-07 05:06:20,517 - INFO - Deck Picks: [45, 52, 2, 1]
+2024-12-07 05:06:22,832 - INFO - Episode 580, Reward: -182322.03, Avg Reward: -181220.19, Epsilon: 0.05
+2024-12-07 05:06:22,832 - INFO - Deck Picks: [97, 2, 0, 1]
+2024-12-07 05:06:25,134 - INFO - Episode 590, Reward: -178882.34, Avg Reward: -180840.75, Epsilon: 0.05
+2024-12-07 05:06:25,134 - INFO - Deck Picks: [0, 2, 97, 1]
+2024-12-07 05:06:27,159 - INFO - Episode 600, Reward: -182387.11, Avg Reward: -180714.78, Epsilon: 0.05
+2024-12-07 05:06:27,159 - INFO - Deck Picks: [96, 3, 1, 0]
+2024-12-07 05:06:29,136 - INFO - Episode 610, Reward: -183459.76, Avg Reward: -180720.45, Epsilon: 0.05
+2024-12-07 05:06:29,136 - INFO - Deck Picks: [95, 2, 3, 0]
+2024-12-07 05:06:31,143 - INFO - Episode 620, Reward: -183380.93, Avg Reward: -181058.19, Epsilon: 0.04
+2024-12-07 05:06:31,143 - INFO - Deck Picks: [91, 4, 3, 2]
+2024-12-07 05:06:33,569 - INFO - Episode 630, Reward: -181831.53, Avg Reward: -181350.23, Epsilon: 0.04
+2024-12-07 05:06:33,569 - INFO - Deck Picks: [97, 0, 1, 2]
+2024-12-07 05:06:35,845 - INFO - Episode 640, Reward: -183301.99, Avg Reward: -181734.34, Epsilon: 0.04
+2024-12-07 05:06:35,845 - INFO - Deck Picks: [92, 2, 4, 2]
+2024-12-07 05:06:38,130 - INFO - Episode 650, Reward: -178841.93, Avg Reward: -182057.64, Epsilon: 0.04
+2024-12-07 05:06:38,130 - INFO - Deck Picks: [1, 1, 97, 1]
+2024-12-07 05:06:40,102 - INFO - Episode 660, Reward: -182626.80, Avg Reward: -181973.08, Epsilon: 0.04
+2024-12-07 05:06:40,102 - INFO - Deck Picks: [93, 0, 2, 5]
+2024-12-07 05:06:42,099 - INFO - Episode 670, Reward: -181832.36, Avg Reward: -181925.33, Epsilon: 0.03
+2024-12-07 05:06:42,099 - INFO - Deck Picks: [94, 1, 3, 2]
+2024-12-07 05:06:44,186 - INFO - Episode 680, Reward: -181513.13, Avg Reward: -181952.32, Epsilon: 0.03
+2024-12-07 05:06:44,186 - INFO - Deck Picks: [100, 0, 0, 0]
+2024-12-07 05:06:46,483 - INFO - Episode 690, Reward: -180640.10, Avg Reward: -182225.06, Epsilon: 0.03
+2024-12-07 05:06:46,483 - INFO - Deck Picks: [96, 2, 1, 1]
+2024-12-07 05:06:48,731 - INFO - Episode 700, Reward: -178603.56, Avg Reward: -182340.67, Epsilon: 0.03
+2024-12-07 05:06:48,731 - INFO - Deck Picks: [1, 1, 97, 1]
+2024-12-07 05:06:50,972 - INFO - Episode 710, Reward: -178682.63, Avg Reward: -181998.08, Epsilon: 0.03
+2024-12-07 05:06:50,972 - INFO - Deck Picks: [2, 0, 97, 1]
+2024-12-07 05:06:53,012 - INFO - Episode 720, Reward: -179611.46, Avg Reward: -181550.69, Epsilon: 0.03
+2024-12-07 05:06:53,012 - INFO - Deck Picks: [0, 2, 97, 1]
+2024-12-07 05:06:55,081 - INFO - Episode 730, Reward: -178444.50, Avg Reward: -181310.14, Epsilon: 0.03
+2024-12-07 05:06:55,081 - INFO - Deck Picks: [0, 0, 99, 1]
+2024-12-07 05:06:57,147 - INFO - Episode 740, Reward: -178562.78, Avg Reward: -180927.22, Epsilon: 0.02
+2024-12-07 05:06:57,147 - INFO - Deck Picks: [4, 1, 94, 1]
+2024-12-07 05:06:59,305 - INFO - Episode 750, Reward: -180698.32, Avg Reward: -180608.04, Epsilon: 0.02
+2024-12-07 05:06:59,305 - INFO - Deck Picks: [1, 2, 97, 0]
+2024-12-07 05:07:01,544 - INFO - Episode 760, Reward: -183459.88, Avg Reward: -180611.82, Epsilon: 0.02
+2024-12-07 05:07:01,544 - INFO - Deck Picks: [95, 1, 0, 4]
+2024-12-07 05:07:03,738 - INFO - Episode 770, Reward: -183697.19, Avg Reward: -180579.40, Epsilon: 0.02
+2024-12-07 05:07:03,738 - INFO - Deck Picks: [96, 4, 0, 0]
+2024-12-07 05:07:05,789 - INFO - Episode 780, Reward: -182347.28, Avg Reward: -180490.81, Epsilon: 0.02
+2024-12-07 05:07:05,789 - INFO - Deck Picks: [98, 1, 0, 1]
+2024-12-07 05:07:07,830 - INFO - Episode 790, Reward: -183913.04, Avg Reward: -180550.04, Epsilon: 0.02
+2024-12-07 05:07:07,830 - INFO - Deck Picks: [89, 3, 8, 0]
+2024-12-07 05:07:09,871 - INFO - Episode 800, Reward: -182545.83, Avg Reward: -180606.34, Epsilon: 0.02
+2024-12-07 05:07:09,871 - INFO - Deck Picks: [99, 0, 0, 1]
+2024-12-07 05:07:12,080 - INFO - Episode 810, Reward: -181830.95, Avg Reward: -180983.78, Epsilon: 0.02
+2024-12-07 05:07:12,080 - INFO - Deck Picks: [97, 0, 0, 3]
+2024-12-07 05:07:14,195 - INFO - Episode 820, Reward: -179393.84, Avg Reward: -181190.56, Epsilon: 0.02
+2024-12-07 05:07:14,195 - INFO - Deck Picks: [15, 0, 85, 0]
+2024-12-07 05:07:16,119 - INFO - Episode 830, Reward: -178763.11, Avg Reward: -181314.73, Epsilon: 0.02
+2024-12-07 05:07:16,119 - INFO - Deck Picks: [0, 0, 100, 0]
+2024-12-07 05:07:18,056 - INFO - Episode 840, Reward: -178404.55, Avg Reward: -181283.80, Epsilon: 0.01
+2024-12-07 05:07:18,056 - INFO - Deck Picks: [0, 1, 98, 1]
+2024-12-07 05:07:19,964 - INFO - Episode 850, Reward: -180181.28, Avg Reward: -181284.31, Epsilon: 0.01
+2024-12-07 05:07:19,964 - INFO - Deck Picks: [36, 1, 62, 1]
+2024-12-07 05:07:21,928 - INFO - Episode 860, Reward: -181910.23, Avg Reward: -181463.53, Epsilon: 0.01
+2024-12-07 05:07:21,928 - INFO - Deck Picks: [100, 0, 0, 0]
+2024-12-07 05:07:24,032 - INFO - Episode 870, Reward: -182784.33, Avg Reward: -181443.70, Epsilon: 0.01
+2024-12-07 05:07:24,032 - INFO - Deck Picks: [97, 1, 0, 2]
+2024-12-07 05:07:26,101 - INFO - Episode 880, Reward: -182545.83, Avg Reward: -181562.49, Epsilon: 0.01
+2024-12-07 05:07:26,101 - INFO - Deck Picks: [98, 1, 1, 0]
+2024-12-07 05:07:28,130 - INFO - Episode 890, Reward: -181910.23, Avg Reward: -181571.03, Epsilon: 0.01
+2024-12-07 05:07:28,130 - INFO - Deck Picks: [100, 0, 0, 0]
+2024-12-07 05:07:30,231 - INFO - Episode 900, Reward: -178723.28, Avg Reward: -181412.23, Epsilon: 0.01
+2024-12-07 05:07:30,231 - INFO - Deck Picks: [0, 0, 99, 1]
+2024-12-07 05:07:32,268 - INFO - Episode 910, Reward: -181354.53, Avg Reward: -181283.22, Epsilon: 0.01
+2024-12-07 05:07:32,268 - INFO - Deck Picks: [98, 1, 0, 1]
+2024-12-07 05:07:34,268 - INFO - Episode 920, Reward: -178643.63, Avg Reward: -181132.93, Epsilon: 0.01
+2024-12-07 05:07:34,268 - INFO - Deck Picks: [0, 0, 100, 0]
+2024-12-07 05:07:36,423 - INFO - Episode 930, Reward: -178683.45, Avg Reward: -180872.16, Epsilon: 0.01
+2024-12-07 05:07:36,423 - INFO - Deck Picks: [0, 0, 98, 2]
+2024-12-07 05:07:38,717 - INFO - Episode 940, Reward: -178962.24, Avg Reward: -180884.08, Epsilon: 0.01
+2024-12-07 05:07:38,717 - INFO - Deck Picks: [0, 0, 99, 1]
+2024-12-07 05:07:41,130 - INFO - Episode 950, Reward: -178524.15, Avg Reward: -180856.80, Epsilon: 0.01
+2024-12-07 05:07:41,130 - INFO - Deck Picks: [0, 0, 97, 3]
+2024-12-07 05:07:43,199 - INFO - Episode 960, Reward: -180540.45, Avg Reward: -180480.22, Epsilon: 0.01
+2024-12-07 05:07:43,199 - INFO - Deck Picks: [31, 0, 69, 0]
+2024-12-07 05:07:45,207 - INFO - Episode 970, Reward: -182942.94, Avg Reward: -180509.80, Epsilon: 0.01
+2024-12-07 05:07:45,207 - INFO - Deck Picks: [99, 0, 0, 1]
+2024-12-07 05:07:47,231 - INFO - Episode 980, Reward: -182902.99, Avg Reward: -180527.20, Epsilon: 0.01
+2024-12-07 05:07:47,231 - INFO - Deck Picks: [100, 0, 0, 0]
+2024-12-07 05:07:49,559 - INFO - Episode 990, Reward: -182902.99, Avg Reward: -180550.95, Epsilon: 0.01
+2024-12-07 05:07:49,559 - INFO - Deck Picks: [100, 0, 0, 0]
+2024-12-07 05:11:27,493 - INFO - Episode 0, Reward: -180337.51, Avg Reward: -180337.51, Epsilon: 1.00
+2024-12-07 05:11:27,493 - INFO - Deck Picks: [27, 29, 19, 25]
+2024-12-07 05:11:29,363 - INFO - Episode 10, Reward: -178204.81, Avg Reward: -180330.11, Epsilon: 0.95
+2024-12-07 05:11:29,363 - INFO - Deck Picks: [22, 27, 26, 25]
+2024-12-07 05:11:31,090 - INFO - Episode 20, Reward: -182990.09, Avg Reward: -180511.39, Epsilon: 0.90
+2024-12-07 05:11:31,096 - INFO - Deck Picks: [35, 20, 23, 22]
+2024-12-07 05:11:32,861 - INFO - Episode 30, Reward: -180186.56, Avg Reward: -180407.39, Epsilon: 0.86
+2024-12-07 05:11:32,861 - INFO - Deck Picks: [38, 18, 20, 24]
+2024-12-07 05:11:34,656 - INFO - Episode 40, Reward: -179260.90, Avg Reward: -180791.06, Epsilon: 0.82
+2024-12-07 05:11:34,656 - INFO - Deck Picks: [34, 15, 28, 23]
+2024-12-07 05:11:36,315 - INFO - Episode 50, Reward: -179339.48, Avg Reward: -180767.68, Epsilon: 0.78
+2024-12-07 05:11:36,315 - INFO - Deck Picks: [38, 15, 20, 27]
+2024-12-07 05:11:38,054 - INFO - Episode 60, Reward: -183155.18, Avg Reward: -180976.45, Epsilon: 0.74
+2024-12-07 05:11:38,054 - INFO - Deck Picks: [40, 17, 18, 25]
+2024-12-07 05:11:39,871 - INFO - Episode 70, Reward: -180582.31, Avg Reward: -181023.42, Epsilon: 0.70
+2024-12-07 05:11:39,871 - INFO - Deck Picks: [51, 16, 19, 14]
+2024-12-07 05:11:41,627 - INFO - Episode 80, Reward: -181553.45, Avg Reward: -181015.42, Epsilon: 0.67
+2024-12-07 05:11:41,627 - INFO - Deck Picks: [45, 16, 21, 18]
+2024-12-07 05:11:43,357 - INFO - Episode 90, Reward: -181977.89, Avg Reward: -181058.11, Epsilon: 0.64
+2024-12-07 05:11:43,357 - INFO - Deck Picks: [39, 32, 15, 14]
+2024-12-07 05:11:45,439 - INFO - Episode 100, Reward: -181803.80, Avg Reward: -181105.95, Epsilon: 0.61
+2024-12-07 05:11:45,439 - INFO - Deck Picks: [52, 16, 14, 18]
+2024-12-07 05:11:47,528 - INFO - Episode 110, Reward: -181281.21, Avg Reward: -181130.97, Epsilon: 0.58
+2024-12-07 05:11:47,528 - INFO - Deck Picks: [59, 12, 16, 13]
+2024-12-07 05:11:49,413 - INFO - Episode 120, Reward: -179607.07, Avg Reward: -181288.23, Epsilon: 0.55
+2024-12-07 05:11:49,413 - INFO - Deck Picks: [44, 18, 21, 17]
+2024-12-07 05:11:51,312 - INFO - Episode 130, Reward: -180185.94, Avg Reward: -181336.30, Epsilon: 0.52
+2024-12-07 05:11:51,312 - INFO - Deck Picks: [43, 18, 17, 22]
+2024-12-07 05:11:53,235 - INFO - Episode 140, Reward: -181810.59, Avg Reward: -181308.00, Epsilon: 0.50
+2024-12-07 05:11:53,235 - INFO - Deck Picks: [60, 16, 8, 16]
+2024-12-07 05:11:55,302 - INFO - Episode 150, Reward: -182301.64, Avg Reward: -181475.27, Epsilon: 0.47
+2024-12-07 05:11:55,302 - INFO - Deck Picks: [60, 23, 7, 10]
+2024-12-07 05:11:57,531 - INFO - Episode 160, Reward: -182367.92, Avg Reward: -181538.46, Epsilon: 0.45
+2024-12-07 05:11:57,531 - INFO - Deck Picks: [69, 9, 10, 12]
+2024-12-07 05:11:59,699 - INFO - Episode 170, Reward: -181230.92, Avg Reward: -181546.05, Epsilon: 0.43
+2024-12-07 05:11:59,699 - INFO - Deck Picks: [59, 15, 8, 18]
+2024-12-07 05:12:01,853 - INFO - Episode 180, Reward: -181430.39, Avg Reward: -181633.63, Epsilon: 0.41
+2024-12-07 05:12:01,853 - INFO - Deck Picks: [66, 10, 18, 6]
+2024-12-07 05:12:03,735 - INFO - Episode 190, Reward: -180288.18, Avg Reward: -181740.28, Epsilon: 0.39
+2024-12-07 05:12:03,735 - INFO - Deck Picks: [70, 8, 12, 10]
+2024-12-07 05:12:05,611 - INFO - Episode 200, Reward: -177119.00, Avg Reward: -181734.02, Epsilon: 0.37
+2024-12-07 05:12:05,611 - INFO - Deck Picks: [27, 22, 31, 20]
+2024-12-07 05:12:07,588 - INFO - Episode 210, Reward: -180525.77, Avg Reward: -181785.28, Epsilon: 0.35
+2024-12-07 05:12:07,588 - INFO - Deck Picks: [62, 13, 10, 15]
+2024-12-07 05:12:09,812 - INFO - Episode 220, Reward: -181690.96, Avg Reward: -181651.47, Epsilon: 0.33
+2024-12-07 05:12:09,812 - INFO - Deck Picks: [72, 10, 9, 9]
+2024-12-07 05:12:11,999 - INFO - Episode 230, Reward: -180289.13, Avg Reward: -181779.83, Epsilon: 0.32
+2024-12-07 05:12:11,999 - INFO - Deck Picks: [65, 10, 16, 9]
+2024-12-07 05:12:14,153 - INFO - Episode 240, Reward: -179413.29, Avg Reward: -181725.13, Epsilon: 0.30
+2024-12-07 05:12:14,153 - INFO - Deck Picks: [66, 11, 15, 8]
+2024-12-07 05:12:16,018 - INFO - Episode 250, Reward: -181477.47, Avg Reward: -181670.88, Epsilon: 0.29
+2024-12-07 05:12:16,018 - INFO - Deck Picks: [76, 9, 8, 7]
+2024-12-07 05:12:17,917 - INFO - Episode 260, Reward: -181756.04, Avg Reward: -181560.62, Epsilon: 0.27
+2024-12-07 05:12:17,917 - INFO - Deck Picks: [77, 5, 10, 8]
+2024-12-07 05:12:19,840 - INFO - Episode 270, Reward: -181832.51, Avg Reward: -181567.84, Epsilon: 0.26
+2024-12-07 05:12:19,840 - INFO - Deck Picks: [80, 9, 5, 6]
+2024-12-07 05:12:22,169 - INFO - Episode 280, Reward: -180260.18, Avg Reward: -181575.45, Epsilon: 0.25
+2024-12-07 05:12:22,169 - INFO - Deck Picks: [36, 20, 37, 7]
+2024-12-07 05:12:24,413 - INFO - Episode 290, Reward: -182762.29, Avg Reward: -181555.92, Epsilon: 0.23
+2024-12-07 05:12:24,413 - INFO - Deck Picks: [75, 11, 9, 5]
+2024-12-07 05:12:26,732 - INFO - Episode 300, Reward: -178600.74, Avg Reward: -181524.75, Epsilon: 0.22
+2024-12-07 05:12:26,732 - INFO - Deck Picks: [4, 2, 81, 13]
+2024-12-07 05:12:28,693 - INFO - Episode 310, Reward: -180879.80, Avg Reward: -181679.02, Epsilon: 0.21
+2024-12-07 05:12:28,693 - INFO - Deck Picks: [85, 7, 7, 1]
+2024-12-07 05:12:30,688 - INFO - Episode 320, Reward: -178321.34, Avg Reward: -181718.61, Epsilon: 0.20
+2024-12-07 05:12:30,689 - INFO - Deck Picks: [4, 7, 73, 16]
+2024-12-07 05:12:32,694 - INFO - Episode 330, Reward: -178878.19, Avg Reward: -181733.25, Epsilon: 0.19
+2024-12-07 05:12:32,694 - INFO - Deck Picks: [46, 14, 30, 10]
+2024-12-07 05:12:34,712 - INFO - Episode 340, Reward: -182031.52, Avg Reward: -181800.66, Epsilon: 0.18
+2024-12-07 05:12:34,712 - INFO - Deck Picks: [85, 5, 4, 6]
+2024-12-07 05:12:36,780 - INFO - Episode 350, Reward: -181792.90, Avg Reward: -181829.84, Epsilon: 0.17
+2024-12-07 05:12:36,780 - INFO - Deck Picks: [86, 6, 4, 4]
+2024-12-07 05:12:38,940 - INFO - Episode 360, Reward: -179472.74, Avg Reward: -181870.75, Epsilon: 0.16
+2024-12-07 05:12:38,940 - INFO - Deck Picks: [57, 12, 28, 3]
+2024-12-07 05:12:40,977 - INFO - Episode 370, Reward: -183370.84, Avg Reward: -181907.99, Epsilon: 0.16
+2024-12-07 05:12:40,977 - INFO - Deck Picks: [86, 9, 3, 2]
+2024-12-07 05:12:42,999 - INFO - Episode 380, Reward: -181317.55, Avg Reward: -181953.41, Epsilon: 0.15
+2024-12-07 05:12:42,999 - INFO - Deck Picks: [87, 3, 8, 2]
+2024-12-07 05:12:45,020 - INFO - Episode 390, Reward: -178680.61, Avg Reward: -181877.97, Epsilon: 0.14
+2024-12-07 05:12:45,020 - INFO - Deck Picks: [5, 4, 86, 5]
+2024-12-07 05:12:47,099 - INFO - Episode 400, Reward: -178162.38, Avg Reward: -181652.64, Epsilon: 0.13
+2024-12-07 05:12:47,099 - INFO - Deck Picks: [10, 3, 81, 6]
+2024-12-07 05:12:49,378 - INFO - Episode 410, Reward: -181911.79, Avg Reward: -181522.13, Epsilon: 0.13
+2024-12-07 05:12:49,378 - INFO - Deck Picks: [89, 3, 3, 5]
+2024-12-07 05:12:51,471 - INFO - Episode 420, Reward: -181556.17, Avg Reward: -181540.28, Epsilon: 0.12
+2024-12-07 05:12:51,471 - INFO - Deck Picks: [87, 1, 7, 5]
+2024-12-07 05:12:53,475 - INFO - Episode 430, Reward: -181475.33, Avg Reward: -181526.54, Epsilon: 0.12
+2024-12-07 05:12:53,475 - INFO - Deck Picks: [91, 2, 3, 4]
+2024-12-07 05:12:55,361 - INFO - Episode 440, Reward: -182588.75, Avg Reward: -181560.91, Epsilon: 0.11
+2024-12-07 05:12:55,361 - INFO - Deck Picks: [81, 7, 6, 6]
+2024-12-07 05:12:57,259 - INFO - Episode 450, Reward: -179738.54, Avg Reward: -181553.89, Epsilon: 0.10
+2024-12-07 05:12:57,259 - INFO - Deck Picks: [53, 3, 39, 5]
+2024-12-07 05:12:59,187 - INFO - Episode 460, Reward: -183103.43, Avg Reward: -181639.46, Epsilon: 0.10
+2024-12-07 05:12:59,187 - INFO - Deck Picks: [85, 9, 5, 1]
+2024-12-07 05:13:01,129 - INFO - Episode 470, Reward: -181633.93, Avg Reward: -181686.04, Epsilon: 0.09
+2024-12-07 05:13:01,129 - INFO - Deck Picks: [93, 1, 3, 3]
+2024-12-07 05:13:03,041 - INFO - Episode 480, Reward: -180142.53, Avg Reward: -181639.57, Epsilon: 0.09
+2024-12-07 05:13:03,041 - INFO - Deck Picks: [31, 2, 63, 4]
+2024-12-07 05:13:04,929 - INFO - Episode 490, Reward: -182350.86, Avg Reward: -181689.65, Epsilon: 0.09
+2024-12-07 05:13:04,929 - INFO - Deck Picks: [80, 4, 10, 6]
+2024-12-07 05:13:06,832 - INFO - Episode 500, Reward: -179610.51, Avg Reward: -181810.39, Epsilon: 0.08
+2024-12-07 05:13:06,832 - INFO - Deck Picks: [1, 4, 92, 3]
+2024-12-07 05:13:08,825 - INFO - Episode 510, Reward: -181872.43, Avg Reward: -181853.20, Epsilon: 0.08
+2024-12-07 05:13:08,825 - INFO - Deck Picks: [90, 3, 4, 3]
+2024-12-07 05:13:10,881 - INFO - Episode 520, Reward: -181355.48, Avg Reward: -181928.97, Epsilon: 0.07
+2024-12-07 05:13:10,881 - INFO - Deck Picks: [92, 4, 4, 0]
+2024-12-07 05:13:13,241 - INFO - Episode 530, Reward: -182268.46, Avg Reward: -181984.06, Epsilon: 0.07
+2024-12-07 05:13:13,241 - INFO - Deck Picks: [94, 3, 2, 1]
+2024-12-07 05:13:15,627 - INFO - Episode 540, Reward: -182387.72, Avg Reward: -181951.45, Epsilon: 0.07
+2024-12-07 05:13:15,627 - INFO - Deck Picks: [93, 1, 3, 3]
+2024-12-07 05:13:18,082 - INFO - Episode 550, Reward: -181871.36, Avg Reward: -181855.04, Epsilon: 0.06
+2024-12-07 05:13:18,082 - INFO - Deck Picks: [96, 1, 2, 1]
+2024-12-07 05:13:20,144 - INFO - Episode 560, Reward: -182824.28, Avg Reward: -181755.89, Epsilon: 0.06
+2024-12-07 05:13:20,144 - INFO - Deck Picks: [96, 1, 1, 2]
+2024-12-07 05:13:22,207 - INFO - Episode 570, Reward: -182386.65, Avg Reward: -181540.81, Epsilon: 0.06
+2024-12-07 05:13:22,207 - INFO - Deck Picks: [94, 4, 0, 2]
+2024-12-07 05:13:24,273 - INFO - Episode 580, Reward: -184586.57, Avg Reward: -181623.36, Epsilon: 0.05
+2024-12-07 05:13:24,273 - INFO - Deck Picks: [95, 2, 1, 2]
+2024-12-07 05:13:26,573 - INFO - Episode 590, Reward: -183578.54, Avg Reward: -181613.56, Epsilon: 0.05
+2024-12-07 05:13:26,573 - INFO - Deck Picks: [96, 2, 1, 1]
+2024-12-07 05:13:28,837 - INFO - Episode 600, Reward: -184213.56, Avg Reward: -181931.39, Epsilon: 0.05
+2024-12-07 05:13:28,841 - INFO - Deck Picks: [94, 3, 1, 2]
+2024-12-07 05:13:31,173 - INFO - Episode 610, Reward: -180838.78, Avg Reward: -181986.82, Epsilon: 0.05
+2024-12-07 05:13:31,173 - INFO - Deck Picks: [97, 0, 1, 2]
+2024-12-07 05:13:33,115 - INFO - Episode 620, Reward: -182744.39, Avg Reward: -182012.21, Epsilon: 0.04
+2024-12-07 05:13:33,115 - INFO - Deck Picks: [97, 2, 1, 0]
+2024-12-07 05:13:35,058 - INFO - Episode 630, Reward: -178602.52, Avg Reward: -181898.53, Epsilon: 0.04
+2024-12-07 05:13:35,058 - INFO - Deck Picks: [0, 1, 98, 1]
+2024-12-07 05:13:37,157 - INFO - Episode 640, Reward: -179650.71, Avg Reward: -181616.02, Epsilon: 0.04
+2024-12-07 05:13:37,157 - INFO - Deck Picks: [1, 1, 98, 0]
+2024-12-07 05:13:39,659 - INFO - Episode 650, Reward: -179241.02, Avg Reward: -181465.50, Epsilon: 0.04
+2024-12-07 05:13:39,659 - INFO - Deck Picks: [0, 0, 100, 0]
+2024-12-07 05:13:42,155 - INFO - Episode 660, Reward: -178603.68, Avg Reward: -181194.34, Epsilon: 0.04
+2024-12-07 05:13:42,159 - INFO - Deck Picks: [0, 1, 99, 0]
+2024-12-07 05:13:44,538 - INFO - Episode 670, Reward: -178961.41, Avg Reward: -181169.94, Epsilon: 0.03
+2024-12-07 05:13:44,538 - INFO - Deck Picks: [1, 1, 96, 2]
+2024-12-07 05:13:46,532 - INFO - Episode 680, Reward: -181123.04, Avg Reward: -180844.22, Epsilon: 0.03
+2024-12-07 05:13:46,532 - INFO - Deck Picks: [75, 1, 23, 1]
+2024-12-07 05:13:48,483 - INFO - Episode 690, Reward: -178881.42, Avg Reward: -180618.98, Epsilon: 0.03
+2024-12-07 05:13:48,483 - INFO - Deck Picks: [0, 0, 99, 1]
+2024-12-07 05:13:50,634 - INFO - Episode 700, Reward: -178839.33, Avg Reward: -180181.37, Epsilon: 0.03
+2024-12-07 05:13:50,634 - INFO - Deck Picks: [9, 0, 90, 1]
+2024-12-07 05:13:52,959 - INFO - Episode 710, Reward: -179026.71, Avg Reward: -179876.84, Epsilon: 0.03
+2024-12-07 05:13:52,959 - INFO - Deck Picks: [48, 0, 50, 2]
+2024-12-07 05:13:55,127 - INFO - Episode 720, Reward: -181314.58, Avg Reward: -179840.52, Epsilon: 0.03
+2024-12-07 05:13:55,127 - INFO - Deck Picks: [99, 1, 0, 0]
+2024-12-07 05:13:57,215 - INFO - Episode 730, Reward: -178762.86, Avg Reward: -179649.77, Epsilon: 0.03
+2024-12-07 05:13:57,215 - INFO - Deck Picks: [0, 2, 98, 0]
+2024-12-07 05:13:59,295 - INFO - Episode 740, Reward: -178842.06, Avg Reward: -179624.74, Epsilon: 0.02
+2024-12-07 05:13:59,295 - INFO - Deck Picks: [1, 0, 99, 0]
+2024-12-07 05:14:01,376 - INFO - Episode 750, Reward: -178882.58, Avg Reward: -179553.80, Epsilon: 0.02
+2024-12-07 05:14:01,376 - INFO - Deck Picks: [0, 0, 99, 1]
+2024-12-07 05:14:03,560 - INFO - Episode 760, Reward: -182108.78, Avg Reward: -179726.94, Epsilon: 0.02
+2024-12-07 05:14:03,571 - INFO - Deck Picks: [100, 0, 0, 0]
+2024-12-07 05:14:05,776 - INFO - Episode 770, Reward: -182982.76, Avg Reward: -179977.11, Epsilon: 0.02
+2024-12-07 05:14:05,776 - INFO - Deck Picks: [99, 0, 1, 0]
+2024-12-07 05:14:07,949 - INFO - Episode 780, Reward: -181275.70, Avg Reward: -180258.96, Epsilon: 0.02
+2024-12-07 05:14:07,949 - INFO - Deck Picks: [97, 0, 1, 2]
+2024-12-07 05:14:10,155 - INFO - Episode 790, Reward: -183697.19, Avg Reward: -180541.07, Epsilon: 0.02
+2024-12-07 05:14:10,155 - INFO - Deck Picks: [100, 0, 0, 0]
+2024-12-07 05:14:12,214 - INFO - Episode 800, Reward: -182505.89, Avg Reward: -180919.33, Epsilon: 0.02
+2024-12-07 05:14:12,214 - INFO - Deck Picks: [100, 0, 0, 0]
+2024-12-07 05:14:14,260 - INFO - Episode 810, Reward: -183101.54, Avg Reward: -181252.39, Epsilon: 0.02
+2024-12-07 05:14:14,260 - INFO - Deck Picks: [100, 0, 0, 0]
+2024-12-07 05:14:16,294 - INFO - Episode 820, Reward: -181162.04, Avg Reward: -181268.47, Epsilon: 0.02
+2024-12-07 05:14:16,294 - INFO - Deck Picks: [78, 0, 22, 0]
+2024-12-07 05:14:18,270 - INFO - Episode 830, Reward: -182902.99, Avg Reward: -181632.14, Epsilon: 0.02
+2024-12-07 05:14:18,270 - INFO - Deck Picks: [99, 1, 0, 0]
+2024-12-07 05:14:20,240 - INFO - Episode 840, Reward: -183856.99, Avg Reward: -181998.15, Epsilon: 0.01
+2024-12-07 05:14:20,240 - INFO - Deck Picks: [96, 0, 0, 4]
+2024-12-07 05:14:22,221 - INFO - Episode 850, Reward: -180838.78, Avg Reward: -182373.80, Epsilon: 0.01
+2024-12-07 05:14:22,221 - INFO - Deck Picks: [97, 0, 1, 2]
+2024-12-07 05:14:24,173 - INFO - Episode 860, Reward: -178563.98, Avg Reward: -182423.81, Epsilon: 0.01
+2024-12-07 05:14:24,173 - INFO - Deck Picks: [0, 0, 100, 0]
+2024-12-07 05:14:26,079 - INFO - Episode 870, Reward: -182744.39, Avg Reward: -182476.05, Epsilon: 0.01
+2024-12-07 05:14:26,083 - INFO - Deck Picks: [99, 0, 1, 0]
+2024-12-07 05:14:28,008 - INFO - Episode 880, Reward: -181950.18, Avg Reward: -182509.48, Epsilon: 0.01
+2024-12-07 05:14:28,008 - INFO - Deck Picks: [99, 0, 0, 1]
+2024-12-07 05:14:29,972 - INFO - Episode 890, Reward: -182188.56, Avg Reward: -182526.91, Epsilon: 0.01
+2024-12-07 05:14:29,972 - INFO - Deck Picks: [99, 0, 1, 0]
+2024-12-07 05:14:32,122 - INFO - Episode 900, Reward: -181711.68, Avg Reward: -182558.83, Epsilon: 0.01
+2024-12-07 05:14:32,122 - INFO - Deck Picks: [100, 0, 0, 0]
+2024-12-07 05:14:34,098 - INFO - Episode 910, Reward: -183141.49, Avg Reward: -182598.15, Epsilon: 0.01
+2024-12-07 05:14:34,098 - INFO - Deck Picks: [98, 1, 1, 0]
+2024-12-07 05:14:36,112 - INFO - Episode 920, Reward: -182307.33, Avg Reward: -182642.95, Epsilon: 0.01
+2024-12-07 05:14:36,112 - INFO - Deck Picks: [99, 1, 0, 0]
+2024-12-07 05:14:38,106 - INFO - Episode 930, Reward: -184292.84, Avg Reward: -182606.00, Epsilon: 0.01
+2024-12-07 05:14:38,106 - INFO - Deck Picks: [100, 0, 0, 0]
+2024-12-07 05:14:40,182 - INFO - Episode 940, Reward: -182545.83, Avg Reward: -182619.89, Epsilon: 0.01
+2024-12-07 05:14:40,182 - INFO - Deck Picks: [98, 1, 1, 0]
+2024-12-07 05:14:42,458 - INFO - Episode 950, Reward: -184689.94, Avg Reward: -182656.02, Epsilon: 0.01
+2024-12-07 05:14:42,458 - INFO - Deck Picks: [100, 0, 0, 0]
+2024-12-07 05:14:44,680 - INFO - Episode 960, Reward: -183181.31, Avg Reward: -182818.28, Epsilon: 0.01
+2024-12-07 05:14:44,680 - INFO - Deck Picks: [99, 0, 1, 0]
+2024-12-07 05:14:46,972 - INFO - Episode 970, Reward: -183776.96, Avg Reward: -182775.96, Epsilon: 0.01
+2024-12-07 05:14:46,972 - INFO - Deck Picks: [99, 0, 1, 0]
+2024-12-07 05:14:49,012 - INFO - Episode 980, Reward: -181751.63, Avg Reward: -182765.62, Epsilon: 0.01
+2024-12-07 05:14:49,012 - INFO - Deck Picks: [99, 0, 0, 1]
+2024-12-07 05:14:51,050 - INFO - Episode 990, Reward: -182108.78, Avg Reward: -182818.27, Epsilon: 0.01
+2024-12-07 05:14:51,050 - INFO - Deck Picks: [100, 0, 0, 0]
+2024-12-07 05:16:24,574 - INFO - Episode 0, Reward: -180957.53, Avg Reward: -180957.53, Epsilon: 1.00
+2024-12-07 05:16:24,580 - INFO - Deck Picks: [23, 26, 17, 34]
+2024-12-07 05:16:26,652 - INFO - Episode 10, Reward: -180758.82, Avg Reward: -180908.50, Epsilon: 0.95
+2024-12-07 05:16:26,652 - INFO - Deck Picks: [32, 23, 22, 23]
+2024-12-07 05:16:28,815 - INFO - Episode 20, Reward: -180148.93, Avg Reward: -180947.34, Epsilon: 0.90
+2024-12-07 05:16:28,815 - INFO - Deck Picks: [35, 22, 21, 22]
+2024-12-07 05:16:30,801 - INFO - Episode 30, Reward: -179077.72, Avg Reward: -180689.31, Epsilon: 0.86
+2024-12-07 05:16:30,801 - INFO - Deck Picks: [29, 23, 27, 21]
+2024-12-07 05:16:32,889 - INFO - Episode 40, Reward: -183363.49, Avg Reward: -180879.90, Epsilon: 0.82
+2024-12-07 05:16:32,889 - INFO - Deck Picks: [20, 27, 24, 29]
+2024-12-07 05:16:34,628 - INFO - Episode 50, Reward: -182282.94, Avg Reward: -180992.00, Epsilon: 0.78
+2024-12-07 05:16:34,628 - INFO - Deck Picks: [39, 19, 20, 22]
+2024-12-07 05:16:36,391 - INFO - Episode 60, Reward: -178389.25, Avg Reward: -180934.71, Epsilon: 0.74
+2024-12-07 05:16:36,391 - INFO - Deck Picks: [31, 19, 27, 23]
+2024-12-07 05:16:38,177 - INFO - Episode 70, Reward: -180771.25, Avg Reward: -180977.20, Epsilon: 0.70
+2024-12-07 05:16:38,177 - INFO - Deck Picks: [34, 29, 16, 21]
+2024-12-07 05:16:40,256 - INFO - Episode 80, Reward: -181673.42, Avg Reward: -180912.28, Epsilon: 0.67
+2024-12-07 05:16:40,256 - INFO - Deck Picks: [38, 19, 22, 21]
+2024-12-07 05:16:42,391 - INFO - Episode 90, Reward: -180091.78, Avg Reward: -180925.25, Epsilon: 0.64
+2024-12-07 05:16:42,391 - INFO - Deck Picks: [57, 13, 15, 15]
+2024-12-07 05:16:44,415 - INFO - Episode 100, Reward: -178636.17, Avg Reward: -180997.77, Epsilon: 0.61
+2024-12-07 05:16:44,415 - INFO - Deck Picks: [48, 18, 15, 19]
+2024-12-07 05:16:46,418 - INFO - Episode 110, Reward: -182074.50, Avg Reward: -181030.37, Epsilon: 0.58
+2024-12-07 05:16:46,418 - INFO - Deck Picks: [61, 8, 13, 18]
+2024-12-07 05:16:48,309 - INFO - Episode 120, Reward: -182472.85, Avg Reward: -181077.64, Epsilon: 0.55
+2024-12-07 05:16:48,309 - INFO - Deck Picks: [65, 8, 16, 11]
+2024-12-07 05:16:50,217 - INFO - Episode 130, Reward: -179789.55, Avg Reward: -181213.97, Epsilon: 0.52
+2024-12-07 05:16:50,217 - INFO - Deck Picks: [46, 14, 17, 23]
+2024-12-07 05:16:52,216 - INFO - Episode 140, Reward: -182992.96, Avg Reward: -181276.71, Epsilon: 0.50
+2024-12-07 05:16:52,216 - INFO - Deck Picks: [54, 22, 13, 11]
+2024-12-07 05:16:54,404 - INFO - Episode 150, Reward: -182371.50, Avg Reward: -181332.26, Epsilon: 0.47
+2024-12-07 05:16:54,404 - INFO - Deck Picks: [53, 10, 17, 20]
+2024-12-07 05:16:56,574 - INFO - Episode 160, Reward: -180485.36, Avg Reward: -181430.19, Epsilon: 0.45
+2024-12-07 05:16:56,574 - INFO - Deck Picks: [67, 8, 7, 18]
+2024-12-07 05:16:58,806 - INFO - Episode 170, Reward: -181414.29, Avg Reward: -181417.00, Epsilon: 0.43
+2024-12-07 05:16:58,806 - INFO - Deck Picks: [69, 10, 6, 15]
+2024-12-07 05:17:00,742 - INFO - Episode 180, Reward: -179208.44, Avg Reward: -181551.03, Epsilon: 0.41
+2024-12-07 05:17:00,742 - INFO - Deck Picks: [50, 15, 21, 14]
+2024-12-07 05:17:02,684 - INFO - Episode 190, Reward: -184952.14, Avg Reward: -181675.68, Epsilon: 0.39
+2024-12-07 05:17:02,684 - INFO - Deck Picks: [57, 23, 8, 12]
+2024-12-07 05:17:04,582 - INFO - Episode 200, Reward: -181443.52, Avg Reward: -181809.20, Epsilon: 0.37
+2024-12-07 05:17:04,582 - INFO - Deck Picks: [50, 33, 8, 9]
+2024-12-07 05:17:06,702 - INFO - Episode 210, Reward: -181082.39, Avg Reward: -181889.21, Epsilon: 0.35
+2024-12-07 05:17:06,702 - INFO - Deck Picks: [71, 7, 9, 13]
+2024-12-07 05:17:08,822 - INFO - Episode 220, Reward: -182302.13, Avg Reward: -181930.21, Epsilon: 0.33
+2024-12-07 05:17:08,822 - INFO - Deck Picks: [67, 12, 8, 13]
+2024-12-07 05:17:11,005 - INFO - Episode 230, Reward: -183199.35, Avg Reward: -181992.01, Epsilon: 0.32
+2024-12-07 05:17:11,005 - INFO - Deck Picks: [77, 8, 3, 12]
+2024-12-07 05:17:13,075 - INFO - Episode 240, Reward: -182191.90, Avg Reward: -181873.73, Epsilon: 0.30
+2024-12-07 05:17:13,075 - INFO - Deck Picks: [41, 10, 45, 4]
+2024-12-07 05:17:14,964 - INFO - Episode 250, Reward: -178719.48, Avg Reward: -181848.95, Epsilon: 0.29
+2024-12-07 05:17:14,964 - INFO - Deck Picks: [6, 6, 81, 7]
+2024-12-07 05:17:16,862 - INFO - Episode 260, Reward: -182381.08, Avg Reward: -181806.04, Epsilon: 0.27
+2024-12-07 05:17:16,862 - INFO - Deck Picks: [70, 10, 7, 13]
+2024-12-07 05:17:19,014 - INFO - Episode 270, Reward: -181785.15, Avg Reward: -181890.16, Epsilon: 0.26
+2024-12-07 05:17:19,014 - INFO - Deck Picks: [80, 7, 8, 5]
+2024-12-07 05:17:21,269 - INFO - Episode 280, Reward: -180331.68, Avg Reward: -181779.15, Epsilon: 0.25
+2024-12-07 05:17:21,269 - INFO - Deck Picks: [59, 8, 32, 1]
+2024-12-07 05:17:23,549 - INFO - Episode 290, Reward: -183509.75, Avg Reward: -181719.61, Epsilon: 0.23
+2024-12-07 05:17:23,549 - INFO - Deck Picks: [67, 12, 16, 5]
+2024-12-07 05:17:25,643 - INFO - Episode 300, Reward: -182072.05, Avg Reward: -181634.34, Epsilon: 0.22
+2024-12-07 05:17:25,643 - INFO - Deck Picks: [82, 7, 5, 6]
+2024-12-07 05:17:27,572 - INFO - Episode 310, Reward: -182343.25, Avg Reward: -181548.76, Epsilon: 0.21
+2024-12-07 05:17:27,572 - INFO - Deck Picks: [69, 9, 15, 7]
+2024-12-07 05:17:29,491 - INFO - Episode 320, Reward: -182682.98, Avg Reward: -181592.66, Epsilon: 0.20
+2024-12-07 05:17:29,491 - INFO - Deck Picks: [82, 6, 9, 3]
+2024-12-07 05:17:31,615 - INFO - Episode 330, Reward: -179750.27, Avg Reward: -181571.07, Epsilon: 0.19
+2024-12-07 05:17:31,615 - INFO - Deck Picks: [55, 10, 25, 10]
+2024-12-07 05:17:33,784 - INFO - Episode 340, Reward: -182403.95, Avg Reward: -181665.45, Epsilon: 0.18
+2024-12-07 05:17:33,784 - INFO - Deck Picks: [66, 24, 7, 3]
+2024-12-07 05:17:35,998 - INFO - Episode 350, Reward: -182257.69, Avg Reward: -181662.49, Epsilon: 0.17
+2024-12-07 05:17:35,998 - INFO - Deck Picks: [23, 62, 6, 9]
+2024-12-07 05:17:38,118 - INFO - Episode 360, Reward: -185148.06, Avg Reward: -181849.44, Epsilon: 0.16
+2024-12-07 05:17:38,118 - INFO - Deck Picks: [63, 29, 3, 5]
+2024-12-07 05:17:40,076 - INFO - Episode 370, Reward: -182720.20, Avg Reward: -181806.19, Epsilon: 0.16
+2024-12-07 05:17:40,076 - INFO - Deck Picks: [86, 9, 2, 3]
+2024-12-07 05:17:42,061 - INFO - Episode 380, Reward: -183223.53, Avg Reward: -182007.38, Epsilon: 0.15
+2024-12-07 05:17:42,061 - INFO - Deck Picks: [84, 5, 5, 6]
+2024-12-07 05:17:44,150 - INFO - Episode 390, Reward: -183753.24, Avg Reward: -181927.80, Epsilon: 0.14
+2024-12-07 05:17:44,150 - INFO - Deck Picks: [88, 8, 3, 1]
+2024-12-07 05:17:46,482 - INFO - Episode 400, Reward: -181951.74, Avg Reward: -181949.92, Epsilon: 0.13
+2024-12-07 05:17:46,482 - INFO - Deck Picks: [88, 3, 5, 4]
+2024-12-07 05:17:48,836 - INFO - Episode 410, Reward: -180839.27, Avg Reward: -182014.39, Epsilon: 0.13
+2024-12-07 05:17:48,836 - INFO - Deck Picks: [90, 3, 3, 4]
+2024-12-07 05:17:51,121 - INFO - Episode 420, Reward: -181195.93, Avg Reward: -182014.54, Epsilon: 0.12
+2024-12-07 05:17:51,121 - INFO - Deck Picks: [96, 2, 2, 0]
+2024-12-07 05:17:53,099 - INFO - Episode 430, Reward: -181396.62, Avg Reward: -182068.99, Epsilon: 0.12
+2024-12-07 05:17:53,099 - INFO - Deck Picks: [88, 2, 6, 4]
+2024-12-07 05:17:55,063 - INFO - Episode 440, Reward: -179966.14, Avg Reward: -181895.07, Epsilon: 0.11
+2024-12-07 05:17:55,063 - INFO - Deck Picks: [6, 3, 85, 6]
+2024-12-07 05:17:57,235 - INFO - Episode 450, Reward: -182417.66, Avg Reward: -181984.98, Epsilon: 0.10
+2024-12-07 05:17:57,235 - INFO - Deck Picks: [72, 25, 2, 1]
+2024-12-07 05:17:59,494 - INFO - Episode 460, Reward: -182007.43, Avg Reward: -181908.64, Epsilon: 0.10
+2024-12-07 05:17:59,494 - INFO - Deck Picks: [86, 4, 7, 3]
+2024-12-07 05:18:01,790 - INFO - Episode 470, Reward: -179079.24, Avg Reward: -181896.46, Epsilon: 0.09
+2024-12-07 05:18:01,790 - INFO - Deck Picks: [4, 2, 94, 0]
+2024-12-07 05:18:03,911 - INFO - Episode 480, Reward: -182283.73, Avg Reward: -181878.86, Epsilon: 0.09
+2024-12-07 05:18:03,911 - INFO - Deck Picks: [89, 7, 2, 2]
+2024-12-07 05:18:05,859 - INFO - Episode 490, Reward: -183419.93, Avg Reward: -182042.55, Epsilon: 0.09
+2024-12-07 05:18:05,859 - INFO - Deck Picks: [96, 1, 2, 1]
+2024-12-07 05:18:07,799 - INFO - Episode 500, Reward: -180878.73, Avg Reward: -182025.63, Epsilon: 0.08
+2024-12-07 05:18:07,799 - INFO - Deck Picks: [93, 3, 2, 2]
+2024-12-07 05:18:10,004 - INFO - Episode 510, Reward: -182427.06, Avg Reward: -182037.14, Epsilon: 0.08
+2024-12-07 05:18:10,004 - INFO - Deck Picks: [96, 2, 2, 0]
+2024-12-07 05:18:12,316 - INFO - Episode 520, Reward: -179887.04, Avg Reward: -182003.01, Epsilon: 0.07
+2024-12-07 05:18:12,316 - INFO - Deck Picks: [88, 4, 4, 4]
+2024-12-07 05:18:14,681 - INFO - Episode 530, Reward: -182427.18, Avg Reward: -181987.30, Epsilon: 0.07
+2024-12-07 05:18:14,681 - INFO - Deck Picks: [97, 0, 2, 1]
+2024-12-07 05:18:16,863 - INFO - Episode 540, Reward: -180007.47, Avg Reward: -182204.32, Epsilon: 0.07
+2024-12-07 05:18:16,863 - INFO - Deck Picks: [88, 1, 11, 0]
+2024-12-07 05:18:18,865 - INFO - Episode 550, Reward: -182625.61, Avg Reward: -182146.94, Epsilon: 0.06
+2024-12-07 05:18:18,865 - INFO - Deck Picks: [97, 1, 1, 1]
+2024-12-07 05:18:20,919 - INFO - Episode 560, Reward: -182141.85, Avg Reward: -182092.07, Epsilon: 0.06
+2024-12-07 05:18:20,919 - INFO - Deck Picks: [58, 29, 8, 5]
+2024-12-07 05:18:23,147 - INFO - Episode 570, Reward: -178484.08, Avg Reward: -181923.77, Epsilon: 0.06
+2024-12-07 05:18:23,147 - INFO - Deck Picks: [1, 1, 97, 1]
+2024-12-07 05:18:25,413 - INFO - Episode 580, Reward: -179570.69, Avg Reward: -181593.31, Epsilon: 0.05
+2024-12-07 05:18:25,413 - INFO - Deck Picks: [3, 2, 94, 1]
+2024-12-07 05:18:27,629 - INFO - Episode 590, Reward: -182900.48, Avg Reward: -181352.73, Epsilon: 0.05
+2024-12-07 05:18:27,629 - INFO - Deck Picks: [62, 14, 23, 1]
+2024-12-07 05:18:29,760 - INFO - Episode 600, Reward: -181529.48, Avg Reward: -181380.34, Epsilon: 0.05
+2024-12-07 05:18:29,760 - INFO - Deck Picks: [93, 2, 4, 1]
+2024-12-07 05:18:31,853 - INFO - Episode 610, Reward: -184641.55, Avg Reward: -181410.45, Epsilon: 0.05
+2024-12-07 05:18:31,853 - INFO - Deck Picks: [89, 8, 3, 0]
+2024-12-07 05:18:33,908 - INFO - Episode 620, Reward: -182148.15, Avg Reward: -181463.54, Epsilon: 0.04
+2024-12-07 05:18:33,908 - INFO - Deck Picks: [97, 2, 0, 1]
+2024-12-07 05:18:36,092 - INFO - Episode 630, Reward: -178642.56, Avg Reward: -181340.85, Epsilon: 0.04
+2024-12-07 05:18:36,092 - INFO - Deck Picks: [2, 2, 96, 0]
+2024-12-07 05:18:38,436 - INFO - Episode 640, Reward: -179222.66, Avg Reward: -181232.26, Epsilon: 0.04
+2024-12-07 05:18:38,436 - INFO - Deck Picks: [52, 3, 40, 5]
+2024-12-07 05:18:40,790 - INFO - Episode 650, Reward: -182188.68, Avg Reward: -181009.12, Epsilon: 0.04
+2024-12-07 05:18:40,790 - INFO - Deck Picks: [97, 1, 0, 2]
+2024-12-07 05:18:43,063 - INFO - Episode 660, Reward: -182665.56, Avg Reward: -181142.60, Epsilon: 0.04
+2024-12-07 05:18:43,063 - INFO - Deck Picks: [92, 5, 3, 0]
+2024-12-07 05:18:45,028 - INFO - Episode 670, Reward: -182307.33, Avg Reward: -181469.32, Epsilon: 0.03
+2024-12-07 05:18:45,028 - INFO - Deck Picks: [100, 0, 0, 0]
+2024-12-07 05:18:47,011 - INFO - Episode 680, Reward: -183181.44, Avg Reward: -181808.24, Epsilon: 0.03
+2024-12-07 05:18:47,011 - INFO - Deck Picks: [97, 1, 1, 1]
+2024-12-07 05:18:49,248 - INFO - Episode 690, Reward: -182904.06, Avg Reward: -182044.18, Epsilon: 0.03
+2024-12-07 05:18:49,248 - INFO - Deck Picks: [94, 2, 1, 3]
+2024-12-07 05:18:51,528 - INFO - Episode 700, Reward: -181514.08, Avg Reward: -182055.67, Epsilon: 0.03
+2024-12-07 05:18:51,528 - INFO - Deck Picks: [95, 2, 3, 0]
+2024-12-07 05:18:53,881 - INFO - Episode 710, Reward: -182585.66, Avg Reward: -182070.57, Epsilon: 0.03
+2024-12-07 05:18:53,881 - INFO - Deck Picks: [98, 1, 1, 0]
+2024-12-07 05:18:55,961 - INFO - Episode 720, Reward: -181910.23, Avg Reward: -182122.51, Epsilon: 0.03
+2024-12-07 05:18:55,961 - INFO - Deck Picks: [99, 1, 0, 0]
+2024-12-07 05:18:57,953 - INFO - Episode 730, Reward: -182204.78, Avg Reward: -182250.23, Epsilon: 0.03
+2024-12-07 05:18:57,953 - INFO - Deck Picks: [84, 11, 4, 1]
+2024-12-07 05:18:59,929 - INFO - Episode 740, Reward: -182505.89, Avg Reward: -182335.38, Epsilon: 0.02
+2024-12-07 05:18:59,929 - INFO - Deck Picks: [100, 0, 0, 0]
+2024-12-07 05:19:02,332 - INFO - Episode 750, Reward: -183062.78, Avg Reward: -182594.24, Epsilon: 0.02
+2024-12-07 05:19:02,332 - INFO - Deck Picks: [93, 3, 2, 2]
+2024-12-07 05:19:04,708 - INFO - Episode 760, Reward: -178643.50, Avg Reward: -182351.81, Epsilon: 0.02
+2024-12-07 05:19:04,708 - INFO - Deck Picks: [1, 0, 99, 0]
+2024-12-07 05:19:07,095 - INFO - Episode 770, Reward: -178802.93, Avg Reward: -181940.50, Epsilon: 0.02
+2024-12-07 05:19:07,095 - INFO - Deck Picks: [0, 0, 100, 0]
+2024-12-07 05:19:09,115 - INFO - Episode 780, Reward: -178563.85, Avg Reward: -181732.30, Epsilon: 0.02
+2024-12-07 05:19:09,115 - INFO - Deck Picks: [0, 1, 96, 3]
+2024-12-07 05:19:11,153 - INFO - Episode 790, Reward: -178882.58, Avg Reward: -181363.35, Epsilon: 0.02
+2024-12-07 05:19:11,153 - INFO - Deck Picks: [0, 0, 100, 0]
+2024-12-07 05:19:13,219 - INFO - Episode 800, Reward: -178802.93, Avg Reward: -180980.90, Epsilon: 0.02
+2024-12-07 05:19:13,219 - INFO - Deck Picks: [0, 0, 100, 0]
+2024-12-07 05:19:15,503 - INFO - Episode 810, Reward: -178404.42, Avg Reward: -180610.46, Epsilon: 0.02
+2024-12-07 05:19:15,503 - INFO - Deck Picks: [1, 1, 98, 0]
+2024-12-07 05:19:17,740 - INFO - Episode 820, Reward: -179001.36, Avg Reward: -180183.70, Epsilon: 0.02
+2024-12-07 05:19:17,740 - INFO - Deck Picks: [1, 0, 98, 1]
+2024-12-07 05:19:19,914 - INFO - Episode 830, Reward: -178683.45, Avg Reward: -179922.11, Epsilon: 0.02
+2024-12-07 05:19:19,914 - INFO - Deck Picks: [0, 0, 100, 0]
+2024-12-07 05:19:22,003 - INFO - Episode 840, Reward: -178524.15, Avg Reward: -179601.58, Epsilon: 0.01
+2024-12-07 05:19:22,003 - INFO - Deck Picks: [0, 0, 100, 0]
+2024-12-07 05:19:24,024 - INFO - Episode 850, Reward: -178842.06, Avg Reward: -179246.74, Epsilon: 0.01
+2024-12-07 05:19:24,024 - INFO - Deck Picks: [1, 0, 99, 0]
+2024-12-07 05:19:26,112 - INFO - Episode 860, Reward: -178723.28, Avg Reward: -179084.06, Epsilon: 0.01
+2024-12-07 05:19:26,112 - INFO - Deck Picks: [0, 0, 99, 1]
+2024-12-07 05:19:28,344 - INFO - Episode 870, Reward: -178484.32, Avg Reward: -179070.06, Epsilon: 0.01
+2024-12-07 05:19:28,344 - INFO - Deck Picks: [0, 0, 99, 1]
+2024-12-07 05:19:30,623 - INFO - Episode 880, Reward: -178444.50, Avg Reward: -178915.47, Epsilon: 0.01
+2024-12-07 05:19:30,623 - INFO - Deck Picks: [0, 0, 100, 0]
+2024-12-07 05:19:32,940 - INFO - Episode 890, Reward: -178842.76, Avg Reward: -179032.51, Epsilon: 0.01
+2024-12-07 05:19:32,940 - INFO - Deck Picks: [0, 0, 100, 0]
+2024-12-07 05:19:34,926 - INFO - Episode 900, Reward: -178802.93, Avg Reward: -179028.12, Epsilon: 0.01
+2024-12-07 05:19:34,926 - INFO - Deck Picks: [0, 0, 100, 0]
+2024-12-07 05:19:36,941 - INFO - Episode 910, Reward: -178723.28, Avg Reward: -179041.65, Epsilon: 0.01
+2024-12-07 05:19:36,941 - INFO - Deck Picks: [0, 0, 100, 0]
+2024-12-07 05:19:39,076 - INFO - Episode 920, Reward: -178880.72, Avg Reward: -179048.83, Epsilon: 0.01
+2024-12-07 05:19:39,076 - INFO - Deck Picks: [1, 0, 98, 1]
+2024-12-07 05:19:41,328 - INFO - Episode 930, Reward: -178842.06, Avg Reward: -178964.51, Epsilon: 0.01
+2024-12-07 05:19:41,328 - INFO - Deck Picks: [1, 0, 99, 0]
+2024-12-07 05:19:43,660 - INFO - Episode 940, Reward: -181321.47, Avg Reward: -178987.05, Epsilon: 0.01
+2024-12-07 05:19:43,660 - INFO - Deck Picks: [75, 2, 23, 0]
+2024-12-07 05:19:45,876 - INFO - Episode 950, Reward: -178484.20, Avg Reward: -178989.08, Epsilon: 0.01
+2024-12-07 05:19:45,876 - INFO - Deck Picks: [0, 1, 99, 0]
+2024-12-07 05:19:47,881 - INFO - Episode 960, Reward: -181711.68, Avg Reward: -179205.15, Epsilon: 0.01
+2024-12-07 05:19:47,881 - INFO - Deck Picks: [100, 0, 0, 0]
+2024-12-07 05:19:49,873 - INFO - Episode 970, Reward: -182505.89, Avg Reward: -179557.87, Epsilon: 0.01
+2024-12-07 05:19:49,873 - INFO - Deck Picks: [100, 0, 0, 0]
+2024-12-07 05:19:52,096 - INFO - Episode 980, Reward: -178484.32, Avg Reward: -179554.64, Epsilon: 0.01
+2024-12-07 05:19:52,096 - INFO - Deck Picks: [0, 0, 99, 1]
+2024-12-07 05:19:54,370 - INFO - Episode 990, Reward: -179041.89, Avg Reward: -179457.29, Epsilon: 0.01
+2024-12-07 05:19:54,370 - INFO - Deck Picks: [0, 0, 100, 0]
+2024-12-07 05:20:46,370 - INFO - Episode 0, Reward: -183306.04, Avg Reward: -183306.04, Epsilon: 1.00
+2024-12-07 05:20:46,370 - INFO - Deck Picks: [29, 24, 23, 24]
+2024-12-07 05:20:48,373 - INFO - Episode 10, Reward: -177431.98, Avg Reward: -179970.52, Epsilon: 0.95
+2024-12-07 05:20:48,373 - INFO - Deck Picks: [31, 26, 20, 23]
+2024-12-07 05:20:50,531 - INFO - Episode 20, Reward: -181117.26, Avg Reward: -180498.91, Epsilon: 0.90
+2024-12-07 05:20:50,531 - INFO - Deck Picks: [34, 21, 21, 24]
+2024-12-07 05:20:52,655 - INFO - Episode 30, Reward: -180563.79, Avg Reward: -180557.26, Epsilon: 0.86
+2024-12-07 05:20:52,655 - INFO - Deck Picks: [35, 15, 19, 31]
+2024-12-07 05:20:54,781 - INFO - Episode 40, Reward: -182804.46, Avg Reward: -180601.90, Epsilon: 0.82
+2024-12-07 05:20:54,781 - INFO - Deck Picks: [23, 36, 21, 20]
+2024-12-07 05:20:56,526 - INFO - Episode 50, Reward: -184266.59, Avg Reward: -180716.28, Epsilon: 0.78
+2024-12-07 05:20:56,526 - INFO - Deck Picks: [17, 34, 22, 27]
+2024-12-07 05:20:58,300 - INFO - Episode 60, Reward: -183274.01, Avg Reward: -180868.37, Epsilon: 0.74
+2024-12-07 05:20:58,300 - INFO - Deck Picks: [46, 21, 14, 19]
+2024-12-07 05:21:00,065 - INFO - Episode 70, Reward: -180305.05, Avg Reward: -180939.84, Epsilon: 0.70
+2024-12-07 05:21:00,065 - INFO - Deck Picks: [50, 14, 15, 21]
+2024-12-07 05:21:02,098 - INFO - Episode 80, Reward: -179274.25, Avg Reward: -180956.88, Epsilon: 0.67
+2024-12-07 05:21:02,098 - INFO - Deck Picks: [45, 14, 21, 20]
+2024-12-07 05:21:04,138 - INFO - Episode 90, Reward: -182912.94, Avg Reward: -181037.40, Epsilon: 0.64
+2024-12-07 05:21:04,138 - INFO - Deck Picks: [54, 25, 6, 15]
+2024-12-07 05:21:06,205 - INFO - Episode 100, Reward: -179665.96, Avg Reward: -180916.22, Epsilon: 0.61
+2024-12-07 05:21:06,205 - INFO - Deck Picks: [21, 28, 35, 16]
+2024-12-07 05:21:08,204 - INFO - Episode 110, Reward: -181154.70, Avg Reward: -181032.27, Epsilon: 0.58
+2024-12-07 05:21:08,204 - INFO - Deck Picks: [49, 16, 17, 18]
+2024-12-07 05:21:10,036 - INFO - Episode 120, Reward: -180860.48, Avg Reward: -181047.44, Epsilon: 0.55
+2024-12-07 05:21:10,036 - INFO - Deck Picks: [55, 17, 19, 9]
+2024-12-07 05:21:11,920 - INFO - Episode 130, Reward: -181534.13, Avg Reward: -181123.90, Epsilon: 0.52
+2024-12-07 05:21:11,920 - INFO - Deck Picks: [59, 17, 10, 14]
+2024-12-07 05:21:13,847 - INFO - Episode 140, Reward: -183113.14, Avg Reward: -181266.29, Epsilon: 0.50
+2024-12-07 05:21:13,847 - INFO - Deck Picks: [50, 25, 15, 10]
+2024-12-07 05:21:16,002 - INFO - Episode 150, Reward: -185034.15, Avg Reward: -181416.04, Epsilon: 0.47
+2024-12-07 05:21:16,002 - INFO - Deck Picks: [62, 13, 14, 11]
+2024-12-07 05:21:18,134 - INFO - Episode 160, Reward: -180051.40, Avg Reward: -181375.42, Epsilon: 0.45
+2024-12-07 05:21:18,134 - INFO - Deck Picks: [49, 16, 16, 19]
+2024-12-07 05:21:20,319 - INFO - Episode 170, Reward: -180884.36, Avg Reward: -181453.21, Epsilon: 0.43
+2024-12-07 05:21:20,319 - INFO - Deck Picks: [57, 12, 17, 14]
+2024-12-07 05:21:22,277 - INFO - Episode 180, Reward: -181111.87, Avg Reward: -181541.99, Epsilon: 0.41
+2024-12-07 05:21:22,277 - INFO - Deck Picks: [60, 20, 10, 10]
+2024-12-07 05:21:24,151 - INFO - Episode 190, Reward: -180212.57, Avg Reward: -181507.31, Epsilon: 0.39
+2024-12-07 05:21:24,151 - INFO - Deck Picks: [51, 13, 25, 11]
+2024-12-07 05:21:26,044 - INFO - Episode 200, Reward: -182221.29, Avg Reward: -181689.06, Epsilon: 0.37
+2024-12-07 05:21:26,044 - INFO - Deck Picks: [69, 15, 5, 11]
+2024-12-07 05:21:28,058 - INFO - Episode 210, Reward: -181667.82, Avg Reward: -181756.70, Epsilon: 0.35
+2024-12-07 05:21:28,058 - INFO - Deck Picks: [66, 13, 11, 10]
+2024-12-07 05:21:30,232 - INFO - Episode 220, Reward: -180153.27, Avg Reward: -181749.21, Epsilon: 0.33
+2024-12-07 05:21:30,232 - INFO - Deck Picks: [38, 12, 42, 8]
+2024-12-07 05:21:32,459 - INFO - Episode 230, Reward: -182590.65, Avg Reward: -181836.54, Epsilon: 0.32
+2024-12-07 05:21:32,459 - INFO - Deck Picks: [78, 4, 12, 6]
+2024-12-07 05:21:34,462 - INFO - Episode 240, Reward: -179284.32, Avg Reward: -181796.18, Epsilon: 0.30
+2024-12-07 05:21:34,462 - INFO - Deck Picks: [14, 15, 60, 11]
+2024-12-07 05:21:36,337 - INFO - Episode 250, Reward: -181039.87, Avg Reward: -181593.25, Epsilon: 0.29
+2024-12-07 05:21:36,337 - INFO - Deck Picks: [70, 11, 7, 12]
+2024-12-07 05:21:38,241 - INFO - Episode 260, Reward: -181953.15, Avg Reward: -181567.88, Epsilon: 0.27
+2024-12-07 05:21:38,241 - INFO - Deck Picks: [88, 1, 7, 4]
+2024-12-07 05:21:40,346 - INFO - Episode 270, Reward: -180031.38, Avg Reward: -181412.27, Epsilon: 0.26
+2024-12-07 05:21:40,346 - INFO - Deck Picks: [33, 13, 37, 17]
+2024-12-07 05:21:42,634 - INFO - Episode 280, Reward: -180367.99, Avg Reward: -181316.64, Epsilon: 0.25
+2024-12-07 05:21:42,634 - INFO - Deck Picks: [66, 6, 19, 9]
+2024-12-07 05:21:44,834 - INFO - Episode 290, Reward: -180195.61, Avg Reward: -181286.07, Epsilon: 0.23
+2024-12-07 05:21:44,834 - INFO - Deck Picks: [33, 6, 57, 4]
+2024-12-07 05:21:46,874 - INFO - Episode 300, Reward: -178004.14, Avg Reward: -181043.79, Epsilon: 0.22
+2024-12-07 05:21:46,874 - INFO - Deck Picks: [3, 6, 85, 6]
+2024-12-07 05:21:48,786 - INFO - Episode 310, Reward: -178743.89, Avg Reward: -180909.64, Epsilon: 0.21
+2024-12-07 05:21:48,796 - INFO - Deck Picks: [53, 9, 32, 6]
+2024-12-07 05:21:50,714 - INFO - Episode 320, Reward: -178958.32, Avg Reward: -180760.36, Epsilon: 0.20
+2024-12-07 05:21:50,715 - INFO - Deck Picks: [7, 6, 84, 3]
+2024-12-07 05:21:52,863 - INFO - Episode 330, Reward: -181281.06, Avg Reward: -180546.03, Epsilon: 0.19
+2024-12-07 05:21:52,863 - INFO - Deck Picks: [73, 4, 19, 4]
+2024-12-07 05:21:55,142 - INFO - Episode 340, Reward: -179112.09, Avg Reward: -180479.63, Epsilon: 0.18
+2024-12-07 05:21:55,142 - INFO - Deck Picks: [18, 7, 73, 2]
+2024-12-07 05:21:57,358 - INFO - Episode 350, Reward: -181292.05, Avg Reward: -180587.75, Epsilon: 0.17
+2024-12-07 05:21:57,358 - INFO - Deck Picks: [82, 10, 4, 4]
+2024-12-07 05:21:59,479 - INFO - Episode 360, Reward: -179476.55, Avg Reward: -180400.29, Epsilon: 0.16
+2024-12-07 05:21:59,479 - INFO - Deck Picks: [6, 3, 90, 1]
+2024-12-07 05:22:01,475 - INFO - Episode 370, Reward: -178837.68, Avg Reward: -180308.61, Epsilon: 0.16
+2024-12-07 05:22:01,475 - INFO - Deck Picks: [8, 5, 79, 8]
+2024-12-07 05:22:03,464 - INFO - Episode 380, Reward: -183857.93, Avg Reward: -180203.51, Epsilon: 0.15
+2024-12-07 05:22:03,464 - INFO - Deck Picks: [93, 0, 5, 2]
+2024-12-07 05:22:05,611 - INFO - Episode 390, Reward: -179172.89, Avg Reward: -180350.89, Epsilon: 0.14
+2024-12-07 05:22:05,611 - INFO - Deck Picks: [77, 7, 2, 14]
+2024-12-07 05:22:07,881 - INFO - Episode 400, Reward: -182563.13, Avg Reward: -180656.36, Epsilon: 0.13
+2024-12-07 05:22:07,881 - INFO - Deck Picks: [86, 5, 4, 5]
+2024-12-07 05:22:10,182 - INFO - Episode 410, Reward: -180010.68, Avg Reward: -180859.60, Epsilon: 0.13
+2024-12-07 05:22:10,182 - INFO - Deck Picks: [76, 1, 19, 4]
+2024-12-07 05:22:12,355 - INFO - Episode 420, Reward: -185270.12, Avg Reward: -180893.15, Epsilon: 0.12
+2024-12-07 05:22:12,355 - INFO - Deck Picks: [4, 86, 7, 3]
+2024-12-07 05:22:14,292 - INFO - Episode 430, Reward: -179213.20, Avg Reward: -181036.17, Epsilon: 0.12
+2024-12-07 05:22:14,292 - INFO - Deck Picks: [1, 1, 84, 14]
+2024-12-07 05:22:16,237 - INFO - Episode 440, Reward: -184825.07, Avg Reward: -180963.96, Epsilon: 0.11
+2024-12-07 05:22:16,237 - INFO - Deck Picks: [94, 2, 0, 4]
+2024-12-07 05:22:18,357 - INFO - Episode 450, Reward: -181078.22, Avg Reward: -181026.70, Epsilon: 0.10
+2024-12-07 05:22:18,357 - INFO - Deck Picks: [87, 6, 4, 3]
+2024-12-07 05:22:20,603 - INFO - Episode 460, Reward: -184148.94, Avg Reward: -181375.62, Epsilon: 0.10
+2024-12-07 05:22:20,603 - INFO - Deck Picks: [94, 4, 0, 2]
+2024-12-07 05:22:22,808 - INFO - Episode 470, Reward: -180442.62, Avg Reward: -181672.89, Epsilon: 0.09
+2024-12-07 05:22:22,809 - INFO - Deck Picks: [90, 4, 4, 2]
+2024-12-07 05:22:24,922 - INFO - Episode 480, Reward: -182664.98, Avg Reward: -181843.82, Epsilon: 0.09
+2024-12-07 05:22:24,922 - INFO - Deck Picks: [93, 4, 2, 1]
+2024-12-07 05:22:26,852 - INFO - Episode 490, Reward: -181907.97, Avg Reward: -181804.64, Epsilon: 0.09
+2024-12-07 05:22:26,852 - INFO - Deck Picks: [66, 8, 25, 1]
+2024-12-07 05:22:28,788 - INFO - Episode 500, Reward: -182467.13, Avg Reward: -181812.58, Epsilon: 0.08
+2024-12-07 05:22:28,796 - INFO - Deck Picks: [94, 2, 1, 3]
+2024-12-07 05:22:31,024 - INFO - Episode 510, Reward: -180125.69, Avg Reward: -181739.12, Epsilon: 0.08
+2024-12-07 05:22:31,024 - INFO - Deck Picks: [5, 2, 92, 1]
+2024-12-07 05:22:33,289 - INFO - Episode 520, Reward: -178916.72, Avg Reward: -181667.20, Epsilon: 0.07
+2024-12-07 05:22:33,289 - INFO - Deck Picks: [18, 0, 82, 0]
+2024-12-07 05:22:35,582 - INFO - Episode 530, Reward: -183499.25, Avg Reward: -181442.99, Epsilon: 0.07
+2024-12-07 05:22:35,582 - INFO - Deck Picks: [93, 2, 1, 4]
+2024-12-07 05:22:37,695 - INFO - Episode 540, Reward: -181910.23, Avg Reward: -181672.55, Epsilon: 0.07
+2024-12-07 05:22:37,695 - INFO - Deck Picks: [96, 4, 0, 0]
+2024-12-07 05:22:39,653 - INFO - Episode 550, Reward: -182508.27, Avg Reward: -181644.34, Epsilon: 0.06
+2024-12-07 05:22:39,653 - INFO - Deck Picks: [89, 1, 7, 3]
+2024-12-07 05:22:41,677 - INFO - Episode 560, Reward: -181752.58, Avg Reward: -181412.38, Epsilon: 0.06
+2024-12-07 05:22:41,677 - INFO - Deck Picks: [95, 1, 3, 1]
+2024-12-07 05:22:43,735 - INFO - Episode 570, Reward: -182585.78, Avg Reward: -181421.20, Epsilon: 0.06
+2024-12-07 05:22:43,735 - INFO - Deck Picks: [96, 2, 0, 2]
+2024-12-07 05:22:45,940 - INFO - Episode 580, Reward: -182387.23, Avg Reward: -181487.13, Epsilon: 0.05
+2024-12-07 05:22:45,940 - INFO - Deck Picks: [93, 5, 1, 1]
+2024-12-07 05:22:48,154 - INFO - Episode 590, Reward: -183643.00, Avg Reward: -181483.81, Epsilon: 0.05
+2024-12-07 05:22:48,154 - INFO - Deck Picks: [66, 2, 31, 1]
+2024-12-07 05:22:50,272 - INFO - Episode 600, Reward: -179292.73, Avg Reward: -181144.19, Epsilon: 0.05
+2024-12-07 05:22:50,272 - INFO - Deck Picks: [0, 3, 97, 0]
+2024-12-07 05:22:52,316 - INFO - Episode 610, Reward: -179080.06, Avg Reward: -180903.65, Epsilon: 0.05
+2024-12-07 05:22:52,316 - INFO - Deck Picks: [3, 1, 95, 1]
+2024-12-07 05:22:54,344 - INFO - Episode 620, Reward: -178801.98, Avg Reward: -180857.81, Epsilon: 0.04
+2024-12-07 05:22:54,344 - INFO - Deck Picks: [3, 0, 95, 2]
+2024-12-07 05:22:56,614 - INFO - Episode 630, Reward: -182589.45, Avg Reward: -180874.72, Epsilon: 0.04
+2024-12-07 05:22:56,614 - INFO - Deck Picks: [85, 2, 13, 0]
+2024-12-07 05:22:58,893 - INFO - Episode 640, Reward: -182902.99, Avg Reward: -180767.13, Epsilon: 0.04
+2024-12-07 05:22:58,893 - INFO - Deck Picks: [100, 0, 0, 0]
+2024-12-07 05:23:01,180 - INFO - Episode 650, Reward: -178723.28, Avg Reward: -180676.55, Epsilon: 0.04
+2024-12-07 05:23:01,180 - INFO - Deck Picks: [0, 0, 97, 3]
+2024-12-07 05:23:03,301 - INFO - Episode 660, Reward: -178762.86, Avg Reward: -180541.77, Epsilon: 0.04
+2024-12-07 05:23:03,301 - INFO - Deck Picks: [1, 1, 98, 0]
+2024-12-07 05:23:05,263 - INFO - Episode 670, Reward: -178522.95, Avg Reward: -180138.66, Epsilon: 0.03
+2024-12-07 05:23:05,263 - INFO - Deck Picks: [2, 3, 94, 1]
+2024-12-07 05:23:07,239 - INFO - Episode 680, Reward: -178364.48, Avg Reward: -179809.64, Epsilon: 0.03
+2024-12-07 05:23:07,239 - INFO - Deck Picks: [0, 3, 97, 0]
+2024-12-07 05:23:09,571 - INFO - Episode 690, Reward: -182309.11, Avg Reward: -179665.56, Epsilon: 0.03
+2024-12-07 05:23:09,571 - INFO - Deck Picks: [36, 24, 39, 1]
+2024-12-07 05:23:11,894 - INFO - Episode 700, Reward: -182029.96, Avg Reward: -179958.11, Epsilon: 0.03
+2024-12-07 05:23:11,894 - INFO - Deck Picks: [94, 4, 1, 1]
+2024-12-07 05:23:14,213 - INFO - Episode 710, Reward: -182388.18, Avg Reward: -180040.43, Epsilon: 0.03
+2024-12-07 05:23:14,213 - INFO - Deck Picks: [94, 1, 4, 1]
+2024-12-07 05:23:16,254 - INFO - Episode 720, Reward: -182108.78, Avg Reward: -180447.52, Epsilon: 0.03
+2024-12-07 05:23:16,254 - INFO - Deck Picks: [100, 0, 0, 0]
+2024-12-07 05:23:18,235 - INFO - Episode 730, Reward: -183559.04, Avg Reward: -180736.62, Epsilon: 0.03
+2024-12-07 05:23:18,235 - INFO - Deck Picks: [65, 32, 1, 2]
+2024-12-07 05:23:20,191 - INFO - Episode 740, Reward: -183116.81, Avg Reward: -180935.27, Epsilon: 0.02
+2024-12-07 05:23:20,191 - INFO - Deck Picks: [88, 11, 1, 0]
+2024-12-07 05:23:22,522 - INFO - Episode 750, Reward: -182744.39, Avg Reward: -181079.77, Epsilon: 0.02
+2024-12-07 05:23:22,522 - INFO - Deck Picks: [98, 1, 0, 1]
+2024-12-07 05:23:24,833 - INFO - Episode 760, Reward: -180495.76, Avg Reward: -181176.65, Epsilon: 0.02
+2024-12-07 05:23:24,833 - INFO - Deck Picks: [47, 0, 52, 1]
+2024-12-07 05:23:27,139 - INFO - Episode 770, Reward: -182506.83, Avg Reward: -181620.61, Epsilon: 0.02
+2024-12-07 05:23:27,139 - INFO - Deck Picks: [97, 0, 2, 1]
+2024-12-07 05:23:29,179 - INFO - Episode 780, Reward: -178523.90, Avg Reward: -181690.58, Epsilon: 0.02
+2024-12-07 05:23:29,179 - INFO - Deck Picks: [0, 2, 97, 1]
+2024-12-07 05:23:31,200 - INFO - Episode 790, Reward: -178563.98, Avg Reward: -181520.11, Epsilon: 0.02
+2024-12-07 05:23:31,216 - INFO - Deck Picks: [0, 0, 100, 0]
+2024-12-07 05:23:33,240 - INFO - Episode 800, Reward: -181394.48, Avg Reward: -181460.06, Epsilon: 0.02
+2024-12-07 05:23:33,240 - INFO - Deck Picks: [97, 1, 1, 1]
+2024-12-07 05:23:35,520 - INFO - Episode 810, Reward: -184292.84, Avg Reward: -181773.52, Epsilon: 0.02
+2024-12-07 05:23:35,520 - INFO - Deck Picks: [98, 2, 0, 0]
+2024-12-07 05:23:37,856 - INFO - Episode 820, Reward: -180917.48, Avg Reward: -181825.17, Epsilon: 0.02
+2024-12-07 05:23:37,856 - INFO - Deck Picks: [99, 1, 0, 0]
+2024-12-07 05:23:40,009 - INFO - Episode 830, Reward: -178523.90, Avg Reward: -181628.13, Epsilon: 0.02
+2024-12-07 05:23:40,009 - INFO - Deck Picks: [1, 1, 97, 1]
+2024-12-07 05:23:42,060 - INFO - Episode 840, Reward: -179079.03, Avg Reward: -181189.84, Epsilon: 0.01
+2024-12-07 05:23:42,060 - INFO - Deck Picks: [2, 1, 91, 6]
+2024-12-07 05:23:44,085 - INFO - Episode 850, Reward: -180881.24, Avg Reward: -180825.76, Epsilon: 0.01
+2024-12-07 05:23:44,093 - INFO - Deck Picks: [83, 2, 10, 5]
+2024-12-07 05:23:46,173 - INFO - Episode 860, Reward: -178882.46, Avg Reward: -180757.12, Epsilon: 0.01
+2024-12-07 05:23:46,173 - INFO - Deck Picks: [0, 1, 99, 0]
+2024-12-07 05:23:48,404 - INFO - Episode 870, Reward: -179121.54, Avg Reward: -180326.75, Epsilon: 0.01
+2024-12-07 05:23:48,404 - INFO - Deck Picks: [0, 0, 100, 0]
+2024-12-07 05:23:50,695 - INFO - Episode 880, Reward: -178842.64, Avg Reward: -180227.00, Epsilon: 0.01
+2024-12-07 05:23:50,695 - INFO - Deck Picks: [0, 1, 98, 1]
+2024-12-07 05:23:53,123 - INFO - Episode 890, Reward: -179120.72, Avg Reward: -180221.98, Epsilon: 0.01
+2024-12-07 05:23:53,123 - INFO - Deck Picks: [2, 0, 98, 0]
+2024-12-07 05:23:55,089 - INFO - Episode 900, Reward: -179081.01, Avg Reward: -180031.99, Epsilon: 0.01
+2024-12-07 05:23:55,089 - INFO - Deck Picks: [1, 0, 99, 0]
+2024-12-07 05:23:57,081 - INFO - Episode 910, Reward: -178603.68, Avg Reward: -179601.63, Epsilon: 0.01
+2024-12-07 05:23:57,081 - INFO - Deck Picks: [1, 0, 99, 0]
+2024-12-07 05:23:59,169 - INFO - Episode 920, Reward: -182744.39, Avg Reward: -179296.16, Epsilon: 0.01
+2024-12-07 05:23:59,169 - INFO - Deck Picks: [99, 0, 0, 1]
+2024-12-07 05:24:01,422 - INFO - Episode 930, Reward: -183221.26, Avg Reward: -179541.67, Epsilon: 0.01
+2024-12-07 05:24:01,422 - INFO - Deck Picks: [98, 0, 2, 0]
+2024-12-07 05:24:03,752 - INFO - Episode 940, Reward: -183101.54, Avg Reward: -179878.18, Epsilon: 0.01
+2024-12-07 05:24:03,752 - INFO - Deck Picks: [100, 0, 0, 0]
+2024-12-07 05:24:05,933 - INFO - Episode 950, Reward: -183300.09, Avg Reward: -180214.70, Epsilon: 0.01
+2024-12-07 05:24:05,933 - INFO - Deck Picks: [100, 0, 0, 0]
+2024-12-07 05:24:07,943 - INFO - Episode 960, Reward: -178910.57, Avg Reward: -180526.99, Epsilon: 0.01
+2024-12-07 05:24:07,943 - INFO - Deck Picks: [35, 0, 63, 2]
+2024-12-07 05:24:09,904 - INFO - Episode 970, Reward: -182505.89, Avg Reward: -180867.55, Epsilon: 0.01
+2024-12-07 05:24:09,904 - INFO - Deck Picks: [100, 0, 0, 0]
+2024-12-07 05:24:12,097 - INFO - Episode 980, Reward: -180917.48, Avg Reward: -181185.62, Epsilon: 0.01
+2024-12-07 05:24:12,097 - INFO - Deck Picks: [99, 1, 0, 0]
+2024-12-07 05:24:14,377 - INFO - Episode 990, Reward: -179081.72, Avg Reward: -181180.39, Epsilon: 0.01
+2024-12-07 05:24:14,377 - INFO - Deck Picks: [0, 0, 100, 0]

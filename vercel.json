@@ -1,0 +1,18 @@
+{
+    "version": 2,
+    "builds": [
+        {
+            "src": "src/web_igt.py",
+            "use": "@vercel/python"
+        }
+    ],
+    "routes": [
+        {
+            "src": "/(.*)",
+            "dest": "src/web_igt.py"
+        }
+    ],
+    "env": {
+        "PYTHONPATH": "src"
+    }
+} 
