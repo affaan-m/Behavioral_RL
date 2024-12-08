@@ -1,0 +1,8 @@
+-r requirements.txt
+pandas==2.1.0
+plotly==5.17.0
+dash==2.13.0
+dash-core-components==2.0.0
+dash-html-components==2.0.0
+dash-table==5.0.0
+gymnasium==0.29.1 

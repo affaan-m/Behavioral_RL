@@ -3,7 +3,11 @@
     "builds": [
         {
             "src": "src/web_igt.py",
-            "use": "@vercel/python@3.1.0"
+            "use": "@vercel/python",
+            "config": {
+                "runtime": "python3.11",
+                "maxLambdaSize": "15mb"
+            }
         }
     ],
     "routes": [
@@ -13,7 +17,6 @@
         }
     ],
     "env": {
-        "PYTHONPATH": "src",
-        "PYTHON_VERSION": "3.11"
+        "PYTHONPATH": "src"
     }
 } 
