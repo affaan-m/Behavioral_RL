@@ -378,23 +378,16 @@ async def index():
                     text-align: center;
                     color: #2196F3;
                 }
+                #trial-counter {
+                    font-size: 20px;
+                    margin: 15px;
+                    color: #666;
+                }
                 #feedback { 
                     margin: 20px; 
                     font-size: 18px;
                     text-align: center;
                     min-height: 27px;
-                }
-                #stats { 
-                    margin-top: 30px; 
-                    text-align: left;
-                    background-color: #f8f8f8;
-                    padding: 15px;
-                    border-radius: 5px;
-                }
-                #trial-counter {
-                    font-size: 20px;
-                    margin: 15px;
-                    color: #666;
                 }
                 #completion-message {
                     display: none;
@@ -405,6 +398,13 @@ async def index():
                     text-align: center;
                     font-size: 20px;
                     color: #2e7d32;
+                }
+                #stats { 
+                    margin-top: 30px; 
+                    text-align: left;
+                    background-color: #f8f8f8;
+                    padding: 15px;
+                    border-radius: 5px;
                 }
             </style>
         </head>
@@ -425,6 +425,7 @@ async def index():
             </div>
 
             <script>
+                // Global variables
                 let startTime = new Date();
                 let trialCount = 0;
                 let trialsRemaining = 100;
@@ -433,6 +434,7 @@ async def index():
                 let totalMoney = 2000;
                 let isComplete = false;
                 
+                // Display update functions
                 function updateDisplay() {
                     const moneyDisplay = document.getElementById('money');
                     moneyDisplay.textContent = `Total Money: $${totalMoney}`;
@@ -468,6 +470,37 @@ async def index():
                     `;
                 }
                 
+                // Session management
+                async function initSession() {
+                    updateButtons(false);
+                    
+                    try {
+                        const response = await fetch('/api/start', {
+                            method: 'POST',
+                            headers: { 'Content-Type': 'application/json' },
+                            body: JSON.stringify({})
+                        });
+                        
+                        if (!response.ok) {
+                            throw new Error(`HTTP error! status: ${response.status}`);
+                        }
+                        
+                        const data = await response.json();
+                        sessionId = data.session_id;
+                        totalMoney = data.total_money;
+                        trialsRemaining = 100;
+                        trialCount = 0;
+                        isComplete = false;
+                        updateDisplay();
+                        startTime = new Date();
+                        updateButtons(true);
+                    } catch (error) {
+                        console.log('Error initializing:', error);
+                        document.getElementById('feedback').textContent = 'Error starting game. Please refresh the page.';
+                    }
+                }
+                
+                // Game actions
                 async function selectDeck(deck) {
                     if (!sessionId || isProcessing || isComplete) {
                         return;
@@ -525,7 +558,7 @@ async def index():
                     }
                 }
                 
-                // Initialize session when page loads
+                // Initialize when page loads
                 window.onload = function() {
                     initSession();
                 };
