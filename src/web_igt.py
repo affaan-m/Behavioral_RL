@@ -17,6 +17,8 @@ import time
 import json
 from pathlib import Path
 from supabase import create_client, Client
+import uuid
+import threading
 
 # Load environment variables
 load_dotenv()
@@ -188,29 +190,32 @@ class SessionManager:
         self._sessions[session_id] = {
             'env': env,
             'created_at': time.time(),
-            'last_activity': time.time()
+            'last_activity': time.time(),
+            'uuid': str(uuid.uuid4()),  # Generate UUID for Supabase
+            'lock': threading.Lock(),  # Add thread lock for synchronization
+            'is_saving': False  # Flag to prevent duplicate saves
         }
-        logger.info(f"Created new session: {session_id}")
+        logger.info(f"Created new session: {session_id} with UUID: {self._sessions[session_id]['uuid']}")
         return session_id, env
     
     def get_session(self, session_id: str) -> Optional[IGTEnv]:
-        """Get an existing session"""
+        """Get an existing session with thread safety"""
         session = self._sessions.get(session_id)
         if session is None:
             logger.error(f"Session not found: {session_id}")
             logger.info(f"Active sessions: {list(self._sessions.keys())}")
             return None
             
-        # Update last activity
-        current_time = time.time()
-        if current_time - session['last_activity'] > self.timeout:
-            logger.error(f"Session {session_id} expired")
-            self.remove_session(session_id)
-            return None
-            
-        session['last_activity'] = current_time
-        logger.info(f"Retrieved session: {session_id}, step count: {session['env'].step_count}")
-        return session['env']
+        with session['lock']:
+            current_time = time.time()
+            if current_time - session['last_activity'] > self.timeout and not session['is_saving']:
+                logger.error(f"Session {session_id} expired")
+                self.remove_session(session_id)
+                return None
+                
+            session['last_activity'] = current_time
+            logger.info(f"Retrieved session: {session_id}, step count: {session['env'].step_count}")
+            return session['env']
     
     def remove_session(self, session_id: str):
         """Remove a session"""
@@ -297,89 +302,94 @@ async def step(data: StepRequest):
         session_manager.cleanup_expired()
         
         # Get session
-        env = session_manager.get_session(session_id)
-        if env is None:
+        session = session_manager._sessions.get(session_id)
+        if session is None:
             logger.error(f"Invalid session: {session_id}")
             raise HTTPException(
                 status_code=400, 
                 detail="Invalid or expired session"
             )
         
-        # Process action
-        action = data.action
-        reaction_time = data.reaction_time
-        logger.info(f"Processing action {action} for session {session_id} at step {env.step_count}")
-        
-        try:
-            state, reward, done, _, info = env.step(action, reaction_time)
-            logger.info(f"Step completed: reward={reward}, done={done}, money={info['total_money']}, step={info['step_count']}")
-        except Exception as e:
-            logger.error(f"Error in step execution: {str(e)}")
-            raise HTTPException(status_code=500, detail=f"Error processing step: {str(e)}")
-        
-        # Prepare response
-        response_data = {
-            'state': state.tolist(),
-            'reward': reward,
-            'done': done,
-            'total_money': info['total_money'],
-            'step_count': info['step_count']
-        }
-        
-        # Handle completion
-        if done:
-            logger.info(f"Session {session_id} complete at step {info['step_count']}")
+        with session['lock']:
+            env = session['env']
+            # Process action
+            action = data.action
+            reaction_time = data.reaction_time
+            logger.info(f"Processing action {action} for session {session_id} at step {env.step_count}")
+            
             try:
-                metrics = info.get('metrics', {})
-                if not metrics:
-                    logger.warning(f"No metrics available for completed session {session_id}")
-                
-                response_data['metrics'] = metrics
-                
-                # Save to Supabase
-                if supabase:
-                    try:
-                        session_data = {
-                            'id': session_id,
-                            'timestamp': datetime.now().isoformat(),
-                            'metrics': json.dumps(metrics),
-                            'history': json.dumps(env.history)
-                        }
-                        
-                        logger.info(f"Saving session data to Supabase: {session_id}")
-                        result = supabase.table('participants').insert(session_data).execute()
-                        if hasattr(result, 'data'):
-                            logger.info(f"Successfully saved session {session_id} to Supabase")
-                            response_data['save_status'] = 'success'
-                        else:
-                            logger.error(f"Unexpected Supabase response for session {session_id}: {result}")
-                            response_data['save_status'] = 'error'
-                            response_data['save_error'] = 'Unexpected response from Supabase'
-                    except Exception as e:
-                        logger.error(f"Error saving to Supabase: {str(e)}")
-                        response_data['save_status'] = 'error'
-                        response_data['save_error'] = str(e)
-                else:
-                    logger.warning("Supabase client not initialized, skipping data save")
-                    response_data['save_status'] = 'error'
-                    response_data['save_error'] = 'Supabase client not initialized'
+                state, reward, done, _, info = env.step(action, reaction_time)
+                logger.info(f"Step completed: reward={reward}, done={done}, money={info['total_money']}, step={info['step_count']}")
             except Exception as e:
-                logger.error(f"Error handling session completion: {str(e)}")
-                response_data['save_status'] = 'error'
-                response_data['save_error'] = str(e)
-            finally:
-                # Clean up session only after successful save
-                if response_data.get('save_status') == 'success':
-                    try:
-                        session_manager.remove_session(session_id)
-                        logger.info(f"Session {session_id} cleaned up after successful save")
-                    except Exception as e:
-                        logger.error(f"Error cleaning up session {session_id}: {str(e)}")
-                else:
-                    logger.warning(f"Keeping session {session_id} active due to save failure")
-        
-        return response_data
-        
+                logger.error(f"Error in step execution: {str(e)}")
+                raise HTTPException(status_code=500, detail=f"Error processing step: {str(e)}")
+            
+            # Prepare response
+            response_data = {
+                'state': state.tolist(),
+                'reward': reward,
+                'done': done,
+                'total_money': info['total_money'],
+                'step_count': info['step_count']
+            }
+            
+            # Handle completion
+            if done and not session['is_saving']:
+                session['is_saving'] = True  # Prevent duplicate saves
+                logger.info(f"Session {session_id} complete at step {info['step_count']}")
+                try:
+                    metrics = info.get('metrics', {})
+                    if not metrics:
+                        logger.warning(f"No metrics available for completed session {session_id}")
+                    
+                    response_data['metrics'] = metrics
+                    
+                    # Save to Supabase using UUID
+                    if supabase:
+                        try:
+                            session_data = {
+                                'id': session['uuid'],  # Use UUID for Supabase
+                                'session_id': session_id,  # Store original session ID as separate field
+                                'timestamp': datetime.now().isoformat(),
+                                'metrics': json.dumps(metrics),
+                                'history': json.dumps(env.history)
+                            }
+                            
+                            logger.info(f"Saving session data to Supabase: {session_id} (UUID: {session['uuid']})")
+                            result = supabase.table('participants').insert(session_data).execute()
+                            if hasattr(result, 'data'):
+                                logger.info(f"Successfully saved session {session_id} to Supabase")
+                                response_data['save_status'] = 'success'
+                            else:
+                                logger.error(f"Unexpected Supabase response for session {session_id}: {result}")
+                                response_data['save_status'] = 'error'
+                                response_data['save_error'] = 'Unexpected response from Supabase'
+                        except Exception as e:
+                            logger.error(f"Error saving to Supabase: {str(e)}")
+                            response_data['save_status'] = 'error'
+                            response_data['save_error'] = str(e)
+                    else:
+                        logger.warning("Supabase client not initialized, skipping data save")
+                        response_data['save_status'] = 'error'
+                        response_data['save_error'] = 'Supabase client not initialized'
+                except Exception as e:
+                    logger.error(f"Error handling session completion: {str(e)}")
+                    response_data['save_status'] = 'error'
+                    response_data['save_error'] = str(e)
+                finally:
+                    # Clean up session only after successful save
+                    if response_data.get('save_status') == 'success':
+                        try:
+                            session_manager.remove_session(session_id)
+                            logger.info(f"Session {session_id} cleaned up after successful save")
+                        except Exception as e:
+                            logger.error(f"Error cleaning up session {session_id}: {str(e)}")
+                    else:
+                        logger.warning(f"Keeping session {session_id} active due to save failure")
+                        session['is_saving'] = False  # Reset save flag if save failed
+            
+            return response_data
+            
     except HTTPException:
         raise
     except Exception as e:
