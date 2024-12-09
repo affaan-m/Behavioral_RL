@@ -36,16 +36,27 @@ logger.info("Checking Supabase credentials...")
 logger.info(f"SUPABASE_URL present: {'SUPABASE_URL' in os.environ}")
 logger.info(f"SUPABASE_KEY present: {'SUPABASE_KEY' in os.environ}")
 
+supabase = None
 if not supabase_url or not supabase_key:
     logger.error("Supabase credentials missing!")
 else:
     try:
         logger.info(f"Initializing Supabase with URL: {supabase_url[:20]}...")
         supabase = create_client(supabase_url, supabase_key)
-        logger.info("Supabase client initialized successfully")
+        
+        # Test connection
+        test_result = supabase.table('participants').select("*").limit(1).execute()
+        if hasattr(test_result, 'data'):
+            logger.info("Supabase connection test successful")
+        else:
+            logger.error("Supabase connection test failed: unexpected response format")
+            supabase = None
     except Exception as e:
         logger.error(f"Error initializing Supabase client: {str(e)}")
         supabase = None
+
+if not supabase:
+    logger.warning("Supabase integration disabled due to initialization errors")
 
 app = FastAPI()
 
@@ -277,29 +288,46 @@ async def step(data: StepRequest):
         # Handle completion
         if done:
             logger.info(f"Session {session_id} complete")
-            metrics = info['metrics']
-            response_data['metrics'] = metrics
-            
             try:
+                metrics = info.get('metrics', {})
+                if not metrics:
+                    logger.warning(f"No metrics available for completed session {session_id}")
+                
+                response_data['metrics'] = metrics
+                
+                # Prepare session data
+                session_data = {
+                    'id': session_id,
+                    'timestamp': datetime.now().isoformat(),
+                    'metrics': json.dumps(metrics),
+                    'history': json.dumps(env.history)
+                }
+                
                 # Save to Supabase
                 if supabase:
-                    session_data = {
-                        'id': session_id,
-                        'timestamp': datetime.now().isoformat(),
-                        'metrics': json.dumps(metrics),
-                        'history': json.dumps(env.history)
-                    }
-                    
-                    logger.info(f"Saving session data to Supabase: {session_id}")
-                    result = supabase.table('participants').insert(session_data).execute()
-                    logger.info(f"Supabase save result: {result}")
+                    try:
+                        logger.info(f"Saving session data to Supabase: {session_id}")
+                        result = supabase.table('participants').insert(session_data).execute()
+                        if hasattr(result, 'data'):
+                            logger.info(f"Successfully saved session {session_id} to Supabase")
+                        else:
+                            logger.error(f"Unexpected Supabase response for session {session_id}: {result}")
+                    except Exception as e:
+                        logger.error(f"Error saving to Supabase: {str(e)}")
+                        response_data['save_error'] = str(e)
                 else:
                     logger.warning("Supabase client not initialized, skipping data save")
+                    response_data['save_error'] = "Supabase client not initialized"
             except Exception as e:
-                logger.error(f"Error saving to Supabase: {str(e)}")
+                logger.error(f"Error handling session completion: {str(e)}")
+                response_data['save_error'] = str(e)
             finally:
-                session_manager.remove_session(session_id)
-                logger.info(f"Session {session_id} cleaned up")
+                # Clean up session
+                try:
+                    session_manager.remove_session(session_id)
+                    logger.info(f"Session {session_id} cleaned up")
+                except Exception as e:
+                    logger.error(f"Error cleaning up session {session_id}: {str(e)}")
         
         return response_data
         
