@@ -175,8 +175,8 @@ class IGTEnv:
             raise
 
 class SessionManager:
-    def __init__(self, timeout: int = 1800):  # 30 minutes timeout
-        self._sessions: Dict[str, IGTEnv] = {}
+    def __init__(self, timeout: int = 3600):  # 1 hour timeout
+        self._sessions: Dict[str, Dict[str, Any]] = {}
         self.timeout = timeout
         self.last_cleanup = time.time()
         logger.info("Session manager initialized")
@@ -185,31 +185,64 @@ class SessionManager:
         """Create a new session"""
         session_id = f"session_{datetime.now().strftime('%Y%m%d_%H%M%S')}_{np.random.randint(1000, 9999)}"
         env = IGTEnv()
-        self._sessions[session_id] = env
+        self._sessions[session_id] = {
+            'env': env,
+            'created_at': time.time(),
+            'last_activity': time.time()
+        }
         logger.info(f"Created new session: {session_id}")
         return session_id, env
     
     def get_session(self, session_id: str) -> Optional[IGTEnv]:
         """Get an existing session"""
-        env = self._sessions.get(session_id)
-        if env is None:
+        session = self._sessions.get(session_id)
+        if session is None:
             logger.error(f"Session not found: {session_id}")
             logger.info(f"Active sessions: {list(self._sessions.keys())}")
-        else:
-            logger.info(f"Retrieved session: {session_id}")
-        return env
+            return None
+            
+        # Update last activity
+        current_time = time.time()
+        if current_time - session['last_activity'] > self.timeout:
+            logger.error(f"Session {session_id} expired")
+            self.remove_session(session_id)
+            return None
+            
+        session['last_activity'] = current_time
+        logger.info(f"Retrieved session: {session_id}, step count: {session['env'].step_count}")
+        return session['env']
     
     def remove_session(self, session_id: str):
         """Remove a session"""
         if session_id in self._sessions:
-            logger.info(f"Removing session: {session_id}")
+            session = self._sessions[session_id]
+            logger.info(f"Removing session: {session_id}, final step count: {session['env'].step_count}")
             del self._sessions[session_id]
         else:
             logger.warning(f"Attempted to remove non-existent session: {session_id}")
     
-    def list_sessions(self) -> list[str]:
-        """List all active sessions"""
-        return list(self._sessions.keys())
+    def list_sessions(self) -> list[Dict[str, Any]]:
+        """List all active sessions with their details"""
+        current_time = time.time()
+        return [{
+            'id': sid,
+            'step_count': session['env'].step_count,
+            'total_money': session['env'].total_money,
+            'age': current_time - session['created_at'],
+            'last_activity': current_time - session['last_activity']
+        } for sid, session in self._sessions.items()]
+    
+    def cleanup_expired(self):
+        """Remove expired sessions"""
+        current_time = time.time()
+        expired = []
+        for sid, session in self._sessions.items():
+            if current_time - session['last_activity'] > self.timeout:
+                expired.append(sid)
+        
+        for sid in expired:
+            logger.info(f"Cleaning up expired session: {sid}")
+            self.remove_session(sid)
 
 # Create global session manager
 session_manager = SessionManager()
@@ -226,7 +259,7 @@ async def debug_info():
         sessions = session_manager.list_sessions()
         return {
             "active_sessions": len(sessions),
-            "session_ids": sessions
+            "sessions": sessions
         }
     except Exception as e:
         logger.error(f"Error in debug_info: {str(e)}")
@@ -236,6 +269,7 @@ async def debug_info():
 async def start_session():
     """Start a new session"""
     try:
+        # Clean up any existing sessions for this client
         session_id, env = session_manager.create_session()
         logger.info(f"Starting new session: {session_id}")
         state, _ = env.reset()
@@ -243,7 +277,8 @@ async def start_session():
         response_data = {
             'session_id': session_id,
             'state': state.tolist(),
-            'total_money': env.total_money
+            'total_money': env.total_money,
+            'step_count': 0
         }
         logger.info(f"Session started successfully: {session_id}, data: {response_data}")
         return response_data
@@ -257,7 +292,9 @@ async def step(data: StepRequest):
     try:
         session_id = data.session_id
         logger.info(f"Step request for session {session_id}")
-        logger.info(f"Current active sessions: {session_manager.list_sessions()}")
+        
+        # Clean up expired sessions
+        session_manager.cleanup_expired()
         
         # Get session
         env = session_manager.get_session(session_id)
@@ -265,13 +302,13 @@ async def step(data: StepRequest):
             logger.error(f"Invalid session: {session_id}")
             raise HTTPException(
                 status_code=400, 
-                detail=f"Invalid or expired session. Active sessions: {session_manager.list_sessions()}"
+                detail="Invalid or expired session"
             )
         
         # Process action
         action = data.action
         reaction_time = data.reaction_time
-        logger.info(f"Processing action {action} for session {session_id}")
+        logger.info(f"Processing action {action} for session {session_id} at step {env.step_count}")
         
         try:
             state, reward, done, _, info = env.step(action, reaction_time)
@@ -331,12 +368,15 @@ async def step(data: StepRequest):
                 response_data['save_status'] = 'error'
                 response_data['save_error'] = str(e)
             finally:
-                # Clean up session
-                try:
-                    session_manager.remove_session(session_id)
-                    logger.info(f"Session {session_id} cleaned up")
-                except Exception as e:
-                    logger.error(f"Error cleaning up session {session_id}: {str(e)}")
+                # Clean up session only after successful save
+                if response_data.get('save_status') == 'success':
+                    try:
+                        session_manager.remove_session(session_id)
+                        logger.info(f"Session {session_id} cleaned up after successful save")
+                    except Exception as e:
+                        logger.error(f"Error cleaning up session {session_id}: {str(e)}")
+                else:
+                    logger.warning(f"Keeping session {session_id} active due to save failure")
         
         return response_data
         
@@ -482,8 +522,8 @@ async def index():
                         
                         sessionId = data.session_id;
                         totalMoney = data.total_money;
-                        trialsRemaining = 100;
-                        trialCount = 0;
+                        trialCount = data.step_count;
+                        trialsRemaining = 100 - trialCount;
                         isComplete = false;
                         updateDisplay();
                         startTime = new Date();
@@ -529,7 +569,7 @@ async def index():
                     const reactionTime = (new Date() - startTime) / 1000;
                     
                     try {
-                        console.log(`Sending choice for session ${sessionId}:`, { deck, reactionTime });
+                        console.log(`Sending choice for session ${sessionId}:`, { deck, reactionTime, trialCount });
                         const response = await fetch('/api/step', {
                             method: 'POST',
                             headers: { 
@@ -574,6 +614,7 @@ async def index():
                                 message += '<p>Thank you for participating! Your data has been saved successfully.</p>';
                             } else if (data.save_status === 'error') {
                                 message += `<p>Thank you for participating!</p><p style="color: red;">Note: There was an error saving your data: ${data.save_error}</p>`;
+                                console.error('Error saving data:', data.save_error);
                             } else {
                                 message += '<p>Thank you for participating!</p>';
                             }
@@ -597,6 +638,7 @@ async def index():
                                 `;
                             }
                             updateButtons(false);
+                            sessionId = null;  // Clear session only after successful completion
                         }
                         
                         startTime = new Date();
@@ -604,9 +646,6 @@ async def index():
                     } catch (error) {
                         console.error('Error processing choice:', error);
                         document.getElementById('feedback').textContent = 'Error processing choice. Please try again.';
-                        if (trialsRemaining < 100) {
-                            trialsRemaining++; // Only restore if we decremented
-                        }
                         updateDisplay();
                     } finally {
                         isProcessing = false;
