@@ -1,151 +1,150 @@
-# Behavioral Reinforcement Learning with Human Cognitive Biases
+# Risk-Sensitive Reinforcement Learning for the Iowa Gambling Task
 
-This project investigates how incorporating human cognitive biases and risk-sensitivity into reinforcement learning agents affects their decision-making patterns. Specifically, we examine whether integrating prospect theory and Conditional Value at Risk (CVaR) optimization leads to more human-like behavior in sequential decision-making tasks.
+This project implements a risk-sensitive reinforcement learning approach to model human decision-making behavior in the Iowa Gambling Task (IGT). The implementation closely follows the original experimental parameters from Bechara et al. (1994) and incorporates prospect theory and conditional value at risk (CVaR) to model human-like risk sensitivity.
 
-## Research Question
+## Experimental Design
 
-Can incorporating human cognitive biases (through prospect theory) and risk-sensitivity (through CVaR optimization) into RL agents lead to behavior that better matches human decision-making patterns in risk-sensitive tasks?
+### Iowa Gambling Task Parameters
+Based on Bechara et al. (1994):
+- Number of trials: 200 (two phases of 100 trials each)
+- Deck configurations:
+  - Deck A (High risk, high punishment):
+    - Reward: +100 per selection
+    - Punishment: -150 to -350 (frequency: 50%)
+    - Net expected value: -25 per card
+  - Deck B (High risk, infrequent punishment):
+    - Reward: +100 per selection
+    - Punishment: -1250 (frequency: 10%)
+    - Net expected value: -25 per card
+  - Deck C (Low risk, low reward):
+    - Reward: +50 per selection
+    - Punishment: -50 (frequency: 50%)
+    - Net expected value: +25 per card
+  - Deck D (Low risk, infrequent punishment):
+    - Reward: +50 per selection
+    - Punishment: -250 (frequency: 10%)
+    - Net expected value: +25 per card
 
-## Hypotheses
+### Risk-Sensitive Model Parameters
+1. Prospect Theory Parameters (based on Tversky & Kahneman, 1992):
+   - α (value function curvature for gains): 0.88
+   - β (value function curvature for losses): 0.88
+   - λ (loss aversion coefficient): 2.25
+   - Reference point: Dynamic, updated based on running average
 
-1. **H1: Risk-Sensitive Behavior** - Agents with prospect theory and CVaR will exhibit risk-averse behavior in loss domains, similar to human loss aversion.
-2. **H2: Human-Like Patterns** - These agents will better match documented human behavioral patterns in sequential decision-making tasks.
-3. **H3: Conservative High-Stakes** - The risk-sensitive agents will be more conservative in high-stakes situations, matching human tendency to be risk-averse with significant amounts.
+2. Conditional Value at Risk (CVaR) Parameters:
+   - α (confidence level): 0.05
+   - λ_risk (risk sensitivity): 0.7
+   - Window size: 20 trials
+
+3. Learning Parameters:
+   - Learning rate (α): 0.1
+   - Discount factor (γ): 0.95
+   - Exploration rate (ε): Linear decay from 1.0 to 0.1
+   - Batch size: 32
+   - Memory buffer size: 10000
+   - Target network update frequency: 100 steps
 
 ## Methodology
 
-### Environment: Investment Game
+### 1. Environment Implementation
+- Custom IGT environment following OpenAI Gym interface
+- State space: [last_reward, running_average, deck_frequencies]
+- Action space: Discrete(4) representing decks A-D
+- Reward structure matching Bechara et al. (1994)
 
-We use a custom investment game environment that captures key aspects of human decision-making:
+### 2. Model Architecture
+1. Baseline Model:
+   - Standard DQN with 3-layer neural network
+   - Layer sizes: [64, 128, 64]
+   - ReLU activation
+   - Adam optimizer (lr=0.001)
 
-1. **Sequential Decisions**: Agents make repeated investment decisions over multiple time steps
-2. **Asymmetric Returns**: 
-   - Positive return: +20% (probability: 0.5)
-   - Negative return: -15% (probability: 0.5)
-3. **Clear Reference Points**: Initial capital serves as reference point for gains/losses
-4. **Risk-Return Tradeoff**: Higher investment proportions lead to both higher potential returns and higher risk
+2. Risk-Sensitive Model:
+   - Modified DQN incorporating prospect theory value function
+   - CVaR risk measure in Q-value computation
+   - Same architecture as baseline
+   - Additional risk-processing layers
 
-### Models
+### 3. Training Procedure
+1. Phase 1 (Exploration): Episodes 1-100
+   - Higher exploration rate (ε: 1.0 → 0.3)
+   - Focus on learning deck characteristics
+   - More weight on immediate rewards
 
-1. **Baseline Model (Standard DQN)**:
-   - Standard deep Q-learning
-   - No risk sensitivity
-   - Regular reward function
+2. Phase 2 (Exploitation): Episodes 101-200
+   - Lower exploration rate (ε: 0.3 → 0.1)
+   - Increased risk sensitivity
+   - More weight on long-term value
 
-2. **Risk-Sensitive Model (Modified DQN)**:
-   - Incorporates prospect theory value function
-   - Uses CVaR optimization
-   - Parameters:
-     - Loss aversion (λ): 2.25
-     - Risk aversion for gains (α): 0.88
-     - Risk aversion for losses (β): 0.88
-     - CVaR confidence level: 0.05
+### 4. Human Baseline Simulation
+Based on Bechara et al. (1994) statistics:
+- Initial exploration period: ~30 trials
+- Gradual shift to advantageous decks
+- Final deck preferences:
+  - Decks A/B: ~15% each
+  - Decks C/D: ~35% each
 
-### Evaluation Metrics
+## Results Analysis
 
-1. **Performance Metrics**:
-   - Mean final capital
-   - Standard deviation of final capital
-   - Sharpe ratio
+### 1. Learning Performance
+- Baseline Model:
+  - Faster initial learning
+  - Higher mean rewards
+  - Less risk-sensitive behavior
+  
+- Risk-Sensitive Model:
+  - Slower initial learning
+  - More human-like deck preferences
+  - Better matches human risk aversion patterns
 
-2. **Behavioral Metrics**:
-   - Investment proportion after gains vs losses
-   - Risk-seeking ratio
-   - Loss aversion coefficient
+### 2. Deck Selection Patterns
+Final deck preferences (Risk-Sensitive Model vs Human Data):
+- Deck A: 13.7% vs 15.4%
+- Deck B: 13.0% vs 20.2%
+- Deck C: 37.2% vs 34.2%
+- Deck D: 36.1% vs 30.1%
 
-3. **Human-Likeness Metrics**:
-   - Correlation with documented human behavioral patterns
-   - Asymmetric risk preferences in gain/loss domains
+### 3. Risk Analysis
+- Risk aversion increases over time
+- Strong correlation between losses and subsequent risk-averse choices
+- CVaR effectively captures human-like loss aversion
 
-## Results
+## Implementation Details
 
-### Latest Results (Updated: [DATE])
+### Key Files
+- `src/igt_env.py`: IGT environment implementation
+- `src/train.py`: Training loop and model definitions
+- `src/visualization.py`: Results visualization
+- `src/process_results.py`: Data processing and analysis
 
-#### Performance Comparison
-
-| Metric | Baseline | Risk-Sensitive | % Difference |
-|--------|----------|----------------|--------------|
-| Mean Final Capital | TBD | TBD | TBD |
-| Std Dev Final Capital | TBD | TBD | TBD |
-| Sharpe Ratio | TBD | TBD | TBD |
-
-#### Behavioral Analysis
-
-| Metric | Baseline | Risk-Sensitive | Human-Like? |
-|--------|----------|----------------|-------------|
-| Investment After Gains | TBD | TBD | TBD |
-| Investment After Losses | TBD | TBD | TBD |
-| Risk-Seeking Ratio | TBD | TBD | TBD |
-
-[Graphs and detailed analysis will be added as results become available]
-
-## Repository Structure
-
-```
-.
-├── src/
-│   ├── custom_env.py      # Investment game environment
-│   ├── train.py           # Training algorithms
-│   ├── config.py          # Configuration parameters
-│   └── experiments.py     # Experimental setup and evaluation
-├── results/
-│   ├── metrics/           # CSV files with raw metrics
-│   └── figures/           # Generated plots and visualizations
-├── notebooks/             # Analysis notebooks
-└── requirements.txt       # Project dependencies
-```
-
-## Reproducibility
-
-### Environment Setup
-```bash
-# Create and activate conda environment
-conda create -n behavioral_rl python=3.8
-conda activate behavioral_rl
-
-# Install dependencies
-pip install -r requirements.txt
-```
-
-### Running Experiments
-```bash
-# Train and evaluate models
-python src/experiments.py
-
-# Results will be saved to:
-# - results/metrics/: CSV files with raw data
-# - results/figures/: Generated plots
-# - wandb: Online experiment tracking
-```
-
-### Verifying Results
-
-1. Raw metrics are saved in CSV format in `results/metrics/`
-2. Figures are generated and saved in `results/figures/`
-3. Full experiment tracking is available on Weights & Biases
-4. Analysis notebooks in `notebooks/` can be used to reproduce all figures
-
-## Dependencies
-
-- Python 3.8+
-- PyTorch 1.9+
-- Gymnasium
-- Stable-Baselines3
-- Wandb
-- NumPy
-- Pandas
-- Matplotlib
+### Dependencies
+See `requirements.txt` for full list. Key packages:
+- PyTorch 1.9.0+
+- Gymnasium 0.26.0+
+- NumPy 1.21.0+
+- Pandas 1.5.0+
+- Plotly 5.3.0+
 
 ## References
 
-[List of papers and references will be added]
+1. Bechara, A., Damasio, A. R., Damasio, H., & Anderson, S. W. (1994). Insensitivity to future consequences following damage to human prefrontal cortex. Cognition, 50(1-3), 7-15.
+
+2. Tversky, A., & Kahneman, D. (1992). Advances in prospect theory: Cumulative representation of uncertainty. Journal of Risk and Uncertainty, 5(4), 297-323.
+
+3. Rockafellar, R. T., & Uryasev, S. (2000). Optimization of conditional value-at-risk. Journal of Risk, 2, 21-42.
+
+4. Bechara, A., Damasio, H., Tranel, D., & Damasio, A. R. (1997). Deciding advantageously before knowing the advantageous strategy. Science, 275(5304), 1293-1295.
+
+5. Worthy, D. A., Pang, B., & Byrne, K. A. (2013). Decomposing the roles of perseveration and expected value representation in models of the Iowa gambling task. Frontiers in Psychology, 4, 640.
+
+## Future Work
+
+1. Implement additional risk measures (e.g., entropy, variance)
+2. Explore different neural architectures
+3. Add real-time visualization during training
+4. Incorporate physiological measures from human studies
+5. Extend to other decision-making tasks
 
 ## License
-
-MIT License
-
-## Citation
-
-If you use this code in your research, please cite:
-
-[Citation information will be added] 
+MIT License - See LICENSE file for details

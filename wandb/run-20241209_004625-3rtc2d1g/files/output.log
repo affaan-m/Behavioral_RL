@@ -1,0 +1,20 @@
+C:\ProgramData\anaconda3\Lib\site-packages\gymnasium\spaces\box.py:235: UserWarning: [33mWARN: Box low's precision lowered by casting to float32, current low.dtype=float64[0m
+  gym.logger.warn(
+C:\ProgramData\anaconda3\Lib\site-packages\gymnasium\spaces\box.py:305: UserWarning: [33mWARN: Box high's precision lowered by casting to float32, current high.dtype=float64[0m
+  gym.logger.warn(
+Traceback (most recent call last):
+  File "C:\Users\Maha Mustafa\Downloads\Behavioral_RL\src\train.py", line 89, in <module>
+    train()
+  File "C:\Users\Maha Mustafa\Downloads\Behavioral_RL\src\train.py", line 62, in train
+    env = setup_env("IGT-v0")
+          ^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Maha Mustafa\Downloads\Behavioral_RL\src\train.py", line 39, in setup_env
+    env = gym.make(env_id)
+          ^^^^^^^^^^^^^^^^
+  File "C:\ProgramData\anaconda3\Lib\site-packages\gymnasium\envs\registration.py", line 740, in make
+    env = env_creator(**env_spec_kwargs)
+          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Maha Mustafa\Downloads\Behavioral_RL\src\igt_env.py", line 78, in __init__
+    self.alpha = Config.ALPHA_GAIN
+                 ^^^^^^^^^^^^^^^^^
+AttributeError: type object 'Config' has no attribute 'ALPHA_GAIN'

@@ -1,0 +1,17 @@
+Traceback (most recent call last):
+  File "C:\Users\Maha Mustafa\Downloads\Behavioral_RL\src\train.py", line 309, in <module>
+    env = setup_env("CustomEnv-v0")
+          ^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Maha Mustafa\Downloads\Behavioral_RL\src\train.py", line 234, in setup_env
+    env = gym.make(env_id)
+          ^^^^^^^^^^^^^^^^
+  File "C:\ProgramData\anaconda3\Lib\site-packages\gymnasium\envs\registration.py", line 687, in make
+    env_spec = _find_spec(id)
+               ^^^^^^^^^^^^^^
+  File "C:\ProgramData\anaconda3\Lib\site-packages\gymnasium\envs\registration.py", line 531, in _find_spec
+    _check_version_exists(ns, name, version)
+  File "C:\ProgramData\anaconda3\Lib\site-packages\gymnasium\envs\registration.py", line 397, in _check_version_exists
+    _check_name_exists(ns, name)
+  File "C:\ProgramData\anaconda3\Lib\site-packages\gymnasium\envs\registration.py", line 374, in _check_name_exists
+    raise error.NameNotFound(
+gymnasium.error.NameNotFound: Environment `CustomEnv` doesn't exist.

@@ -1,0 +1,14 @@
+Traceback (most recent call last):
+  File "C:\Users\Maha Mustafa\Downloads\Behavioral_RL\src\experiments.py", line 270, in <module>
+    results = run_comprehensive_comparison()
+              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Maha Mustafa\Downloads\Behavioral_RL\src\experiments.py", line 170, in run_comprehensive_comparison
+    risk_sensitive_model = train_risk_sensitive_model(env, total_timesteps=50000)
+                           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Maha Mustafa\Downloads\Behavioral_RL\src\train.py", line 164, in train_risk_sensitive_model
+    loss = agent.train_step(*agent.memory.sample(batch_size))
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Maha Mustafa\Downloads\Behavioral_RL\src\train.py", line 92, in train_step
+    next_q_values[dones] = 0.0
+    ~~~~~~~~~~~~~^^^^^^^
+IndexError: tensors used as indices must be long, int, byte or bool tensors

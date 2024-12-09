@@ -1,0 +1,53 @@
+_wandb:
+    value:
+        cli_version: 0.19.0
+        m: []
+        python_version: 3.12.7
+        t:
+            "1":
+                - 1
+                - 55
+            "2":
+                - 1
+                - 55
+            "3":
+                - 16
+                - 23
+                - 55
+            "4": 3.12.7
+            "5": 0.19.0
+            "8":
+                - 3
+                - 5
+            "12": 0.19.0
+            "13": windows-amd64
+algorithm:
+    value: PPO
+batch_size:
+    value: 64
+ent_coef:
+    value: 0.01
+gae_lambda:
+    value: 0.95
+gamma:
+    value: 0.99
+learning_rate:
+    value: 0.0003
+max_grad_norm:
+    value: 0.5
+n_epochs:
+    value: 10
+n_steps:
+    value: 2048
+policy_kwargs:
+    value:
+        activation_fn: torch.nn.modules.activation.ReLU
+        net_arch:
+            pi:
+                - 64
+                - 64
+            vf:
+                - 64
+                - 64
+vf_coef:
+    value: 0.5

@@ -1,0 +1,11 @@
+Traceback (most recent call last):
+  File "C:\Users\Maha Mustafa\Downloads\Behavioral_RL\src\experiments.py", line 270, in <module>
+    results = run_comprehensive_comparison()
+              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Maha Mustafa\Downloads\Behavioral_RL\src\experiments.py", line 170, in run_comprehensive_comparison
+    risk_sensitive_model = train_risk_sensitive_model(env, total_timesteps=50000)
+                           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Maha Mustafa\Downloads\Behavioral_RL\src\train.py", line 107, in train_risk_sensitive_model
+    action = agent.select_action(state)
+             ^^^^^^^^^^^^^^^^^^^
+AttributeError: 'RiskSensitiveDQN' object has no attribute 'select_action'

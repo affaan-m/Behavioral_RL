@@ -1,0 +1,43 @@
+{
+  "os": "Windows-11-10.0.22631-SP0",
+  "python": "CPython 3.12.7",
+  "startedAt": "2024-12-09T08:10:12.160660Z",
+  "program": "C:\\Users\\Maha Mustafa\\Downloads\\Behavioral_RL\\src\\experiments.py",
+  "codePath": "src\\experiments.py",
+  "git": {
+    "remote": "https://github.com/affaan-m/Behavioral_RL.git",
+    "commit": "148b2be730589d512b90c80fdfd52951522a6bab"
+  },
+  "email": "affaan@dcube.ai",
+  "root": "C:\\Users\\Maha Mustafa\\Downloads\\Behavioral_RL",
+  "host": "DESKTOP-7TIARCD",
+  "username": "Maha Mustafa",
+  "executable": "C:\\ProgramData\\anaconda3\\python.exe",
+  "codePathLocal": "src\\experiments.py",
+  "cpu_count": 8,
+  "cpu_count_logical": 16,
+  "gpu": "NVIDIA GeForce RTX 3060",
+  "gpu_count": 1,
+  "disk": {
+    "/": {
+      "total": "999299215360",
+      "used": "139895693312"
+    }
+  },
+  "memory": {
+    "total": "34236334080"
+  },
+  "cpu": {
+    "count": 8,
+    "countLogical": 16
+  },
+  "gpu_nvidia": [
+    {
+      "name": "NVIDIA GeForce RTX 3060",
+      "memoryTotal": "12884901888",
+      "cudaCores": 3584,
+      "architecture": "Ampere"
+    }
+  ],
+  "cudaVersion": "12.6"
+}

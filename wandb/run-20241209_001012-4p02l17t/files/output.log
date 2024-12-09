@@ -1,0 +1,29 @@
+C:\ProgramData\anaconda3\Lib\site-packages\gymnasium\spaces\box.py:235: UserWarning: [33mWARN: Box low's precision lowered by casting to float32, current low.dtype=float64[0m
+  gym.logger.warn(
+C:\ProgramData\anaconda3\Lib\site-packages\gymnasium\spaces\box.py:305: UserWarning: [33mWARN: Box high's precision lowered by casting to float32, current high.dtype=float64[0m
+  gym.logger.warn(
+
+Training baseline model (seed 1)...
+[2K[35m 100%[0m [38;2;114;156;31m━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━[0m [32m51,200/50,000 [0m [ [33m0:02:28[0m < [36m0:00:00[0m , [31m330 it/s[0m ] , [31m336 it/s[0m ]m340 it/s[0m ]
+[?25h
+Training risk-sensitive model (seed 1)...
+
+Training baseline model (seed 2)...
+[2K[35m 100%[0m [38;2;114;156;31m━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━[0m [32m51,200/50,000 [0m [ [33m0:02:31[0m < [36m0:00:00[0m , [31m310 it/s[0m ] , [31m305 it/s[0m ]m317 it/s[0m ]
+[?25h
+Training risk-sensitive model (seed 2)...
+
+Comparison Results:
+==================
+
+Baseline Model:
+Mean Reward: -1829.19 ± 16.21
+C+D Ratio: 0.36
+
+Risk-Sensitive Model:
+Mean Reward: -1827.96 ± 16.03
+C+D Ratio: 0.32
+
+Human Baseline:
+Mean Reward: 3199.00 ± 1534.12
+C+D Ratio: 0.62 ± 0.06

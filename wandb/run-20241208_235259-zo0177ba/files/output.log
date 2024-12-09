@@ -1,0 +1,27 @@
+C:\ProgramData\anaconda3\Lib\site-packages\gymnasium\spaces\box.py:235: UserWarning: [33mWARN: Box low's precision lowered by casting to float32, current low.dtype=float64[0m
+  gym.logger.warn(
+C:\ProgramData\anaconda3\Lib\site-packages\gymnasium\spaces\box.py:305: UserWarning: [33mWARN: Box high's precision lowered by casting to float32, current high.dtype=float64[0m
+  gym.logger.warn(
+
+Training baseline model (seed 1)...
+
+Training risk-sensitive model (seed 1)...
+
+Training baseline model (seed 2)...
+
+Training risk-sensitive model (seed 2)...
+
+Comparison Results:
+==================
+
+Baseline Model:
+Mean Reward: -1830.51 ± 13.97
+C+D Ratio: 0.35
+
+Risk-Sensitive Model:
+Mean Reward: -1781.76 ± 2.39
+C+D Ratio: 1.00
+
+Human Baseline:
+Mean Reward: 3199.00 ± 1534.12
+C+D Ratio: 0.62 ± 0.06

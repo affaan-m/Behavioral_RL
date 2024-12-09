@@ -1,27 +1,54 @@
 import numpy as np
 import pandas as pd
 import matplotlib.pyplot as plt
-from custom_env import InvestmentGameEnv
-from igt_env import IGTEnvironment
-from train import train_risk_sensitive_model
-from stable_baselines3 import DQN
-import wandb
-from tqdm import tqdm
-from datetime import datetime
-import os
-import json
 from pathlib import Path
+import json
+from tqdm import tqdm
+import sys
+import os
+import torch
+import torch.nn as nn
+from stable_baselines3 import PPO
+
+# Add src directory to Python path
+sys.path.append(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
+
+from src.custom_env import InvestmentGameEnv
+from src.igt_env import IGTEnvironment
+from src.train import train_risk_sensitive_model
+from src.config.database import get_supabase_client
+import wandb
 
 def train_baseline_model(env, total_timesteps):
-    """Train a standard DQN agent without risk sensitivity"""
-    model = DQN("MlpPolicy", env, verbose=0, 
-                learning_rate=3e-4,
-                buffer_size=100000,
-                learning_starts=1000,
-                batch_size=64,
-                gamma=0.99)
+    """Train a PPO agent as baseline"""
+    model = PPO(
+        "MlpPolicy", 
+        env, 
+        learning_rate=1e-3,
+        n_steps=2048,
+        batch_size=64,
+        n_epochs=10,
+        gamma=0.99,
+        gae_lambda=0.95,
+        clip_range=0.2,
+        clip_range_vf=None,
+        normalize_advantage=True,
+        ent_coef=0.01,  # Encourage exploration
+        vf_coef=0.5,
+        max_grad_norm=0.5,
+        use_sde=False,
+        sde_sample_freq=-1,
+        target_kl=None,
+        tensorboard_log="./ppo_igt_tensorboard/",
+        device='cpu',  # Force CPU usage
+        verbose=1
+    )
     
-    model.learn(total_timesteps=total_timesteps)
+    model.learn(
+        total_timesteps=total_timesteps,
+        progress_bar=True
+    )
+    
     return model
 
 def evaluate_model(model, env, n_episodes=100):
@@ -79,51 +106,70 @@ def load_human_data():
 
 def calculate_human_metrics(human_data):
     """Calculate metrics from human data"""
-    if not human_data['collected_data']:
-        return human_data['igt_baselines']
-    
-    collected_metrics = {
-        'cd_ratios': [],
-        'rewards': [],
-        'deck_preferences': {'A': [], 'B': [], 'C': [], 'D': []}
+    metrics = {
+        'reward_mean': 0,
+        'reward_std': 0,
+        'cd_ratio_mean': 0,
+        'cd_ratio_std': 0,
+        'deck_preferences': {'A': 0, 'B': 0, 'C': 0, 'D': 0}
     }
     
-    for data in human_data['collected_data']:
+    if not human_data:
+        print("Warning: No human data available")
+        return metrics
+        
+    total_rewards = []
+    cd_ratios = []
+    deck_counts = {'A': 0, 'B': 0, 'C': 0, 'D': 0}
+    total_choices = 0
+    
+    for participant in human_data:
+        # Extract metrics from participant data
+        participant_metrics = participant.get('metrics', {})
+        
+        # Get total money
+        total_money = participant_metrics.get('total_money', 0)
+        total_rewards.append(total_money)
+        
+        # Get deck preferences
+        deck_prefs = participant_metrics.get('deck_preferences', {})
+        for deck, percentage in deck_prefs.items():
+            deck_letter = deck.split('_')[-1]  # Extract letter from 'deck_X'
+            deck_counts[deck_letter] += percentage
+            
         # Calculate C+D ratio
-        choices = np.array(data['history']['deck_choices'])
-        cd_ratio = np.sum((choices == 2) | (choices == 3)) / len(choices)
-        collected_metrics['cd_ratios'].append(cd_ratio)
+        cd_ratio = (deck_prefs.get('deck_C', 0) + deck_prefs.get('deck_D', 0)) / 100
+        cd_ratios.append(cd_ratio)
         
-        # Final reward
-        collected_metrics['rewards'].append(data['metrics']['total_money'])
+        total_choices += 1
+    
+    if total_choices > 0:
+        # Calculate averages
+        metrics['reward_mean'] = float(np.mean(total_rewards))
+        metrics['reward_std'] = float(np.std(total_rewards))
+        metrics['cd_ratio_mean'] = float(np.mean(cd_ratios))
+        metrics['cd_ratio_std'] = float(np.std(cd_ratios))
         
-        # Deck preferences
-        for deck, pref in data['metrics']['deck_preferences'].items():
-            collected_metrics['deck_preferences'][deck].append(pref)
+        # Average deck preferences
+        for deck in deck_counts:
+            metrics['deck_preferences'][deck] = float(deck_counts[deck] / total_choices)
     
-    # Combine with IGT baselines
-    combined_metrics = {
-        'cd_ratio_mean': np.mean(collected_metrics['cd_ratios']),
-        'cd_ratio_std': np.std(collected_metrics['cd_ratios']),
-        'reward_mean': np.mean(collected_metrics['rewards']),
-        'reward_std': np.std(collected_metrics['rewards']),
-        'deck_preferences': {
-            deck: np.mean(prefs) 
-            for deck, prefs in collected_metrics['deck_preferences'].items()
-        },
-        'igt_baselines': human_data['igt_baselines']
-    }
-    
-    return combined_metrics
+    return metrics
 
-def run_comprehensive_comparison(n_episodes=1000, n_seeds=5):
+def run_comprehensive_comparison(n_episodes=100, n_seeds=3):
     """Run comprehensive comparison between baseline, risk-sensitive, and human behavior"""
     results_dir = Path('results/comparison')
     results_dir.mkdir(parents=True, exist_ok=True)
     
-    # Load human data
-    human_data = load_human_data()
+    # Load human data from Supabase
+    supabase = get_supabase_client()
+    
+    print("Loading human data from Supabase...")
+    response = supabase.table('participants').select('*').execute()
+    human_data = response.data
     human_metrics = calculate_human_metrics(human_data)
+    
+    print(f"Loaded {len(human_data)} human participants")
     
     all_results = {
         'baseline': [],
@@ -136,49 +182,68 @@ def run_comprehensive_comparison(n_episodes=1000, n_seeds=5):
         env.reset(seed=seed)
         
         # Train and evaluate baseline model
-        baseline_model = train_baseline_model(env, total_timesteps=100000)
+        print(f"\nTraining baseline model (seed {seed})...")
+        baseline_model = train_baseline_model(env, total_timesteps=50000)
         baseline_results = evaluate_model(baseline_model, env, n_episodes)
         all_results['baseline'].append(baseline_results)
         
         # Train and evaluate risk-sensitive model
-        risk_sensitive_model = train_risk_sensitive_model(env, total_timesteps=100000)
+        print(f"\nTraining risk-sensitive model (seed {seed})...")
+        risk_sensitive_model = train_risk_sensitive_model(env, total_timesteps=50000)
         risk_sensitive_results = evaluate_model(risk_sensitive_model, env, n_episodes)
         all_results['risk_sensitive'].append(risk_sensitive_results)
         
         # Save models
         baseline_model.save(f"results/comparison/baseline_model_seed{seed}")
         risk_sensitive_model.save(f"results/comparison/risk_sensitive_model_seed{seed}")
+        
+        # Save intermediate results
+        with open(f'results/comparison/results_seed{seed}.json', 'w') as f:
+            json.dump({
+                'baseline': baseline_results,
+                'risk_sensitive': risk_sensitive_results,
+                'human': human_metrics
+            }, f, indent=2, cls=NumpyEncoder)
     
     # Calculate aggregate metrics
-    aggregate_results = calculate_aggregate_metrics(all_results)
+    aggregate_results = {
+        'baseline': aggregate_metrics([r for r in all_results['baseline']]),
+        'risk_sensitive': aggregate_metrics([r for r in all_results['risk_sensitive']]),
+        'human': human_metrics
+    }
     
-    # Save results
-    timestamp = datetime.now().strftime("%Y%m%d_%H%M%S")
-    with open(f"results/comparison/comparison_results_{timestamp}.json", 'w') as f:
-        json.dump(aggregate_results, f, indent=4)
+    # Save final results
+    with open('results/comparison/final_results.json', 'w') as f:
+        json.dump(aggregate_results, f, indent=2, cls=NumpyEncoder)
     
     # Generate comparison plots
     generate_comparison_plots(aggregate_results, results_dir)
     
     return aggregate_results
 
-def calculate_aggregate_metrics(all_results):
-    """Calculate aggregate metrics across all seeds"""
-    aggregate = {
-        'baseline': {
-            'mean_reward': np.mean([r['mean_reward'] for r in all_results['baseline']]),
-            'std_reward': np.mean([r['std_reward'] for r in all_results['baseline']]),
-            'mean_cd_ratio': np.mean([r['mean_cd_ratio'] for r in all_results['baseline']])
-        },
-        'risk_sensitive': {
-            'mean_reward': np.mean([r['mean_reward'] for r in all_results['risk_sensitive']]),
-            'std_reward': np.mean([r['std_reward'] for r in all_results['risk_sensitive']]),
-            'mean_cd_ratio': np.mean([r['mean_cd_ratio'] for r in all_results['risk_sensitive']])
-        },
-        'human': all_results['human']
+def aggregate_metrics(results_list):
+    """Aggregate metrics across multiple seeds"""
+    return {
+        'mean_reward': float(np.mean([r['mean_reward'] for r in results_list])),
+        'std_reward': float(np.mean([r['std_reward'] for r in results_list])),
+        'mean_cd_ratio': float(np.mean([r['mean_cd_ratio'] for r in results_list])),
+        'deck_preferences': {
+            'A': float(np.mean([np.sum(np.array(r['deck_choices']) == 0) / len(r['deck_choices'][0]) for r in results_list])),
+            'B': float(np.mean([np.sum(np.array(r['deck_choices']) == 1) / len(r['deck_choices'][0]) for r in results_list])),
+            'C': float(np.mean([np.sum(np.array(r['deck_choices']) == 2) / len(r['deck_choices'][0]) for r in results_list])),
+            'D': float(np.mean([np.sum(np.array(r['deck_choices']) == 3) / len(r['deck_choices'][0]) for r in results_list]))
+        }
     }
-    
-    return aggregate
+
+class NumpyEncoder(json.JSONEncoder):
+    def default(self, obj):
+        if isinstance(obj, np.integer):
+            return int(obj)
+        elif isinstance(obj, np.floating):
+            return float(obj)
+        elif isinstance(obj, np.ndarray):
+            return obj.tolist()
+        return super(NumpyEncoder, self).default(obj)
 
 def generate_comparison_plots(results, output_dir):
     """Generate comparison plots between all three approaches"""

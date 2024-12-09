@@ -1,0 +1,18 @@
+C:\ProgramData\anaconda3\Lib\site-packages\gymnasium\spaces\box.py:235: UserWarning: [33mWARN: Box low's precision lowered by casting to float32, current low.dtype=float64[0m
+  gym.logger.warn(
+C:\ProgramData\anaconda3\Lib\site-packages\gymnasium\spaces\box.py:305: UserWarning: [33mWARN: Box high's precision lowered by casting to float32, current high.dtype=float64[0m
+  gym.logger.warn(
+Using cuda device
+Traceback (most recent call last):
+  File "C:\Users\Maha Mustafa\Downloads\Behavioral_RL\src\train.py", line 123, in <module>
+    train()
+  File "C:\Users\Maha Mustafa\Downloads\Behavioral_RL\src\train.py", line 87, in train
+    model = PPO(
+            ^^^^
+  File "C:\ProgramData\anaconda3\Lib\site-packages\stable_baselines3\ppo\ppo.py", line 109, in __init__
+    super().__init__(
+  File "C:\ProgramData\anaconda3\Lib\site-packages\stable_baselines3\common\on_policy_algorithm.py", line 86, in __init__
+    super().__init__(
+  File "C:\ProgramData\anaconda3\Lib\site-packages\stable_baselines3\common\base_class.py", line 195, in __init__
+    raise ValueError("generalized State-Dependent Exploration (gSDE) can only be used with continuous actions.")
+ValueError: generalized State-Dependent Exploration (gSDE) can only be used with continuous actions.

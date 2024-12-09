@@ -1,0 +1,8 @@
+Traceback (most recent call last):
+  File "C:\Users\Maha Mustafa\Downloads\Behavioral_RL\src\experiments.py", line 270, in <module>
+    results = run_comprehensive_comparison()
+              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Maha Mustafa\Downloads\Behavioral_RL\src\experiments.py", line 176, in run_comprehensive_comparison
+    risk_sensitive_model.save(f"results/comparison/risk_sensitive_model_seed{seed}")
+    ^^^^^^^^^^^^^^^^^^^^^^^^^
+AttributeError: 'RiskSensitiveDQN' object has no attribute 'save'

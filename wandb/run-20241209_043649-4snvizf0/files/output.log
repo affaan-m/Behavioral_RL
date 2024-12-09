@@ -1,0 +1,10 @@
+Traceback (most recent call last):
+  File "C:\Users\Maha Mustafa\Downloads\Behavioral_RL\src\train.py", line 278, in <module>
+    train()
+  File "C:\Users\Maha Mustafa\Downloads\Behavioral_RL\src\train.py", line 220, in train
+    env = DummyVecEnv([lambda: env])
+          ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\ProgramData\anaconda3\Lib\site-packages\stable_baselines3\common\vec_env\dummy_vec_env.py", line 42, in __init__
+    super().__init__(len(env_fns), env.observation_space, env.action_space)
+                                   ^^^^^^^^^^^^^^^^^^^^^
+AttributeError: 'BaselineIGTEnvironment' object has no attribute 'observation_space'
