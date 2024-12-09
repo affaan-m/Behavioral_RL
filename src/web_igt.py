@@ -44,10 +44,8 @@ app.add_middleware(
     allow_headers=["*"],
 )
 
-# Mount static files if they exist
-static_path = Path(__file__).parent / "static"
-if static_path.exists():
-    app.mount("/static", StaticFiles(directory=str(static_path)), name="static")
+# Session storage
+active_sessions = {}
 
 class IGTEnv:
     def __init__(self):
@@ -87,7 +85,6 @@ class IGTEnv:
             self.history['reaction_times'].append(reaction_time)
             
         deck = self.deck_properties[action]
-        # Determine if loss occurs based on loss probability
         if np.random.random() < deck['loss_prob']:
             reward = deck['loss']
         else:
@@ -141,9 +138,6 @@ class IGTEnv:
             'learning_progress': learning_progress
         }
 
-# Initialize environment
-env = IGTEnv()
-
 @app.get("/")
 async def index():
     html_content = """
@@ -187,13 +181,30 @@ async def index():
         <script>
             let startTime;
             let trialCount = 0;
+            let sessionId = null;
             
-            function startTrial() {
-                startTime = new Date();
+            async function initSession() {
+                try {
+                    const response = await fetch('/api/start', {
+                        method: 'POST',
+                        headers: { 'Content-Type': 'application/json' },
+                        body: JSON.stringify({})
+                    });
+                    const data = await response.json();
+                    sessionId = data.session_id;
+                    startTime = new Date();
+                } catch (error) {
+                    console.error('Error initializing session:', error);
+                }
             }
             
             async function selectDeck(deck) {
-                if (!startTime) startTrial();
+                if (!sessionId) {
+                    console.error('No active session');
+                    return;
+                }
+                
+                if (!startTime) startTime = new Date();
                 const reactionTime = (new Date() - startTime) / 1000;
                 trialCount++;
                 
@@ -202,6 +213,7 @@ async def index():
                         method: 'POST',
                         headers: { 'Content-Type': 'application/json' },
                         body: JSON.stringify({ 
+                            session_id: sessionId,
                             action: deck,
                             reaction_time: reactionTime
                         })
@@ -225,35 +237,53 @@ async def index():
                                     .join('')}
                             </ul>
                         `;
+                        
+                        if (data.done) {
+                            alert('Experiment complete! Thank you for participating.');
+                            sessionId = null;  // End session
+                        }
                     }
                     
-                    if (data.done) {
-                        alert('Experiment complete! Thank you for participating.');
-                    } else {
-                        startTrial();  // Start timing for next trial
-                    }
+                    startTime = new Date();  // Reset for next trial
                 } catch (error) {
                     console.error('Error:', error);
                 }
             }
             
-            // Start first trial
-            startTrial();
+            // Initialize session when page loads
+            initSession();
         </script>
     </body>
     </html>
     """
     return HTMLResponse(content=html_content)
 
+@app.post("/api/start")
+async def start_session():
+    session_id = f"session_{datetime.now().strftime('%Y%m%d_%H%M%S')}_{np.random.randint(1000, 9999)}"
+    active_sessions[session_id] = IGTEnv()
+    logger.info(f"New session started: {session_id}")
+    state, _ = active_sessions[session_id].reset()
+    return {
+        'session_id': session_id,
+        'state': state.tolist(),
+        'total_money': active_sessions[session_id].total_money
+    }
+
 @app.post("/api/step")
 async def step(data: Dict[str, Any]):
     try:
+        session_id = data.get('session_id')
+        if not session_id or session_id not in active_sessions:
+            raise HTTPException(status_code=400, detail="Invalid or expired session")
+            
         action = data.get('action')
         reaction_time = data.get('reaction_time')
         
         if action is None:
             raise HTTPException(status_code=400, detail="No action provided")
         
+        env = active_sessions[session_id]
         state, reward, done, _, info = env.step(action, reaction_time)
         
         response_data = {
@@ -263,63 +293,32 @@ async def step(data: Dict[str, Any]):
             'total_money': info['total_money']
         }
         
-        # If experiment is complete, save to Supabase
         if done:
             metrics = info['metrics']
             experiment_data = {
                 'timestamp': datetime.now().isoformat(),
+                'session_id': session_id,
                 'history': env.history,
                 'metrics': metrics
             }
             
-            logger.info("Experiment complete. Preparing to save data...")
-            logger.info(f"Data summary:")
-            logger.info(f"- Total trials: {len(env.history['deck_choices'])}")
-            logger.info(f"- Final money: ${metrics['total_money']}")
-            logger.info(f"- Advantageous ratio: {metrics['advantageous_ratio']:.2f}")
+            logger.info(f"Session {session_id} complete. Saving data...")
             
             try:
-                # Verify Supabase connection
-                if not supabase_url or not supabase_key:
-                    raise Exception("Supabase credentials not available")
-                
-                # Try to save data
-                logger.info("Attempting to save to Supabase...")
                 result = supabase.table('participants').insert(experiment_data).execute()
-                
-                if result.data:
-                    logger.info("Successfully saved data to Supabase")
-                    logger.info(f"Entry ID: {result.data[0].get('id', 'unknown')}")
-                else:
-                    logger.warning("Save operation completed but no data returned")
-                
+                logger.info(f"Data saved for session {session_id}")
                 response_data['metrics'] = metrics
-                response_data['save_status'] = 'success'
-                
+                # Clean up session
+                del active_sessions[session_id]
             except Exception as e:
                 logger.error(f"Error saving to Supabase: {str(e)}")
-                logger.error("Full error details:", exc_info=True)
                 response_data['metrics'] = metrics
-                response_data['save_status'] = 'error'
-                response_data['save_error'] = str(e)
         
         return response_data
         
     except Exception as e:
         logger.error(f"Error in step endpoint: {str(e)}")
-        logger.error("Full error details:", exc_info=True)
         raise HTTPException(status_code=500, detail=str(e))
-
-# Add a test endpoint to verify Supabase connection
-@app.get("/api/test-connection")
-async def test_connection():
-    try:
-        # Try to query the participants table
-        result = supabase.table('participants').select("count").execute()
-        return {"status": "success", "message": "Successfully connected to Supabase"}
-    except Exception as e:
-        logger.error(f"Connection test failed: {str(e)}")
-        return {"status": "error", "message": str(e)}
 
 if __name__ == '__main__':
     uvicorn.run("web_igt:app", host="0.0.0.0", port=8000, reload=True) 
