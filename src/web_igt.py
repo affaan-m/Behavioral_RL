@@ -121,9 +121,12 @@ class IGTEnv:
             self.history['total_money'].append(self.total_money)
             
             done = self.step_count >= 100
+            metrics = self.calculate_metrics() if done else None
+            
             return np.zeros(4), reward, done, False, {
                 "total_money": self.total_money,
-                "metrics": self.calculate_metrics() if done else None
+                "metrics": metrics,
+                "step_count": self.step_count
             }
         except Exception as e:
             logger.error(f"Error in IGTEnv.step: {str(e)}")
@@ -272,7 +275,7 @@ async def step(data: StepRequest):
         
         try:
             state, reward, done, _, info = env.step(action, reaction_time)
-            logger.info(f"Step completed: reward={reward}, done={done}, money={info['total_money']}")
+            logger.info(f"Step completed: reward={reward}, done={done}, money={info['total_money']}, step={info['step_count']}")
         except Exception as e:
             logger.error(f"Error in step execution: {str(e)}")
             raise HTTPException(status_code=500, detail=f"Error processing step: {str(e)}")
@@ -282,12 +285,13 @@ async def step(data: StepRequest):
             'state': state.tolist(),
             'reward': reward,
             'done': done,
-            'total_money': info['total_money']
+            'total_money': info['total_money'],
+            'step_count': info['step_count']
         }
         
         # Handle completion
         if done:
-            logger.info(f"Session {session_id} complete")
+            logger.info(f"Session {session_id} complete at step {info['step_count']}")
             try:
                 metrics = info.get('metrics', {})
                 if not metrics:
@@ -295,31 +299,36 @@ async def step(data: StepRequest):
                 
                 response_data['metrics'] = metrics
                 
-                # Prepare session data
-                session_data = {
-                    'id': session_id,
-                    'timestamp': datetime.now().isoformat(),
-                    'metrics': json.dumps(metrics),
-                    'history': json.dumps(env.history)
-                }
-                
                 # Save to Supabase
                 if supabase:
                     try:
+                        session_data = {
+                            'id': session_id,
+                            'timestamp': datetime.now().isoformat(),
+                            'metrics': json.dumps(metrics),
+                            'history': json.dumps(env.history)
+                        }
+                        
                         logger.info(f"Saving session data to Supabase: {session_id}")
                         result = supabase.table('participants').insert(session_data).execute()
                         if hasattr(result, 'data'):
                             logger.info(f"Successfully saved session {session_id} to Supabase")
+                            response_data['save_status'] = 'success'
                         else:
                             logger.error(f"Unexpected Supabase response for session {session_id}: {result}")
+                            response_data['save_status'] = 'error'
+                            response_data['save_error'] = 'Unexpected response from Supabase'
                     except Exception as e:
                         logger.error(f"Error saving to Supabase: {str(e)}")
+                        response_data['save_status'] = 'error'
                         response_data['save_error'] = str(e)
                 else:
                     logger.warning("Supabase client not initialized, skipping data save")
-                    response_data['save_error'] = "Supabase client not initialized"
+                    response_data['save_status'] = 'error'
+                    response_data['save_error'] = 'Supabase client not initialized'
             except Exception as e:
                 logger.error(f"Error handling session completion: {str(e)}")
+                response_data['save_status'] = 'error'
                 response_data['save_error'] = str(e)
             finally:
                 # Clean up session
@@ -547,34 +556,46 @@ async def index():
                         console.log(`Received response for session ${sessionId}:`, data);
                         
                         totalMoney = data.total_money;
-                        trialCount++;
-                        trialsRemaining--;
+                        trialCount = data.step_count;
+                        trialsRemaining = 100 - trialCount;
                         updateDisplay();
                         
                         const feedback = document.getElementById('feedback');
                         feedback.textContent = `Reward: ${data.reward > 0 ? '+' : ''}${data.reward}`;
                         feedback.style.color = data.reward >= 0 ? 'green' : 'red';
                         
-                        if (data.metrics) {
+                        if (data.done) {
                             isComplete = true;
                             const completionDiv = document.getElementById('completion-message');
                             completionDiv.style.display = 'block';
-                            completionDiv.innerHTML = '<h2>Experiment Complete!</h2><p>Thank you for participating!</p>';
                             
-                            const stats = document.getElementById('stats');
-                            stats.innerHTML = `
-                                <h3>Performance Summary:</h3>
-                                <p>Final Money: $${totalMoney}</p>
-                                <p>Advantageous Choices (C+D): ${(data.metrics.advantageous_ratio * 100).toFixed(1)}%</p>
-                                <p>Risk-Seeking After Loss: ${(data.metrics.risk_seeking_after_loss * 100).toFixed(1)}%</p>
-                                <p>Average Reaction Time: ${data.metrics.mean_reaction_time.toFixed(2)}s</p>
-                                <p>Deck Preferences:</p>
-                                <ul>
-                                    ${Object.entries(data.metrics.deck_preferences)
-                                        .map(([deck, pref]) => `<li>${deck}: ${(pref * 100).toFixed(1)}%</li>`)
-                                        .join('')}
-                                </ul>
-                            `;
+                            let message = '<h2>Experiment Complete!</h2>';
+                            if (data.save_status === 'success') {
+                                message += '<p>Thank you for participating! Your data has been saved successfully.</p>';
+                            } else if (data.save_status === 'error') {
+                                message += `<p>Thank you for participating!</p><p style="color: red;">Note: There was an error saving your data: ${data.save_error}</p>`;
+                            } else {
+                                message += '<p>Thank you for participating!</p>';
+                            }
+                            completionDiv.innerHTML = message;
+                            
+                            if (data.metrics) {
+                                const stats = document.getElementById('stats');
+                                stats.innerHTML = `
+                                    <h3>Performance Summary:</h3>
+                                    <p>Final Money: $${totalMoney}</p>
+                                    <p>Trials Completed: ${trialCount}</p>
+                                    <p>Advantageous Choices (C+D): ${(data.metrics.advantageous_ratio * 100).toFixed(1)}%</p>
+                                    <p>Risk-Seeking After Loss: ${(data.metrics.risk_seeking_after_loss * 100).toFixed(1)}%</p>
+                                    <p>Average Reaction Time: ${data.metrics.mean_reaction_time.toFixed(2)}s</p>
+                                    <p>Deck Preferences:</p>
+                                    <ul>
+                                        ${Object.entries(data.metrics.deck_preferences)
+                                            .map(([deck, pref]) => `<li>${deck}: ${(pref * 100).toFixed(1)}%</li>`)
+                                            .join('')}
+                                    </ul>
+                                `;
+                            }
                             updateButtons(false);
                         }
                         
