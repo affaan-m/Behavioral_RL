@@ -302,22 +302,45 @@ async def step(data: Dict[str, Any]):
                 'metrics': metrics
             }
             
-            logger.info(f"Session {session_id} complete. Saving data...")
+            logger.info(f"Session {session_id} complete. Preparing to save data...")
+            logger.info(f"Data to be saved: {json.dumps(experiment_data, indent=2)}")
             
             try:
+                # Verify Supabase connection
+                if not supabase_url or not supabase_key:
+                    logger.error("Supabase credentials missing!")
+                    raise Exception("Supabase credentials not available")
+                
+                logger.info("Attempting to save to Supabase...")
+                logger.info(f"Using URL: {supabase_url[:20]}...")
+                
+                # Try to save data
                 result = supabase.table('participants').insert(experiment_data).execute()
-                logger.info(f"Data saved for session {session_id}")
-                response_data['metrics'] = metrics
+                
+                if result and hasattr(result, 'data'):
+                    logger.info(f"Successfully saved data. Response: {json.dumps(result.data, indent=2)}")
+                    response_data['metrics'] = metrics
+                    response_data['save_status'] = 'success'
+                else:
+                    logger.error(f"No data returned from Supabase. Full response: {result}")
+                    response_data['save_status'] = 'error'
+                    response_data['save_error'] = 'No data returned from save operation'
+                
                 # Clean up session
                 del active_sessions[session_id]
+                
             except Exception as e:
                 logger.error(f"Error saving to Supabase: {str(e)}")
+                logger.error("Full error details:", exc_info=True)
                 response_data['metrics'] = metrics
+                response_data['save_status'] = 'error'
+                response_data['save_error'] = str(e)
         
         return response_data
         
     except Exception as e:
         logger.error(f"Error in step endpoint: {str(e)}")
+        logger.error("Full error details:", exc_info=True)
         raise HTTPException(status_code=500, detail=str(e))
 
 if __name__ == '__main__':
