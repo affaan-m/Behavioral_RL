@@ -163,6 +163,7 @@ async def index():
             #money { font-size: 24px; margin: 20px; }
             #feedback { margin: 20px; font-size: 18px; }
             #stats { margin-top: 30px; text-align: left; }
+            .disabled { opacity: 0.6; cursor: not-allowed; }
         </style>
     </head>
     <body>
@@ -170,10 +171,10 @@ async def index():
         <div id="experiment">
             <div id="money">Total Money: $2000</div>
             <div id="decks">
-                <button class="deck-button" onclick="selectDeck(0)">Deck A</button>
-                <button class="deck-button" onclick="selectDeck(1)">Deck B</button>
-                <button class="deck-button" onclick="selectDeck(2)">Deck C</button>
-                <button class="deck-button" onclick="selectDeck(3)">Deck D</button>
+                <button class="deck-button" onclick="selectDeck(0)" id="deckA">Deck A</button>
+                <button class="deck-button" onclick="selectDeck(1)" id="deckB">Deck B</button>
+                <button class="deck-button" onclick="selectDeck(2)" id="deckC">Deck C</button>
+                <button class="deck-button" onclick="selectDeck(3)" id="deckD">Deck D</button>
             </div>
             <div id="feedback"></div>
             <div id="stats"></div>
@@ -182,6 +183,8 @@ async def index():
             let startTime;
             let trialCount = 0;
             let sessionId = null;
+            let isProcessing = false;
+            let totalMoney = 2000;
             
             async function initSession() {
                 try {
@@ -192,17 +195,39 @@ async def index():
                     });
                     const data = await response.json();
                     sessionId = data.session_id;
+                    totalMoney = data.total_money;
+                    updateDisplay();
                     startTime = new Date();
                 } catch (error) {
                     console.error('Error initializing session:', error);
+                    document.getElementById('feedback').textContent = 'Error starting game. Please refresh the page.';
                 }
             }
             
+            function updateDisplay() {
+                document.getElementById('money').textContent = `Total Money: $${totalMoney}`;
+            }
+            
+            function setButtonsEnabled(enabled) {
+                const buttons = document.querySelectorAll('.deck-button');
+                buttons.forEach(button => {
+                    if (enabled) {
+                        button.classList.remove('disabled');
+                        button.disabled = false;
+                    } else {
+                        button.classList.add('disabled');
+                        button.disabled = true;
+                    }
+                });
+            }
+            
             async function selectDeck(deck) {
-                if (!sessionId) {
-                    console.error('No active session');
+                if (!sessionId || isProcessing) {
                     return;
                 }
+                
+                isProcessing = true;
+                setButtonsEnabled(false);
                 
                 if (!startTime) startTime = new Date();
                 const reactionTime = (new Date() - startTime) / 1000;
@@ -218,10 +243,18 @@ async def index():
                             reaction_time: reactionTime
                         })
                     });
+                    
+                    if (!response.ok) {
+                        throw new Error(`HTTP error! status: ${response.status}`);
+                    }
+                    
                     const data = await response.json();
-                    document.getElementById('money').textContent = `Total Money: $${data.total_money}`;
-                    document.getElementById('feedback').textContent = 
-                        `Reward: ${data.reward > 0 ? '+' : ''}${data.reward}`;
+                    totalMoney = data.total_money;
+                    updateDisplay();
+                    
+                    const feedback = document.getElementById('feedback');
+                    feedback.textContent = `Reward: ${data.reward > 0 ? '+' : ''}${data.reward}`;
+                    feedback.style.color = data.reward >= 0 ? 'green' : 'red';
                     
                     if (data.metrics) {
                         const stats = document.getElementById('stats');
@@ -239,14 +272,26 @@ async def index():
                         `;
                         
                         if (data.done) {
+                            if (data.save_status === 'error') {
+                                console.error('Error saving data:', data.save_error);
+                                feedback.textContent += '\nWarning: There was an error saving your data.';
+                            }
                             alert('Experiment complete! Thank you for participating.');
                             sessionId = null;  // End session
+                            return;
                         }
                     }
                     
                     startTime = new Date();  // Reset for next trial
+                    
                 } catch (error) {
                     console.error('Error:', error);
+                    document.getElementById('feedback').textContent = 'Error processing choice. Please try again.';
+                } finally {
+                    isProcessing = false;
+                    if (sessionId) {  // Only re-enable if session is still active
+                        setButtonsEnabled(true);
+                    }
                 }
             }
             
