@@ -9,5 +9,6 @@ pydantic==2.5.2
 typing-extensions==4.8.0
 click==8.1.7
 h11==0.14.0
-supabase-py==2.0.0
+supabase==1.0.3
 python-dotenv==1.0.0
+requests==2.31.0

@@ -10,7 +10,7 @@ from typing import Dict, Any
 import json
 import os
 import logging
-from supabase import create_client, Client
+from supabase import Client, create_client
 
 # Set up logging
 logging.basicConfig(level=logging.INFO)
