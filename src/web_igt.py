@@ -32,17 +32,20 @@ logger = logging.getLogger(__name__)
 supabase_url = os.environ.get("SUPABASE_URL")
 supabase_key = os.environ.get("SUPABASE_KEY")
 
+logger.info("Checking Supabase credentials...")
+logger.info(f"SUPABASE_URL present: {'SUPABASE_URL' in os.environ}")
+logger.info(f"SUPABASE_KEY present: {'SUPABASE_KEY' in os.environ}")
+
 if not supabase_url or not supabase_key:
     logger.error("Supabase credentials missing!")
-    logger.info(f"SUPABASE_URL present: {'SUPABASE_URL' in os.environ}")
-    logger.info(f"SUPABASE_KEY present: {'SUPABASE_KEY' in os.environ}")
 else:
-    logger.info(f"Initializing Supabase with URL: {supabase_url[:20]}...")
     try:
-        supabase: Client = create_client(supabase_url, supabase_key)
+        logger.info(f"Initializing Supabase with URL: {supabase_url[:20]}...")
+        supabase = create_client(supabase_url, supabase_key)
         logger.info("Supabase client initialized successfully")
     except Exception as e:
         logger.error(f"Error initializing Supabase client: {str(e)}")
+        supabase = None
 
 app = FastAPI()
 
@@ -250,22 +253,33 @@ async def start_session():
         logger.error(f"Error in start_session: {str(e)}")
         raise HTTPException(status_code=500, detail=str(e))
 
-async def save_to_supabase(session_data: dict) -> bool:
+def save_to_supabase(session_data: dict) -> bool:
     """Save session data to Supabase"""
     try:
-        if not supabase_url or not supabase_key:
-            logger.error("Supabase credentials not available")
+        if not supabase:
+            logger.error("Supabase client not initialized")
             return False
 
-        logger.info(f"Saving session {session_data['session_id']} to Supabase...")
-        result = supabase.table('participants').insert(session_data).execute()
+        logger.info(f"Preparing to save session data: {session_data['id']}")
+        
+        # Convert data to proper format
+        formatted_data = {
+            'id': session_data['id'],
+            'timestamp': session_data['timestamp'],
+            'metrics': json.dumps(session_data['metrics']),  # Ensure proper JSON serialization
+            'history': json.dumps(session_data['history'])   # Ensure proper JSON serialization
+        }
+        
+        logger.info("Attempting to save to Supabase...")
+        result = supabase.table('participants').insert(formatted_data).execute()
         
         if result and hasattr(result, 'data'):
-            logger.info("Data saved successfully to Supabase")
+            logger.info(f"Successfully saved data to Supabase: {result.data}")
             return True
         else:
-            logger.error("No data returned from Supabase save operation")
+            logger.error(f"Unexpected response from Supabase: {result}")
             return False
+            
     except Exception as e:
         logger.error(f"Error saving to Supabase: {str(e)}")
         return False
@@ -298,21 +312,23 @@ async def step(data: StepRequest):
         
         if done:
             logger.info(f"Session {session_id} complete")
-            response_data['metrics'] = info['metrics']
+            metrics = info['metrics']
+            response_data['metrics'] = metrics
             
-            # Prepare session data for Supabase
+            # Prepare session data
             session_data = {
-                'id': session_id,  # Using session_id as the primary key
+                'id': session_id,
                 'timestamp': datetime.now().isoformat(),
-                'metrics': info['metrics'],
+                'metrics': metrics,
                 'history': env.history
             }
             
             # Save to Supabase
-            save_success = await save_to_supabase(session_data)
-            logger.info(f"Supabase save {'successful' if save_success else 'failed'}")
-            
-            if not save_success:
+            save_success = save_to_supabase(session_data)
+            if save_success:
+                logger.info("Data successfully saved to Supabase")
+            else:
+                logger.error("Failed to save data to Supabase")
                 response_data['save_error'] = "Failed to save data"
             
             session_manager.remove_session(session_id)
