@@ -162,23 +162,42 @@ class IGTEnv:
 
 class SessionManager:
     def __init__(self, timeout: int = 1800):  # 30 minutes timeout
-        self.sessions: Dict[str, IGTEnv] = {}
+        self._sessions: Dict[str, IGTEnv] = {}
         self.timeout = timeout
         self.last_cleanup = time.time()
+        logger.info("Session manager initialized")
     
     def create_session(self) -> tuple[str, IGTEnv]:
+        """Create a new session"""
         session_id = f"session_{datetime.now().strftime('%Y%m%d_%H%M%S')}_{np.random.randint(1000, 9999)}"
-        self.sessions[session_id] = IGTEnv()
-        return session_id, self.sessions[session_id]
+        env = IGTEnv()
+        self._sessions[session_id] = env
+        logger.info(f"Created new session: {session_id}")
+        return session_id, env
     
     def get_session(self, session_id: str) -> Optional[IGTEnv]:
-        return self.sessions.get(session_id)
+        """Get an existing session"""
+        env = self._sessions.get(session_id)
+        if env is None:
+            logger.error(f"Session not found: {session_id}")
+            logger.info(f"Active sessions: {list(self._sessions.keys())}")
+        else:
+            logger.info(f"Retrieved session: {session_id}")
+        return env
     
     def remove_session(self, session_id: str):
-        if session_id in self.sessions:
-            del self.sessions[session_id]
+        """Remove a session"""
+        if session_id in self._sessions:
+            logger.info(f"Removing session: {session_id}")
+            del self._sessions[session_id]
+        else:
+            logger.warning(f"Attempted to remove non-existent session: {session_id}")
+    
+    def list_sessions(self) -> list[str]:
+        """List all active sessions"""
+        return list(self._sessions.keys())
 
-# Create session manager
+# Create global session manager
 session_manager = SessionManager()
 
 class StepRequest(BaseModel):
@@ -188,13 +207,12 @@ class StepRequest(BaseModel):
 
 @app.get("/api/debug")
 async def debug_info():
-    """Endpoint to check active sessions and their state"""
+    """Get debug information about active sessions"""
     try:
-        sessions = session_manager.get_active_sessions()
+        sessions = session_manager.list_sessions()
         return {
             "active_sessions": len(sessions),
-            "session_ids": list(sessions.keys()),
-            "session_states": sessions
+            "session_ids": sessions
         }
     except Exception as e:
         logger.error(f"Error in debug_info: {str(e)}")
@@ -202,38 +220,53 @@ async def debug_info():
 
 @app.post("/api/start")
 async def start_session():
+    """Start a new session"""
     try:
         session_id, env = session_manager.create_session()
-        logger.info(f"New session started: {session_id}")
+        logger.info(f"Starting new session: {session_id}")
         state, _ = env.reset()
-        return {
+        
+        response_data = {
             'session_id': session_id,
             'state': state.tolist(),
             'total_money': env.total_money
         }
+        logger.info(f"Session started successfully: {session_id}")
+        return response_data
     except Exception as e:
-        logger.error(f"Error in start_session: {str(e)}")
+        logger.error(f"Error starting session: {str(e)}")
         raise HTTPException(status_code=500, detail=str(e))
 
 @app.post("/api/step")
 async def step(data: StepRequest):
+    """Process a step in the session"""
     try:
         session_id = data.session_id
-        logger.info(f"Step request for session {session_id}")
+        logger.info(f"Step request for session {session_id} (Active sessions: {session_manager.list_sessions()})")
         
+        # Get session
         env = session_manager.get_session(session_id)
-        if not env:
+        if env is None:
             logger.error(f"Invalid session: {session_id}")
-            raise HTTPException(status_code=400, detail="Invalid or expired session")
+            raise HTTPException(
+                status_code=400, 
+                detail=f"Invalid or expired session. Active sessions: {session_manager.list_sessions()}"
+            )
         
+        # Process action
         action = data.action
         reaction_time = data.reaction_time
-        
         logger.info(f"Processing action {action} for session {session_id}")
-        state, reward, done, _, info = env.step(action, reaction_time)
+        
+        try:
+            state, reward, done, _, info = env.step(action, reaction_time)
+        except Exception as e:
+            logger.error(f"Error in step execution: {str(e)}")
+            raise HTTPException(status_code=500, detail=f"Error processing step: {str(e)}")
         
         logger.info(f"Step result: reward={reward}, done={done}, total_money={info['total_money']}")
         
+        # Prepare response
         response_data = {
             'state': state.tolist(),
             'reward': reward,
@@ -241,46 +274,38 @@ async def step(data: StepRequest):
             'total_money': info['total_money']
         }
         
+        # Handle completion
         if done:
             logger.info(f"Session {session_id} complete")
             metrics = info['metrics']
             response_data['metrics'] = metrics
             
             try:
-                # Prepare session data
-                session_data = {
-                    'id': session_id,
-                    'timestamp': datetime.now().isoformat(),
-                    'metrics': metrics,
-                    'history': env.history
-                }
-                
                 # Save to Supabase
                 if supabase:
-                    formatted_data = {
-                        'id': session_data['id'],
-                        'timestamp': session_data['timestamp'],
-                        'metrics': json.dumps(session_data['metrics']),
-                        'history': json.dumps(session_data['history'])
+                    session_data = {
+                        'id': session_id,
+                        'timestamp': datetime.now().isoformat(),
+                        'metrics': json.dumps(metrics),
+                        'history': json.dumps(env.history)
                     }
                     
-                    result = supabase.table('participants').insert(formatted_data).execute()
+                    result = supabase.table('participants').insert(session_data).execute()
                     logger.info(f"Supabase save result: {result}")
                 else:
                     logger.warning("Supabase client not initialized, skipping data save")
             except Exception as e:
                 logger.error(f"Error saving to Supabase: {str(e)}")
-                # Don't raise the exception, just log it
             finally:
                 session_manager.remove_session(session_id)
+                logger.info(f"Session {session_id} cleaned up")
         
         return response_data
         
-    except ValueError as e:
-        logger.error(f"Value error in step: {str(e)}")
-        raise HTTPException(status_code=400, detail=str(e))
+    except HTTPException:
+        raise
     except Exception as e:
-        logger.error(f"Error in step: {str(e)}")
+        logger.error(f"Unexpected error in step: {str(e)}")
         raise HTTPException(status_code=500, detail=str(e))
 
 @app.get("/")
