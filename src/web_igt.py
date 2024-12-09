@@ -139,7 +139,7 @@ class IGTEnv:
             raise
 
 class SessionManager:
-    def __init__(self, timeout: int = 300):  # 5 minutes timeout
+    def __init__(self, timeout: int = 1800):  # 30 minutes timeout
         self.sessions: Dict[str, Dict[str, Any]] = {}
         self.timeout = timeout
         self.last_cleanup = time.time()
@@ -332,27 +332,12 @@ async def index():
                     text-align: center;
                     min-height: 27px;
                 }
-                #debug { 
-                    margin: 20px; 
-                    font-size: 14px; 
-                    color: #666; 
-                    text-align: left;
-                    background-color: #f8f8f8;
-                    padding: 10px;
-                    border-radius: 5px;
-                    max-height: 200px;
-                    overflow-y: auto;
-                }
                 #stats { 
                     margin-top: 30px; 
                     text-align: left;
                     background-color: #f8f8f8;
                     padding: 15px;
                     border-radius: 5px;
-                }
-                .debug-message {
-                    margin: 5px 0;
-                    font-family: monospace;
                 }
             </style>
         </head>
@@ -367,7 +352,6 @@ async def index():
                     <button class="deck-button" onclick="selectDeck(3)">Deck D</button>
                 </div>
                 <div id="feedback"></div>
-                <div id="debug"></div>
                 <div id="stats"></div>
             </div>
 
@@ -378,21 +362,9 @@ async def index():
                 let isProcessing = false;
                 let totalMoney = 2000;
                 
-                function updateDebug(message) {
-                    const debugDiv = document.getElementById('debug');
-                    const timestamp = new Date().toISOString().split('T')[1].split('.')[0];
-                    const messageDiv = document.createElement('div');
-                    messageDiv.className = 'debug-message';
-                    messageDiv.textContent = `[${timestamp}] ${message}`;
-                    debugDiv.appendChild(messageDiv);
-                    debugDiv.scrollTop = debugDiv.scrollHeight;
-                    console.log(`[${timestamp}] ${message}`);
-                }
-                
                 function updateDisplay() {
                     const moneyDisplay = document.getElementById('money');
                     moneyDisplay.textContent = `Total Money: $${totalMoney}`;
-                    updateDebug(`Updated display: Total Money = $${totalMoney}`);
                 }
                 
                 function updateButtons(enabled) {
@@ -400,36 +372,31 @@ async def index():
                     buttons.forEach(btn => {
                         btn.disabled = !enabled;
                     });
-                    updateDebug(`Buttons ${enabled ? 'enabled' : 'disabled'}`);
                 }
                 
                 async function checkServerState() {
                     try {
                         const response = await fetch('/api/debug');
                         const data = await response.json();
-                        updateDebug(`Server state: ${JSON.stringify(data)}`);
                         
                         if (sessionId) {
                             if (!data.session_states[sessionId]) {
-                                updateDebug('Session expired or not found! Reinitializing...');
                                 await initSession();
                                 return;
                             }
                             
                             const serverMoney = data.session_states[sessionId].total_money;
                             if (serverMoney !== totalMoney) {
-                                updateDebug(`Money mismatch! Local: ${totalMoney}, Server: ${serverMoney}`);
                                 totalMoney = serverMoney;
                                 updateDisplay();
                             }
                         }
                     } catch (error) {
-                        updateDebug(`Error checking server state: ${error.message}`);
+                        console.log('Error checking server state:', error);
                     }
                 }
                 
                 async function initSession() {
-                    updateDebug('Initializing session...');
                     updateButtons(false);
                     
                     try {
@@ -446,26 +413,18 @@ async def index():
                         const data = await response.json();
                         sessionId = data.session_id;
                         totalMoney = data.total_money;
-                        updateDebug(`Session initialized: ${sessionId}`);
                         updateDisplay();
                         startTime = new Date();
                         updateButtons(true);
                         await checkServerState();
                     } catch (error) {
-                        updateDebug(`Error initializing: ${error.message}`);
+                        console.log('Error initializing:', error);
                         document.getElementById('feedback').textContent = 'Error starting game. Please refresh the page.';
                     }
                 }
                 
                 async function selectDeck(deck) {
-                    updateDebug(`Selecting deck ${deck}...`);
-                    if (!sessionId) {
-                        updateDebug('No active session! Reinitializing...');
-                        await initSession();
-                        return;
-                    }
-                    if (isProcessing) {
-                        updateDebug('Still processing previous action');
+                    if (!sessionId || isProcessing) {
                         return;
                     }
                     
@@ -476,7 +435,6 @@ async def index():
                     trialCount++;
                     
                     try {
-                        updateDebug(`Sending choice: deck ${deck}, reaction time: ${reactionTime}s`);
                         const response = await fetch('/api/step', {
                             method: 'POST',
                             headers: { 'Content-Type': 'application/json' },
@@ -489,7 +447,6 @@ async def index():
                         
                         if (!response.ok) {
                             if (response.status === 400 && (await response.text()).includes('Invalid or expired session')) {
-                                updateDebug('Session expired, reinitializing...');
                                 await initSession();
                                 return;
                             }
@@ -497,8 +454,6 @@ async def index():
                         }
                         
                         const data = await response.json();
-                        updateDebug(`Received response: ${JSON.stringify(data)}`);
-                        
                         totalMoney = data.total_money;
                         updateDisplay();
                         
@@ -523,7 +478,6 @@ async def index():
                             `;
                             
                             if (data.done) {
-                                updateDebug('Experiment complete');
                                 alert('Experiment complete! Thank you for participating.');
                                 sessionId = null;
                                 return;
@@ -534,14 +488,12 @@ async def index():
                         await checkServerState();
                         
                     } catch (error) {
-                        updateDebug(`Error: ${error.message}`);
+                        console.log('Error:', error);
                         document.getElementById('feedback').textContent = 'Error processing choice. Please try again.';
                         
-                        // Check if session is still valid
                         const stateResponse = await fetch('/api/debug');
                         const stateData = await stateResponse.json();
                         if (!stateData.session_states[sessionId]) {
-                            updateDebug('Session lost, reinitializing...');
                             await initSession();
                         }
                     } finally {
@@ -554,11 +506,8 @@ async def index():
                 
                 // Initialize session when page loads
                 window.onload = function() {
-                    updateDebug('Page loaded, initializing...');
                     initSession();
-                    
-                    // Set up periodic state check
-                    setInterval(checkServerState, 2000);  // Check more frequently
+                    setInterval(checkServerState, 10000);  // Check every 10 seconds
                 };
             </script>
         </body>
