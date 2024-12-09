@@ -231,7 +231,7 @@ async def start_session():
             'state': state.tolist(),
             'total_money': env.total_money
         }
-        logger.info(f"Session started successfully: {session_id}")
+        logger.info(f"Session started successfully: {session_id}, data: {response_data}")
         return response_data
     except Exception as e:
         logger.error(f"Error starting session: {str(e)}")
@@ -242,7 +242,8 @@ async def step(data: StepRequest):
     """Process a step in the session"""
     try:
         session_id = data.session_id
-        logger.info(f"Step request for session {session_id} (Active sessions: {session_manager.list_sessions()})")
+        logger.info(f"Step request for session {session_id}")
+        logger.info(f"Current active sessions: {session_manager.list_sessions()}")
         
         # Get session
         env = session_manager.get_session(session_id)
@@ -260,11 +261,10 @@ async def step(data: StepRequest):
         
         try:
             state, reward, done, _, info = env.step(action, reaction_time)
+            logger.info(f"Step completed: reward={reward}, done={done}, money={info['total_money']}")
         except Exception as e:
             logger.error(f"Error in step execution: {str(e)}")
             raise HTTPException(status_code=500, detail=f"Error processing step: {str(e)}")
-        
-        logger.info(f"Step result: reward={reward}, done={done}, total_money={info['total_money']}")
         
         # Prepare response
         response_data = {
@@ -290,6 +290,7 @@ async def step(data: StepRequest):
                         'history': json.dumps(env.history)
                     }
                     
+                    logger.info(f"Saving session data to Supabase: {session_id}")
                     result = supabase.table('participants').insert(session_data).execute()
                     logger.info(f"Supabase save result: {result}")
                 else:
@@ -423,6 +424,7 @@ async def index():
                     document.getElementById('feedback').textContent = 'Initializing...';
                     
                     try {
+                        console.log('Requesting new session...');
                         const response = await fetch('/api/start', {
                             method: 'POST',
                             headers: { 'Content-Type': 'application/json' },
@@ -430,11 +432,17 @@ async def index():
                         });
                         
                         if (!response.ok) {
-                            throw new Error(`HTTP error! status: ${response.status}`);
+                            const errorData = await response.text();
+                            throw new Error(`HTTP error! status: ${response.status}, message: ${errorData}`);
                         }
                         
                         const data = await response.json();
-                        console.log('Session initialized:', data);
+                        console.log('Session initialized with data:', data);
+                        
+                        if (!data.session_id) {
+                            throw new Error('No session ID received from server');
+                        }
+                        
                         sessionId = data.session_id;
                         totalMoney = data.total_money;
                         trialsRemaining = 100;
@@ -444,8 +452,10 @@ async def index():
                         startTime = new Date();
                         updateButtons(true);
                         document.getElementById('feedback').textContent = '';
+                        
+                        console.log(`Session ${sessionId} initialized successfully`);
                     } catch (error) {
-                        console.error('Error initializing:', error);
+                        console.error('Error initializing session:', error);
                         document.getElementById('feedback').textContent = 'Error starting game. Please refresh the page.';
                         updateButtons(false);
                     }
@@ -467,7 +477,7 @@ async def index():
                 
                 async function selectDeck(deck) {
                     if (!sessionId) {
-                        console.log('No session, reinitializing...');
+                        console.log('No session, initializing...');
                         await initSession();
                         return;
                     }
@@ -480,15 +490,14 @@ async def index():
                     updateButtons(false);
                     
                     const reactionTime = (new Date() - startTime) / 1000;
-                    trialCount++;
-                    trialsRemaining--;
-                    updateDisplay();
                     
                     try {
-                        console.log('Sending choice:', { sessionId, deck, reactionTime });
+                        console.log(`Sending choice for session ${sessionId}:`, { deck, reactionTime });
                         const response = await fetch('/api/step', {
                             method: 'POST',
-                            headers: { 'Content-Type': 'application/json' },
+                            headers: { 
+                                'Content-Type': 'application/json'
+                            },
                             body: JSON.stringify({ 
                                 session_id: sessionId,
                                 action: deck,
@@ -497,18 +506,21 @@ async def index():
                         });
                         
                         if (!response.ok) {
-                            if (response.status === 400) {
+                            const errorData = await response.text();
+                            if (response.status === 400 && errorData.includes('Invalid or expired session')) {
                                 console.log('Session expired, reinitializing...');
                                 await initSession();
                                 return;
                             }
-                            throw new Error(`HTTP error! status: ${response.status}`);
+                            throw new Error(`HTTP error! status: ${response.status}, message: ${errorData}`);
                         }
                         
                         const data = await response.json();
-                        console.log('Received response:', data);
+                        console.log(`Received response for session ${sessionId}:`, data);
                         
                         totalMoney = data.total_money;
+                        trialCount++;
+                        trialsRemaining--;
                         updateDisplay();
                         
                         const feedback = document.getElementById('feedback');
@@ -541,15 +553,12 @@ async def index():
                         startTime = new Date();
                         
                     } catch (error) {
-                        console.error('Error:', error);
+                        console.error('Error processing choice:', error);
                         document.getElementById('feedback').textContent = 'Error processing choice. Please try again.';
-                        trialsRemaining++; // Restore trial count on error
-                        updateDisplay();
-                        
-                        // Check if we need to reinitialize
-                        if (!sessionId) {
-                            await initSession();
+                        if (trialsRemaining < 100) {
+                            trialsRemaining++; // Only restore if we decremented
                         }
+                        updateDisplay();
                     } finally {
                         isProcessing = false;
                         if (sessionId && !isComplete) {
