@@ -160,10 +160,11 @@ async def index():
                 border-radius: 5px;
             }
             .deck-button:hover { background-color: #45a049; }
+            .deck-button:disabled { opacity: 0.6; cursor: not-allowed; }
             #money { font-size: 24px; margin: 20px; }
             #feedback { margin: 20px; font-size: 18px; }
+            #debug { margin: 20px; font-size: 12px; color: #666; }
             #stats { margin-top: 30px; text-align: left; }
-            .disabled { opacity: 0.6; cursor: not-allowed; }
         </style>
     </head>
     <body>
@@ -171,35 +172,51 @@ async def index():
         <div id="experiment">
             <div id="money">Total Money: $2000</div>
             <div id="decks">
-                <button class="deck-button" onclick="selectDeck(0)" id="deckA">Deck A</button>
-                <button class="deck-button" onclick="selectDeck(1)" id="deckB">Deck B</button>
-                <button class="deck-button" onclick="selectDeck(2)" id="deckC">Deck C</button>
-                <button class="deck-button" onclick="selectDeck(3)" id="deckD">Deck D</button>
+                <button class="deck-button" onclick="handleDeckClick(0)">Deck A</button>
+                <button class="deck-button" onclick="handleDeckClick(1)">Deck B</button>
+                <button class="deck-button" onclick="handleDeckClick(2)">Deck C</button>
+                <button class="deck-button" onclick="handleDeckClick(3)">Deck D</button>
             </div>
             <div id="feedback"></div>
+            <div id="debug"></div>
             <div id="stats"></div>
         </div>
         <script>
-            let startTime;
+            let startTime = new Date();
             let trialCount = 0;
             let sessionId = null;
             let isProcessing = false;
             let totalMoney = 2000;
             
+            function debug(message) {
+                console.log(message);
+                const debugDiv = document.getElementById('debug');
+                debugDiv.textContent = message;
+            }
+            
             async function initSession() {
+                debug('Initializing session...');
                 try {
                     const response = await fetch('/api/start', {
                         method: 'POST',
                         headers: { 'Content-Type': 'application/json' },
                         body: JSON.stringify({})
                     });
+                    
+                    if (!response.ok) {
+                        throw new Error(`HTTP error! status: ${response.status}`);
+                    }
+                    
                     const data = await response.json();
                     sessionId = data.session_id;
                     totalMoney = data.total_money;
+                    debug(`Session initialized: ${sessionId}`);
                     updateDisplay();
                     startTime = new Date();
+                    enableButtons(true);
                 } catch (error) {
                     console.error('Error initializing session:', error);
+                    debug(`Error initializing: ${error.message}`);
                     document.getElementById('feedback').textContent = 'Error starting game. Please refresh the page.';
                 }
             }
@@ -208,32 +225,32 @@ async def index():
                 document.getElementById('money').textContent = `Total Money: $${totalMoney}`;
             }
             
-            function setButtonsEnabled(enabled) {
+            function enableButtons(enabled) {
                 const buttons = document.querySelectorAll('.deck-button');
                 buttons.forEach(button => {
-                    if (enabled) {
-                        button.classList.remove('disabled');
-                        button.disabled = false;
-                    } else {
-                        button.classList.add('disabled');
-                        button.disabled = true;
-                    }
+                    button.disabled = !enabled;
                 });
             }
             
-            async function selectDeck(deck) {
-                if (!sessionId || isProcessing) {
+            async function handleDeckClick(deck) {
+                debug(`Deck ${deck} clicked`);
+                if (!sessionId) {
+                    debug('No active session');
+                    return;
+                }
+                if (isProcessing) {
+                    debug('Still processing previous action');
                     return;
                 }
                 
                 isProcessing = true;
-                setButtonsEnabled(false);
+                enableButtons(false);
                 
-                if (!startTime) startTime = new Date();
                 const reactionTime = (new Date() - startTime) / 1000;
                 trialCount++;
                 
                 try {
+                    debug(`Sending choice: deck ${deck}`);
                     const response = await fetch('/api/step', {
                         method: 'POST',
                         headers: { 'Content-Type': 'application/json' },
@@ -249,6 +266,8 @@ async def index():
                     }
                     
                     const data = await response.json();
+                    debug(`Received response: ${JSON.stringify(data)}`);
+                    
                     totalMoney = data.total_money;
                     updateDisplay();
                     
@@ -260,6 +279,7 @@ async def index():
                         const stats = document.getElementById('stats');
                         stats.innerHTML = `
                             <h3>Performance Summary:</h3>
+                            <p>Trials Completed: ${trialCount}</p>
                             <p>Advantageous Choices (C+D): ${(data.metrics.advantageous_ratio * 100).toFixed(1)}%</p>
                             <p>Risk-Seeking After Loss: ${(data.metrics.risk_seeking_after_loss * 100).toFixed(1)}%</p>
                             <p>Average Reaction Time: ${data.metrics.mean_reaction_time.toFixed(2)}s</p>
@@ -272,31 +292,36 @@ async def index():
                         `;
                         
                         if (data.done) {
+                            debug('Experiment complete');
                             if (data.save_status === 'error') {
                                 console.error('Error saving data:', data.save_error);
                                 feedback.textContent += '\nWarning: There was an error saving your data.';
                             }
                             alert('Experiment complete! Thank you for participating.');
-                            sessionId = null;  // End session
+                            sessionId = null;
                             return;
                         }
                     }
                     
-                    startTime = new Date();  // Reset for next trial
+                    startTime = new Date();
                     
                 } catch (error) {
                     console.error('Error:', error);
+                    debug(`Error: ${error.message}`);
                     document.getElementById('feedback').textContent = 'Error processing choice. Please try again.';
                 } finally {
                     isProcessing = false;
-                    if (sessionId) {  // Only re-enable if session is still active
-                        setButtonsEnabled(true);
+                    if (sessionId) {
+                        enableButtons(true);
                     }
                 }
             }
             
             // Initialize session when page loads
-            initSession();
+            window.onload = function() {
+                debug('Page loaded, initializing...');
+                initSession();
+            };
         </script>
     </body>
     </html>
