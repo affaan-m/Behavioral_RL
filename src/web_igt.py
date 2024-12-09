@@ -162,59 +162,21 @@ class IGTEnv:
 
 class SessionManager:
     def __init__(self, timeout: int = 1800):  # 30 minutes timeout
-        self.sessions: Dict[str, Dict[str, Any]] = {}
+        self.sessions: Dict[str, IGTEnv] = {}
         self.timeout = timeout
         self.last_cleanup = time.time()
     
     def create_session(self) -> tuple[str, IGTEnv]:
-        self.cleanup_expired()
         session_id = f"session_{datetime.now().strftime('%Y%m%d_%H%M%S')}_{np.random.randint(1000, 9999)}"
-        env = IGTEnv()
-        self.sessions[session_id] = {
-            'env': env,
-            'created_at': time.time(),
-            'last_activity': time.time()
-        }
-        return session_id, env
+        self.sessions[session_id] = IGTEnv()
+        return session_id, self.sessions[session_id]
     
     def get_session(self, session_id: str) -> Optional[IGTEnv]:
-        if session_id not in self.sessions:
-            return None
-        self.sessions[session_id]['last_activity'] = time.time()
-        return self.sessions[session_id]['env']
+        return self.sessions.get(session_id)
     
     def remove_session(self, session_id: str):
         if session_id in self.sessions:
             del self.sessions[session_id]
-    
-    def cleanup_expired(self):
-        current_time = time.time()
-        if current_time - self.last_cleanup < 60:  # Only cleanup once per minute
-            return
-            
-        expired = []
-        for sid, session in self.sessions.items():
-            if current_time - session['last_activity'] > self.timeout:
-                expired.append(sid)
-        
-        for sid in expired:
-            logger.info(f"Removing expired session {sid}")
-            del self.sessions[sid]
-        
-        self.last_cleanup = current_time
-    
-    def get_active_sessions(self) -> Dict[str, Any]:
-        self.cleanup_expired()
-        return {
-            sid: {
-                'total_money': session['env'].total_money,
-                'step_count': session['env'].step_count,
-                'history_length': len(session['env'].history['deck_choices']),
-                'age': time.time() - session['created_at'],
-                'last_activity': time.time() - session['last_activity']
-            }
-            for sid, session in self.sessions.items()
-        }
 
 # Create session manager
 session_manager = SessionManager()
@@ -253,37 +215,6 @@ async def start_session():
         logger.error(f"Error in start_session: {str(e)}")
         raise HTTPException(status_code=500, detail=str(e))
 
-def save_to_supabase(session_data: dict) -> bool:
-    """Save session data to Supabase"""
-    try:
-        if not supabase:
-            logger.error("Supabase client not initialized")
-            return False
-
-        logger.info(f"Preparing to save session data: {session_data['id']}")
-        
-        # Convert data to proper format
-        formatted_data = {
-            'id': session_data['id'],
-            'timestamp': session_data['timestamp'],
-            'metrics': json.dumps(session_data['metrics']),  # Ensure proper JSON serialization
-            'history': json.dumps(session_data['history'])   # Ensure proper JSON serialization
-        }
-        
-        logger.info("Attempting to save to Supabase...")
-        result = supabase.table('participants').insert(formatted_data).execute()
-        
-        if result and hasattr(result, 'data'):
-            logger.info(f"Successfully saved data to Supabase: {result.data}")
-            return True
-        else:
-            logger.error(f"Unexpected response from Supabase: {result}")
-            return False
-            
-    except Exception as e:
-        logger.error(f"Error saving to Supabase: {str(e)}")
-        return False
-
 @app.post("/api/step")
 async def step(data: StepRequest):
     try:
@@ -315,26 +246,39 @@ async def step(data: StepRequest):
             metrics = info['metrics']
             response_data['metrics'] = metrics
             
-            # Prepare session data
-            session_data = {
-                'id': session_id,
-                'timestamp': datetime.now().isoformat(),
-                'metrics': metrics,
-                'history': env.history
-            }
-            
-            # Save to Supabase
-            save_success = save_to_supabase(session_data)
-            if save_success:
-                logger.info("Data successfully saved to Supabase")
-            else:
-                logger.error("Failed to save data to Supabase")
-                response_data['save_error'] = "Failed to save data"
-            
-            session_manager.remove_session(session_id)
+            try:
+                # Prepare session data
+                session_data = {
+                    'id': session_id,
+                    'timestamp': datetime.now().isoformat(),
+                    'metrics': metrics,
+                    'history': env.history
+                }
+                
+                # Save to Supabase
+                if supabase:
+                    formatted_data = {
+                        'id': session_data['id'],
+                        'timestamp': session_data['timestamp'],
+                        'metrics': json.dumps(session_data['metrics']),
+                        'history': json.dumps(session_data['history'])
+                    }
+                    
+                    result = supabase.table('participants').insert(formatted_data).execute()
+                    logger.info(f"Supabase save result: {result}")
+                else:
+                    logger.warning("Supabase client not initialized, skipping data save")
+            except Exception as e:
+                logger.error(f"Error saving to Supabase: {str(e)}")
+                # Don't raise the exception, just log it
+            finally:
+                session_manager.remove_session(session_id)
         
         return response_data
         
+    except ValueError as e:
+        logger.error(f"Value error in step: {str(e)}")
+        raise HTTPException(status_code=400, detail=str(e))
     except Exception as e:
         logger.error(f"Error in step: {str(e)}")
         raise HTTPException(status_code=500, detail=str(e))
