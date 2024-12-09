@@ -7,14 +7,13 @@ from fastapi.staticfiles import StaticFiles
 from fastapi.middleware.cors import CORSMiddleware
 import uvicorn
 import numpy as np
-from datetime import datetime
-from pathlib import Path
-from typing import Dict, Any, Optional
-import json
-import os
+from datetime import datetime, timedelta
 import logging
-from supabase import Client, create_client
+import os
+from dotenv import load_dotenv
+from typing import Dict, Any, Optional
 from pydantic import BaseModel
+import time
 
 # Load environment variables
 load_dotenv()
@@ -22,33 +21,9 @@ load_dotenv()
 # Configure logging
 logging.basicConfig(
     level=logging.INFO,
-    format='%(asctime)s - %(name)s - %(levelname)s - %(message)s',
-    handlers=[
-        logging.StreamHandler()
-    ]
+    format='%(asctime)s - %(name)s - %(levelname)s - %(message)s'
 )
 logger = logging.getLogger(__name__)
-
-# Log startup information
-logger.info("Starting IGT Web Application")
-logger.info(f"Environment: {os.environ.get('ENVIRONMENT', 'development')}")
-
-# Initialize Supabase client
-supabase_url = os.environ.get("SUPABASE_URL", "")
-supabase_key = os.environ.get("SUPABASE_KEY", "")
-
-if not supabase_url or not supabase_key:
-    logger.error("Supabase credentials missing!")
-    logger.info(f"SUPABASE_URL present: {'SUPABASE_URL' in os.environ}")
-    logger.info(f"SUPABASE_KEY present: {'SUPABASE_KEY' in os.environ}")
-else:
-    logger.info(f"Initializing Supabase with URL: {supabase_url[:20]}...")
-
-try:
-    supabase: Client = create_client(supabase_url, supabase_key)
-    logger.info("Supabase client initialized successfully")
-except Exception as e:
-    logger.error(f"Error initializing Supabase client: {str(e)}")
 
 app = FastAPI()
 
@@ -60,14 +35,6 @@ app.add_middleware(
     allow_methods=["*"],
     allow_headers=["*"],
 )
-
-# Session storage
-active_sessions: Dict[str, Any] = {}
-
-class StepRequest(BaseModel):
-    session_id: str
-    action: int
-    reaction_time: Optional[float] = None
 
 class IGTEnv:
     def __init__(self):
@@ -171,21 +138,79 @@ class IGTEnv:
             logger.error(f"Error in calculate_metrics: {str(e)}")
             raise
 
+class SessionManager:
+    def __init__(self, timeout: int = 300):  # 5 minutes timeout
+        self.sessions: Dict[str, Dict[str, Any]] = {}
+        self.timeout = timeout
+        self.last_cleanup = time.time()
+    
+    def create_session(self) -> tuple[str, IGTEnv]:
+        self.cleanup_expired()
+        session_id = f"session_{datetime.now().strftime('%Y%m%d_%H%M%S')}_{np.random.randint(1000, 9999)}"
+        env = IGTEnv()
+        self.sessions[session_id] = {
+            'env': env,
+            'created_at': time.time(),
+            'last_activity': time.time()
+        }
+        return session_id, env
+    
+    def get_session(self, session_id: str) -> Optional[IGTEnv]:
+        if session_id not in self.sessions:
+            return None
+        self.sessions[session_id]['last_activity'] = time.time()
+        return self.sessions[session_id]['env']
+    
+    def remove_session(self, session_id: str):
+        if session_id in self.sessions:
+            del self.sessions[session_id]
+    
+    def cleanup_expired(self):
+        current_time = time.time()
+        if current_time - self.last_cleanup < 60:  # Only cleanup once per minute
+            return
+            
+        expired = []
+        for sid, session in self.sessions.items():
+            if current_time - session['last_activity'] > self.timeout:
+                expired.append(sid)
+        
+        for sid in expired:
+            logger.info(f"Removing expired session {sid}")
+            del self.sessions[sid]
+        
+        self.last_cleanup = current_time
+    
+    def get_active_sessions(self) -> Dict[str, Any]:
+        self.cleanup_expired()
+        return {
+            sid: {
+                'total_money': session['env'].total_money,
+                'step_count': session['env'].step_count,
+                'history_length': len(session['env'].history['deck_choices']),
+                'age': time.time() - session['created_at'],
+                'last_activity': time.time() - session['last_activity']
+            }
+            for sid, session in self.sessions.items()
+        }
+
+# Create session manager
+session_manager = SessionManager()
+
+class StepRequest(BaseModel):
+    session_id: str
+    action: int
+    reaction_time: Optional[float] = None
+
 @app.get("/api/debug")
 async def debug_info():
     """Endpoint to check active sessions and their state"""
     try:
+        sessions = session_manager.get_active_sessions()
         return {
-            "active_sessions": len(active_sessions),
-            "session_ids": list(active_sessions.keys()),
-            "session_states": {
-                sid: {
-                    "total_money": env.total_money,
-                    "step_count": env.step_count,
-                    "history_length": len(env.history['deck_choices'])
-                }
-                for sid, env in active_sessions.items()
-            }
+            "active_sessions": len(sessions),
+            "session_ids": list(sessions.keys()),
+            "session_states": sessions
         }
     except Exception as e:
         logger.error(f"Error in debug_info: {str(e)}")
@@ -194,14 +219,13 @@ async def debug_info():
 @app.post("/api/start")
 async def start_session():
     try:
-        session_id = f"session_{datetime.now().strftime('%Y%m%d_%H%M%S')}_{np.random.randint(1000, 9999)}"
-        active_sessions[session_id] = IGTEnv()
+        session_id, env = session_manager.create_session()
         logger.info(f"New session started: {session_id}")
-        state, _ = active_sessions[session_id].reset()
+        state, _ = env.reset()
         return {
             'session_id': session_id,
             'state': state.tolist(),
-            'total_money': active_sessions[session_id].total_money
+            'total_money': env.total_money
         }
     except Exception as e:
         logger.error(f"Error in start_session: {str(e)}")
@@ -213,7 +237,8 @@ async def step(data: StepRequest):
         session_id = data.session_id
         logger.info(f"Step request for session {session_id}")
         
-        if not session_id or session_id not in active_sessions:
+        env = session_manager.get_session(session_id)
+        if not env:
             logger.error(f"Invalid session: {session_id}")
             raise HTTPException(status_code=400, detail="Invalid or expired session")
         
@@ -221,7 +246,6 @@ async def step(data: StepRequest):
         reaction_time = data.reaction_time
         
         logger.info(f"Processing action {action} for session {session_id}")
-        env = active_sessions[session_id]
         state, reward, done, _, info = env.step(action, reaction_time)
         
         logger.info(f"Step result: reward={reward}, done={done}, total_money={info['total_money']}")
@@ -236,7 +260,7 @@ async def step(data: StepRequest):
         if done:
             logger.info(f"Session {session_id} complete")
             response_data['metrics'] = info['metrics']
-            del active_sessions[session_id]
+            session_manager.remove_session(session_id)
         
         return response_data
         
@@ -385,7 +409,13 @@ async def index():
                         const data = await response.json();
                         updateDebug(`Server state: ${JSON.stringify(data)}`);
                         
-                        if (sessionId && data.session_states[sessionId]) {
+                        if (sessionId) {
+                            if (!data.session_states[sessionId]) {
+                                updateDebug('Session expired or not found! Reinitializing...');
+                                await initSession();
+                                return;
+                            }
+                            
                             const serverMoney = data.session_states[sessionId].total_money;
                             if (serverMoney !== totalMoney) {
                                 updateDebug(`Money mismatch! Local: ${totalMoney}, Server: ${serverMoney}`);
@@ -430,7 +460,8 @@ async def index():
                 async function selectDeck(deck) {
                     updateDebug(`Selecting deck ${deck}...`);
                     if (!sessionId) {
-                        updateDebug('No active session!');
+                        updateDebug('No active session! Reinitializing...');
+                        await initSession();
                         return;
                     }
                     if (isProcessing) {
@@ -457,6 +488,11 @@ async def index():
                         });
                         
                         if (!response.ok) {
+                            if (response.status === 400 && (await response.text()).includes('Invalid or expired session')) {
+                                updateDebug('Session expired, reinitializing...');
+                                await initSession();
+                                return;
+                            }
                             throw new Error(`HTTP error! status: ${response.status}`);
                         }
                         
@@ -500,6 +536,14 @@ async def index():
                     } catch (error) {
                         updateDebug(`Error: ${error.message}`);
                         document.getElementById('feedback').textContent = 'Error processing choice. Please try again.';
+                        
+                        // Check if session is still valid
+                        const stateResponse = await fetch('/api/debug');
+                        const stateData = await stateResponse.json();
+                        if (!stateData.session_states[sessionId]) {
+                            updateDebug('Session lost, reinitializing...');
+                            await initSession();
+                        }
                     } finally {
                         isProcessing = false;
                         if (sessionId) {
@@ -514,7 +558,7 @@ async def index():
                     initSession();
                     
                     // Set up periodic state check
-                    setInterval(checkServerState, 5000);
+                    setInterval(checkServerState, 2000);  // Check more frequently
                 };
             </script>
         </body>
