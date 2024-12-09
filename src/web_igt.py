@@ -1,3 +1,6 @@
+import os
+import logging
+from dotenv import load_dotenv
 from fastapi import FastAPI, Request, HTTPException
 from fastapi.responses import HTMLResponse, JSONResponse
 from fastapi.staticfiles import StaticFiles
@@ -12,9 +15,22 @@ import os
 import logging
 from supabase import Client, create_client
 
-# Set up logging
-logging.basicConfig(level=logging.INFO)
+# Load environment variables
+load_dotenv()
+
+# Configure logging
+logging.basicConfig(
+    level=logging.INFO,
+    format='%(asctime)s - %(name)s - %(levelname)s - %(message)s',
+    handlers=[
+        logging.StreamHandler()
+    ]
+)
 logger = logging.getLogger(__name__)
+
+# Log startup information
+logger.info("Starting IGT Web Application")
+logger.info(f"Environment: {os.environ.get('ENVIRONMENT', 'development')}")
 
 # Initialize Supabase client
 supabase_url = os.environ.get("SUPABASE_URL", "")
@@ -138,6 +154,22 @@ class IGTEnv:
             'learning_progress': learning_progress
         }
 
+@app.get("/api/debug")
+async def debug_info():
+    """Endpoint to check active sessions and their state"""
+    return {
+        "active_sessions": len(active_sessions),
+        "session_ids": list(active_sessions.keys()),
+        "session_states": {
+            sid: {
+                "total_money": env.total_money,
+                "step_count": env.step_count,
+                "history_length": len(env.history['deck_choices'])
+            }
+            for sid, env in active_sessions.items()
+        }
+    }
+
 @app.get("/")
 async def index():
     html_content = """
@@ -146,9 +178,24 @@ async def index():
     <head>
         <title>IGT Experiment</title>
         <style>
-            body { font-family: Arial, sans-serif; max-width: 800px; margin: 0 auto; padding: 20px; }
-            h1 { color: #333; text-align: center; }
-            #experiment { margin-top: 20px; text-align: center; }
+            body { 
+                font-family: Arial, sans-serif; 
+                max-width: 800px; 
+                margin: 0 auto; 
+                padding: 20px; 
+                background-color: #f5f5f5;
+            }
+            h1 { 
+                color: #333; 
+                text-align: center; 
+                margin-bottom: 30px;
+            }
+            #experiment { 
+                background-color: white;
+                padding: 20px;
+                border-radius: 10px;
+                box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+            }
             .deck-button { 
                 margin: 10px; 
                 padding: 20px 40px; 
@@ -158,13 +205,51 @@ async def index():
                 color: white;
                 border: none;
                 border-radius: 5px;
+                transition: all 0.3s ease;
             }
-            .deck-button:hover { background-color: #45a049; }
-            .deck-button:disabled { opacity: 0.6; cursor: not-allowed; }
-            #money { font-size: 24px; margin: 20px; }
-            #feedback { margin: 20px; font-size: 18px; }
-            #debug { margin: 20px; font-size: 12px; color: #666; }
-            #stats { margin-top: 30px; text-align: left; }
+            .deck-button:hover { 
+                background-color: #45a049; 
+                transform: translateY(-2px);
+            }
+            .deck-button:disabled {
+                background-color: #cccccc;
+                cursor: not-allowed;
+                transform: none;
+            }
+            #money { 
+                font-size: 24px; 
+                margin: 20px;
+                text-align: center;
+                color: #2196F3;
+            }
+            #feedback { 
+                margin: 20px; 
+                font-size: 18px;
+                text-align: center;
+                min-height: 27px;
+            }
+            #debug { 
+                margin: 20px; 
+                font-size: 14px; 
+                color: #666; 
+                text-align: left;
+                background-color: #f8f8f8;
+                padding: 10px;
+                border-radius: 5px;
+                max-height: 200px;
+                overflow-y: auto;
+            }
+            #stats { 
+                margin-top: 30px; 
+                text-align: left;
+                background-color: #f8f8f8;
+                padding: 15px;
+                border-radius: 5px;
+            }
+            .debug-message {
+                margin: 5px 0;
+                font-family: monospace;
+            }
         </style>
     </head>
     <body>
@@ -172,15 +257,16 @@ async def index():
         <div id="experiment">
             <div id="money">Total Money: $2000</div>
             <div id="decks">
-                <button class="deck-button" onclick="handleDeckClick(0)">Deck A</button>
-                <button class="deck-button" onclick="handleDeckClick(1)">Deck B</button>
-                <button class="deck-button" onclick="handleDeckClick(2)">Deck C</button>
-                <button class="deck-button" onclick="handleDeckClick(3)">Deck D</button>
+                <button class="deck-button" onclick="selectDeck(0)">Deck A</button>
+                <button class="deck-button" onclick="selectDeck(1)">Deck B</button>
+                <button class="deck-button" onclick="selectDeck(2)">Deck C</button>
+                <button class="deck-button" onclick="selectDeck(3)">Deck D</button>
             </div>
             <div id="feedback"></div>
             <div id="debug"></div>
             <div id="stats"></div>
         </div>
+
         <script>
             let startTime = new Date();
             let trialCount = 0;
@@ -188,14 +274,54 @@ async def index():
             let isProcessing = false;
             let totalMoney = 2000;
             
-            function debug(message) {
-                console.log(message);
+            function updateDebug(message) {
                 const debugDiv = document.getElementById('debug');
-                debugDiv.textContent = message;
+                const timestamp = new Date().toISOString().split('T')[1].split('.')[0];
+                const messageDiv = document.createElement('div');
+                messageDiv.className = 'debug-message';
+                messageDiv.textContent = `[${timestamp}] ${message}`;
+                debugDiv.appendChild(messageDiv);
+                debugDiv.scrollTop = debugDiv.scrollHeight;
+                console.log(`[${timestamp}] ${message}`);
+            }
+            
+            function updateDisplay() {
+                const moneyDisplay = document.getElementById('money');
+                moneyDisplay.textContent = `Total Money: $${totalMoney}`;
+                updateDebug(`Updated display: Total Money = $${totalMoney}`);
+            }
+            
+            function updateButtons(enabled) {
+                const buttons = document.querySelectorAll('.deck-button');
+                buttons.forEach(btn => {
+                    btn.disabled = !enabled;
+                });
+                updateDebug(`Buttons ${enabled ? 'enabled' : 'disabled'}`);
+            }
+            
+            async function checkServerState() {
+                try {
+                    const response = await fetch('/api/debug');
+                    const data = await response.json();
+                    updateDebug(`Server state: ${JSON.stringify(data)}`);
+                    
+                    if (sessionId && data.session_states[sessionId]) {
+                        const serverMoney = data.session_states[sessionId].total_money;
+                        if (serverMoney !== totalMoney) {
+                            updateDebug(`Money mismatch! Local: ${totalMoney}, Server: ${serverMoney}`);
+                            totalMoney = serverMoney;
+                            updateDisplay();
+                        }
+                    }
+                } catch (error) {
+                    updateDebug(`Error checking server state: ${error.message}`);
+                }
             }
             
             async function initSession() {
-                debug('Initializing session...');
+                updateDebug('Initializing session...');
+                updateButtons(false);
+                
                 try {
                     const response = await fetch('/api/start', {
                         method: 'POST',
@@ -210,47 +336,36 @@ async def index():
                     const data = await response.json();
                     sessionId = data.session_id;
                     totalMoney = data.total_money;
-                    debug(`Session initialized: ${sessionId}`);
+                    updateDebug(`Session initialized: ${sessionId}`);
                     updateDisplay();
                     startTime = new Date();
-                    enableButtons(true);
+                    updateButtons(true);
+                    await checkServerState();
                 } catch (error) {
-                    console.error('Error initializing session:', error);
-                    debug(`Error initializing: ${error.message}`);
+                    updateDebug(`Error initializing: ${error.message}`);
                     document.getElementById('feedback').textContent = 'Error starting game. Please refresh the page.';
                 }
             }
             
-            function updateDisplay() {
-                document.getElementById('money').textContent = `Total Money: $${totalMoney}`;
-            }
-            
-            function enableButtons(enabled) {
-                const buttons = document.querySelectorAll('.deck-button');
-                buttons.forEach(button => {
-                    button.disabled = !enabled;
-                });
-            }
-            
-            async function handleDeckClick(deck) {
-                debug(`Deck ${deck} clicked`);
+            async function selectDeck(deck) {
+                updateDebug(`Selecting deck ${deck}...`);
                 if (!sessionId) {
-                    debug('No active session');
+                    updateDebug('No active session!');
                     return;
                 }
                 if (isProcessing) {
-                    debug('Still processing previous action');
+                    updateDebug('Still processing previous action');
                     return;
                 }
                 
                 isProcessing = true;
-                enableButtons(false);
+                updateButtons(false);
                 
                 const reactionTime = (new Date() - startTime) / 1000;
                 trialCount++;
                 
                 try {
-                    debug(`Sending choice: deck ${deck}`);
+                    updateDebug(`Sending choice: deck ${deck}, reaction time: ${reactionTime}s`);
                     const response = await fetch('/api/step', {
                         method: 'POST',
                         headers: { 'Content-Type': 'application/json' },
@@ -266,7 +381,7 @@ async def index():
                     }
                     
                     const data = await response.json();
-                    debug(`Received response: ${JSON.stringify(data)}`);
+                    updateDebug(`Received response: ${JSON.stringify(data)}`);
                     
                     totalMoney = data.total_money;
                     updateDisplay();
@@ -292,11 +407,7 @@ async def index():
                         `;
                         
                         if (data.done) {
-                            debug('Experiment complete');
-                            if (data.save_status === 'error') {
-                                console.error('Error saving data:', data.save_error);
-                                feedback.textContent += '\nWarning: There was an error saving your data.';
-                            }
+                            updateDebug('Experiment complete');
                             alert('Experiment complete! Thank you for participating.');
                             sessionId = null;
                             return;
@@ -304,23 +415,26 @@ async def index():
                     }
                     
                     startTime = new Date();
+                    await checkServerState();
                     
                 } catch (error) {
-                    console.error('Error:', error);
-                    debug(`Error: ${error.message}`);
+                    updateDebug(`Error: ${error.message}`);
                     document.getElementById('feedback').textContent = 'Error processing choice. Please try again.';
                 } finally {
                     isProcessing = false;
                     if (sessionId) {
-                        enableButtons(true);
+                        updateButtons(true);
                     }
                 }
             }
             
             // Initialize session when page loads
             window.onload = function() {
-                debug('Page loaded, initializing...');
+                updateDebug('Page loaded, initializing...');
                 initSession();
+                
+                // Set up periodic state check
+                setInterval(checkServerState, 5000);
             };
         </script>
     </body>
@@ -341,20 +455,27 @@ async def start_session():
     }
 
 @app.post("/api/step")
-async def step(data: Dict[str, Any]):
+async def step(data: dict):
     try:
         session_id = data.get('session_id')
+        logger.info(f"Step request for session {session_id}")
+        
         if not session_id or session_id not in active_sessions:
+            logger.error(f"Invalid session: {session_id}")
             raise HTTPException(status_code=400, detail="Invalid or expired session")
             
         action = data.get('action')
         reaction_time = data.get('reaction_time')
         
         if action is None:
+            logger.error("No action provided")
             raise HTTPException(status_code=400, detail="No action provided")
         
+        logger.info(f"Processing action {action} for session {session_id}")
         env = active_sessions[session_id]
         state, reward, done, _, info = env.step(action, reaction_time)
+        
+        logger.info(f"Step result: reward={reward}, done={done}, total_money={info['total_money']}")
         
         response_data = {
             'state': state.tolist(),
@@ -364,53 +485,14 @@ async def step(data: Dict[str, Any]):
         }
         
         if done:
-            metrics = info['metrics']
-            experiment_data = {
-                'timestamp': datetime.now().isoformat(),
-                'session_id': session_id,
-                'history': env.history,
-                'metrics': metrics
-            }
-            
-            logger.info(f"Session {session_id} complete. Preparing to save data...")
-            logger.info(f"Data to be saved: {json.dumps(experiment_data, indent=2)}")
-            
-            try:
-                # Verify Supabase connection
-                if not supabase_url or not supabase_key:
-                    logger.error("Supabase credentials missing!")
-                    raise Exception("Supabase credentials not available")
-                
-                logger.info("Attempting to save to Supabase...")
-                logger.info(f"Using URL: {supabase_url[:20]}...")
-                
-                # Try to save data
-                result = supabase.table('participants').insert(experiment_data).execute()
-                
-                if result and hasattr(result, 'data'):
-                    logger.info(f"Successfully saved data. Response: {json.dumps(result.data, indent=2)}")
-                    response_data['metrics'] = metrics
-                    response_data['save_status'] = 'success'
-                else:
-                    logger.error(f"No data returned from Supabase. Full response: {result}")
-                    response_data['save_status'] = 'error'
-                    response_data['save_error'] = 'No data returned from save operation'
-                
-                # Clean up session
-                del active_sessions[session_id]
-                
-            except Exception as e:
-                logger.error(f"Error saving to Supabase: {str(e)}")
-                logger.error("Full error details:", exc_info=True)
-                response_data['metrics'] = metrics
-                response_data['save_status'] = 'error'
-                response_data['save_error'] = str(e)
+            logger.info(f"Session {session_id} complete")
+            response_data['metrics'] = info['metrics']
+            del active_sessions[session_id]
         
         return response_data
         
     except Exception as e:
         logger.error(f"Error in step endpoint: {str(e)}")
-        logger.error("Full error details:", exc_info=True)
         raise HTTPException(status_code=500, detail=str(e))
 
 if __name__ == '__main__':
