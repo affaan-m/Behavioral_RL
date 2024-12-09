@@ -344,15 +344,19 @@ async def step(data: StepRequest):
                     
                     response_data['metrics'] = metrics
                     
-                    # Save to Supabase using UUID
+                    # Save to Supabase
                     if supabase:
                         try:
+                            # Add additional metrics
+                            metrics.update({
+                                'total_money': info['total_money'],
+                                'completed_trials': info['step_count']
+                            })
+                            
                             session_data = {
-                                'id': session['uuid'],  # Use UUID for Supabase
-                                'session_id': session_id,  # Store original session ID as separate field
-                                'timestamp': datetime.now().isoformat(),
-                                'metrics': json.dumps(metrics),
-                                'history': json.dumps(env.history)
+                                'id': session['uuid'],
+                                'metrics': metrics,  # Store all metrics as JSONB
+                                'history': env.history  # Store history as JSONB
                             }
                             
                             logger.info(f"Saving session data to Supabase: {session_id} (UUID: {session['uuid']})")
