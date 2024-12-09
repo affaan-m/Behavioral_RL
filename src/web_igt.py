@@ -410,7 +410,6 @@ async def index():
             </div>
 
             <script>
-                // Global variables
                 let startTime = new Date();
                 let trialCount = 0;
                 let trialsRemaining = 100;
@@ -419,7 +418,39 @@ async def index():
                 let totalMoney = 2000;
                 let isComplete = false;
                 
-                // Display update functions
+                async function initSession() {
+                    updateButtons(false);
+                    document.getElementById('feedback').textContent = 'Initializing...';
+                    
+                    try {
+                        const response = await fetch('/api/start', {
+                            method: 'POST',
+                            headers: { 'Content-Type': 'application/json' },
+                            body: JSON.stringify({})
+                        });
+                        
+                        if (!response.ok) {
+                            throw new Error(`HTTP error! status: ${response.status}`);
+                        }
+                        
+                        const data = await response.json();
+                        console.log('Session initialized:', data);
+                        sessionId = data.session_id;
+                        totalMoney = data.total_money;
+                        trialsRemaining = 100;
+                        trialCount = 0;
+                        isComplete = false;
+                        updateDisplay();
+                        startTime = new Date();
+                        updateButtons(true);
+                        document.getElementById('feedback').textContent = '';
+                    } catch (error) {
+                        console.error('Error initializing:', error);
+                        document.getElementById('feedback').textContent = 'Error starting game. Please refresh the page.';
+                        updateButtons(false);
+                    }
+                }
+                
                 function updateDisplay() {
                     const moneyDisplay = document.getElementById('money');
                     moneyDisplay.textContent = `Total Money: $${totalMoney}`;
@@ -434,60 +465,14 @@ async def index():
                     });
                 }
                 
-                function showCompletionMessage(metrics) {
-                    const completionDiv = document.getElementById('completion-message');
-                    completionDiv.style.display = 'block';
-                    completionDiv.innerHTML = '<h2>Experiment Complete!</h2><p>Thank you for participating!</p>';
-                    
-                    const stats = document.getElementById('stats');
-                    stats.innerHTML = `
-                        <h3>Performance Summary:</h3>
-                        <p>Final Money: $${totalMoney}</p>
-                        <p>Advantageous Choices (C+D): ${(metrics.advantageous_ratio * 100).toFixed(1)}%</p>
-                        <p>Risk-Seeking After Loss: ${(metrics.risk_seeking_after_loss * 100).toFixed(1)}%</p>
-                        <p>Average Reaction Time: ${metrics.mean_reaction_time.toFixed(2)}s</p>
-                        <p>Deck Preferences:</p>
-                        <ul>
-                            ${Object.entries(metrics.deck_preferences)
-                                .map(([deck, pref]) => `<li>${deck}: ${(pref * 100).toFixed(1)}%</li>`)
-                                .join('')}
-                        </ul>
-                    `;
-                }
-                
-                // Session management
-                async function initSession() {
-                    updateButtons(false);
-                    
-                    try {
-                        const response = await fetch('/api/start', {
-                            method: 'POST',
-                            headers: { 'Content-Type': 'application/json' },
-                            body: JSON.stringify({})
-                        });
-                        
-                        if (!response.ok) {
-                            throw new Error(`HTTP error! status: ${response.status}`);
-                        }
-                        
-                        const data = await response.json();
-                        sessionId = data.session_id;
-                        totalMoney = data.total_money;
-                        trialsRemaining = 100;
-                        trialCount = 0;
-                        isComplete = false;
-                        updateDisplay();
-                        startTime = new Date();
-                        updateButtons(true);
-                    } catch (error) {
-                        console.log('Error initializing:', error);
-                        document.getElementById('feedback').textContent = 'Error starting game. Please refresh the page.';
-                    }
-                }
-                
-                // Game actions
                 async function selectDeck(deck) {
-                    if (!sessionId || isProcessing || isComplete) {
+                    if (!sessionId) {
+                        console.log('No session, reinitializing...');
+                        await initSession();
+                        return;
+                    }
+                    
+                    if (isProcessing || isComplete) {
                         return;
                     }
                     
@@ -500,6 +485,7 @@ async def index():
                     updateDisplay();
                     
                     try {
+                        console.log('Sending choice:', { sessionId, deck, reactionTime });
                         const response = await fetch('/api/step', {
                             method: 'POST',
                             headers: { 'Content-Type': 'application/json' },
@@ -511,10 +497,17 @@ async def index():
                         });
                         
                         if (!response.ok) {
+                            if (response.status === 400) {
+                                console.log('Session expired, reinitializing...');
+                                await initSession();
+                                return;
+                            }
                             throw new Error(`HTTP error! status: ${response.status}`);
                         }
                         
                         const data = await response.json();
+                        console.log('Received response:', data);
+                        
                         totalMoney = data.total_money;
                         updateDisplay();
                         
@@ -524,17 +517,39 @@ async def index():
                         
                         if (data.metrics) {
                             isComplete = true;
-                            showCompletionMessage(data.metrics);
+                            const completionDiv = document.getElementById('completion-message');
+                            completionDiv.style.display = 'block';
+                            completionDiv.innerHTML = '<h2>Experiment Complete!</h2><p>Thank you for participating!</p>';
+                            
+                            const stats = document.getElementById('stats');
+                            stats.innerHTML = `
+                                <h3>Performance Summary:</h3>
+                                <p>Final Money: $${totalMoney}</p>
+                                <p>Advantageous Choices (C+D): ${(data.metrics.advantageous_ratio * 100).toFixed(1)}%</p>
+                                <p>Risk-Seeking After Loss: ${(data.metrics.risk_seeking_after_loss * 100).toFixed(1)}%</p>
+                                <p>Average Reaction Time: ${data.metrics.mean_reaction_time.toFixed(2)}s</p>
+                                <p>Deck Preferences:</p>
+                                <ul>
+                                    ${Object.entries(data.metrics.deck_preferences)
+                                        .map(([deck, pref]) => `<li>${deck}: ${(pref * 100).toFixed(1)}%</li>`)
+                                        .join('')}
+                                </ul>
+                            `;
                             updateButtons(false);
                         }
                         
                         startTime = new Date();
                         
                     } catch (error) {
-                        console.log('Error:', error);
+                        console.error('Error:', error);
                         document.getElementById('feedback').textContent = 'Error processing choice. Please try again.';
                         trialsRemaining++; // Restore trial count on error
                         updateDisplay();
+                        
+                        // Check if we need to reinitialize
+                        if (!sessionId) {
+                            await initSession();
+                        }
                     } finally {
                         isProcessing = false;
                         if (sessionId && !isComplete) {
@@ -544,8 +559,9 @@ async def index():
                 }
                 
                 // Initialize when page loads
-                window.onload = function() {
-                    initSession();
+                window.onload = async function() {
+                    console.log('Page loaded, initializing session...');
+                    await initSession();
                 };
             </script>
         </body>
