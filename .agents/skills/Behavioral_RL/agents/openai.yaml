@@ -1,0 +1,6 @@
+interface:
+  display_name: "Behavioral RL"
+  short_description: "Repo-specific patterns and workflows for Behavioral_RL"
+  default_prompt: "Use the Behavioral_RL repo skill to follow existing architecture, testing, and workflow conventions."
+policy:
+  allow_implicit_invocation: true
