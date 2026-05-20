@@ -1,0 +1,303 @@
+# Instincts generated from https://github.com/affaan-m/Behavioral_RL
+# Generated: 2026-05-20T03:29:45.722Z
+# Version: 2.0
+# NOTE: This file supplements (does not replace) any existing curated instincts.
+# High-confidence manually curated instincts should be preserved alongside these.
+
+---
+id: Behavioral_RL-commit-length
+trigger: "when writing a commit message"
+confidence: 0.6
+domain: git
+source: repo-analysis
+source_repo: https://github.com/affaan-m/Behavioral_RL
+---
+
+# Behavioral_RL Commit Length
+
+## Action
+
+Write moderate-length commit messages (~55 characters)
+
+## Evidence
+
+- Average commit message length: 55 chars
+- Based on 1 commits
+
+---
+id: Behavioral_RL-naming-files
+trigger: "when creating a new file"
+confidence: 0.8
+domain: code-style
+source: repo-analysis
+source_repo: https://github.com/affaan-m/Behavioral_RL
+---
+
+# Behavioral_RL Naming Files
+
+## Action
+
+Use camelCase naming convention
+
+## Evidence
+
+- Analyzed file naming patterns in repository
+- Dominant pattern: camelCase
+
+---
+id: Behavioral_RL-import-relative
+trigger: "when importing modules"
+confidence: 0.75
+domain: code-style
+source: repo-analysis
+source_repo: https://github.com/affaan-m/Behavioral_RL
+---
+
+# Behavioral_RL Import Relative
+
+## Action
+
+Use relative imports for project files
+
+## Evidence
+
+- Import analysis shows relative import pattern
+- Example: import { x } from '../lib/x'
+
+---
+id: Behavioral_RL-export-style
+trigger: "when exporting from a module"
+confidence: 0.7
+domain: code-style
+source: repo-analysis
+source_repo: https://github.com/affaan-m/Behavioral_RL
+---
+
+# Behavioral_RL Export Style
+
+## Action
+
+Prefer named exports
+
+## Evidence
+
+- Export pattern analysis
+- Dominant style: named
+
+---
+id: Behavioral_RL-test-separate
+trigger: "when writing tests"
+confidence: 0.8
+domain: testing
+source: repo-analysis
+source_repo: https://github.com/affaan-m/Behavioral_RL
+---
+
+# Behavioral_RL Test Separate
+
+## Action
+
+Place tests in the tests/ or __tests__/ directory, mirroring src structure
+
+## Evidence
+
+- Separate test directory pattern detected
+- Tests live in dedicated test folders
+
+---
+id: Behavioral_RL-workflow-bulk-dependency-update-across-experiment-directories
+trigger: "when doing bulk dependency update across experiment directories"
+confidence: 0.55
+domain: workflow
+source: repo-analysis
+source_repo: https://github.com/affaan-m/Behavioral_RL
+---
+
+# Behavioral_RL Workflow Bulk Dependency Update Across Experiment Directories
+
+## Action
+
+Follow the bulk-dependency-update-across-experiment-directories workflow:
+1. Identify all wandb run directories under wandb/*/files/
+2. Update requirements.txt in each run directory to bump specified dependencies to new versions
+3. Commit all updated requirements.txt files in a single commit
+
+## Evidence
+
+- Workflow detected from commit patterns
+- Frequency: ~1x per month
+- Files: wandb/*/files/requirements.txt
+
+---
+id: behavioral_rl-instinct-camelcase-filenames
+trigger: "When creating or renaming a file in the codebase"
+confidence: 0.85
+domain: code-style
+source: repo-analysis
+source_repo: affaan-m/Behavioral_RL
+---
+
+# Behavioral_rl Instinct Camelcase Filenames
+
+## Action
+
+Use camelCase for file names
+
+## Evidence
+
+- Pattern in namingConventions.files: camelCase
+
+---
+id: behavioral_rl-instinct-camelcase-functions
+trigger: "When defining a function"
+confidence: 0.85
+domain: code-style
+source: repo-analysis
+source_repo: affaan-m/Behavioral_RL
+---
+
+# Behavioral_rl Instinct Camelcase Functions
+
+## Action
+
+Name the function using camelCase
+
+## Evidence
+
+- Pattern in namingConventions.functions: camelCase
+
+---
+id: behavioral_rl-instinct-pascalcase-classes
+trigger: "When defining a class"
+confidence: 0.85
+domain: code-style
+source: repo-analysis
+source_repo: affaan-m/Behavioral_RL
+---
+
+# Behavioral_rl Instinct Pascalcase Classes
+
+## Action
+
+Name the class using PascalCase
+
+## Evidence
+
+- Pattern in namingConventions.classes: PascalCase
+
+---
+id: behavioral_rl-instinct-screaming-constants
+trigger: "When defining a constant"
+confidence: 0.85
+domain: code-style
+source: repo-analysis
+source_repo: affaan-m/Behavioral_RL
+---
+
+# Behavioral_rl Instinct Screaming Constants
+
+## Action
+
+Name the constant using SCREAMING_SNAKE_CASE
+
+## Evidence
+
+- Pattern in namingConventions.constants: SCREAMING_SNAKE_CASE
+
+---
+id: behavioral_rl-instinct-relative-imports
+trigger: "When importing modules within the codebase"
+confidence: 0.8
+domain: code-style
+source: repo-analysis
+source_repo: affaan-m/Behavioral_RL
+---
+
+# Behavioral_rl Instinct Relative Imports
+
+## Action
+
+Use relative import paths
+
+## Evidence
+
+- Pattern in importStyle: relative
+
+---
+id: behavioral_rl-instinct-named-exports
+trigger: "When exporting functions, classes, or constants"
+confidence: 0.8
+domain: code-style
+source: repo-analysis
+source_repo: affaan-m/Behavioral_RL
+---
+
+# Behavioral_rl Instinct Named Exports
+
+## Action
+
+Use named exports
+
+## Evidence
+
+- Pattern in exportStyle: named
+
+---
+id: behavioral_rl-instinct-separate-tests
+trigger: "When adding or organizing tests"
+confidence: 0.8
+domain: testing
+source: repo-analysis
+source_repo: affaan-m/Behavioral_RL
+---
+
+# Behavioral_rl Instinct Separate Tests
+
+## Action
+
+Place test files in a separate directory from source code
+
+## Evidence
+
+- Pattern in architecture.testLocation: separate
+
+---
+id: behavioral_rl-instinct-commit-format-freeform
+trigger: "When writing a commit message"
+confidence: 0.7
+domain: git
+source: repo-analysis
+source_repo: affaan-m/Behavioral_RL
+---
+
+# Behavioral_rl Instinct Commit Format Freeform
+
+## Action
+
+Use a freeform commit message without enforced prefix, typically summarizing the change in a single line
+
+## Evidence
+
+- Pattern in commits.type: freeform
+- Example: 'Bump the pip group across 28 directories with 4 updates'
+
+---
+id: behavioral_rl-instinct-bulk-dependency-update-workflow
+trigger: "When updating core Python dependencies for all experiment runs managed by wandb"
+confidence: 0.95
+domain: workflow
+source: repo-analysis
+source_repo: affaan-m/Behavioral_RL
+---
+
+# Behavioral_rl Instinct Bulk Dependency Update Workflow
+
+## Action
+
+Identify all wandb run directories under wandb/*/files/, update requirements.txt in each run directory to bump specified dependencies, and commit all updated requirements.txt files in a single commit
+
+## Evidence
+
+- Workflow: bulk-dependency-update-across-experiment-directories
+- Example commit sequence
+
