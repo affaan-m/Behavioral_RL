@@ -1,7 +1,7 @@
 absl-py==2.1.0
 aiobotocore==2.12.3
 aiohappyeyeballs==2.4.0
-aiohttp==3.11.10
+aiohttp==3.14.0
 aioitertools==0.7.1
 aiosignal==1.2.0
 alabaster==0.7.16
@@ -310,7 +310,7 @@ s3fs==2024.6.1
 scikit-image==0.24.0
 scikit-learn==1.5.1
 scipy==1.13.1
-Scrapy==2.11.1
+Scrapy==2.16.0
 seaborn==0.13.2
 semver==3.0.2
 Send2Trash==1.8.2
